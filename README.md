@@ -1,2 +1,19 @@
-# S_posters_VUT_IVS_team_project
-Group project. Goal is not just program python calculator, but try software engineering methods and get through work in team difficulties.
+Prostredi
+---------
+
+Ubuntu 64bit
+Windows 64bit
+
+Autori
+------
+
+Nazev tymu
+- xlogin01 jmeno prijmeni 
+- xlogin02 jmeno prijmeni 
+- xlogin03 jmeno prijmeni 
+- xlogin04 jmeno prijmeni 
+
+Licence
+-------
+
+Tento program je poskytovan...
