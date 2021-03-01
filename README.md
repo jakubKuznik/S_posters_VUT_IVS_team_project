@@ -11,7 +11,7 @@ Nazev tymu
 - xlogin01 jmeno prijmeni 
 - xlogin02 jmeno prijmeni 
 - xlogin03 jmeno prijmeni 
-- xlogin04 jmeno prijmeni 
+- xsvobo1x Lucie Svobodova 
 
 Licence
 -------
