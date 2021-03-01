@@ -12,6 +12,7 @@ Nazev tymu
 - xlogin02 jmeno prijmeni 
 - xlogin03 jmeno prijmeni 
 - xlogin04 jmeno prijmeni 
+,,
 
 Licence
 -------
