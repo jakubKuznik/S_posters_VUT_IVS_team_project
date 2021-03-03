@@ -1,4 +1,4 @@
-Prostredi
+Prostredie
 ---------
 
 Ubuntu 64bit
@@ -7,13 +7,13 @@ Windows 64bit
 Autori
 ------
 
-Nazev tymu
+Názov tímu
 - xkuzni04 Jakub Kuzník 
 - xkrato61 Pavel Kratochvíl 
 - xvanom00 Michal Vaňo
 - xsvobo1x Lucie Svobodova
 
-Licence
+Licencia
 -------
 
-Tento program je poskytovan...
+Tento program je poskytovaný...
