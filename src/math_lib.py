@@ -47,7 +47,7 @@ def div(a, b):
 #  @param factorized_number 
 def fact(factorized_number):
     if type(factorized_number)==int and factorized_number<0:
-        return DomainError
+        raise DomainError
     if factorized_number == 0:
         return 1
     else:
