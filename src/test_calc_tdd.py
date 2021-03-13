@@ -111,10 +111,9 @@ class TestBasicOperations(unittest.TestCase):
             calc.math_lib.div(33, 0)
             calc.math_lib.div(-33, 0)
 
-
     ## Set of tests for factorization
     #  @param self The object pointer.
-    def test_div(self):
+    def test_fact(self):
         result_fact_zero = calc.math_lib.fact(0)
         self.assertEqual(result_fact_zero,1)
         with self.assertRaises(calc.math_lib.DomainError):
