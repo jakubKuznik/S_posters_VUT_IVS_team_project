@@ -46,7 +46,7 @@ def div(a, b):
 #  This is how doxygen function documentation looks like.
 #  @param factorized_number 
 def fact(factorized_number):
-    if type(factorized_number)==int and factorized_number<0:
+    if type(factorized_number)!=int or factorized_number<0:
         raise DomainError
     if factorized_number == 0:
         return 1
