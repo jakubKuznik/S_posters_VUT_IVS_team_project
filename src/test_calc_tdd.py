@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 ###########################################
 # Project name: IVS - projekt
 # File: test_calc_tdd.py
@@ -13,14 +12,6 @@
 #
 # Brief:
 ###########################################
-=======
-# TODO HLAVICKA
->>>>>>> new_tests
-
-## @file test_calc_tdd.py
-#
-#  @brief tests
-
 import unittest
 import calc
 
