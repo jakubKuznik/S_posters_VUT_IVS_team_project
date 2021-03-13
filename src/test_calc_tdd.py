@@ -10,8 +10,18 @@
 #           Kratochvíl Pavel
 #           Svobodová Lucie
 #
-# Brief:
+# Brief: tests
 ###########################################
+
+## @file test_calc_tdd.py
+#
+#  @brief tests
+#
+#  @author Vaňo Michal
+#  @author Kuzník Jakub
+#  @author Kratochvíl Pavel
+#  @author Svobodová Lucie
+
 import unittest
 import calc
 
