@@ -1,6 +1,6 @@
 Prostredie
 ---------
-
+sss
 Ubuntu 64bit
 Windows 64bit
 
