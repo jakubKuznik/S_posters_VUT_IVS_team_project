@@ -1,10 +1,7 @@
 #TODO HLAVICKA
-
-
-
-
 import time
-import math_lib #Math library containing all the math operation.
+# Mathematical library of all operation and Exceptions
+import math_lib
 
 
 ## Documentation for a function.
