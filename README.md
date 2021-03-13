@@ -17,4 +17,3 @@ Licencia
 -------
 
 Tento program je poskytovaný...
-ssss
