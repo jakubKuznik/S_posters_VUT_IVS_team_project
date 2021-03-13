@@ -53,3 +53,8 @@ def fact(factorized_number):
     else:
         return factorized_number*fact(factorized_number-1)
 
+def exponentiation(base, power):
+    if type(power) !=int or power<0 or (power == 0 and base == 0):
+        raise DomainError
+    return (base ** power)
+

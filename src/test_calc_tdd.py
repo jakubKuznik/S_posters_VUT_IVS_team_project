@@ -114,10 +114,22 @@ class TestBasicOperations(unittest.TestCase):
     ## Set of tests for factorization
     #  @param self The object pointer.
     def test_fact(self):
+        result_fact_5 = calc.math_lib.fact(5)
+        self.assertEqual(result_fact_5,120)
         result_fact_zero = calc.math_lib.fact(0)
         self.assertEqual(result_fact_zero,1)
         with self.assertRaises(calc.math_lib.DomainError):
             result_fact_non_integer = calc.math_lib.fact(2.5)
             calc.math_lib.fact(-4)
 
-
+    ## Set of tests for exponentiation
+    #  @param self The object pointer.
+    def test_expo(self):
+        with self.assertRaises(calc.math_lib.DomainError):
+            calc.math_lib.exponentiation(0,0)
+            calc.math_lib.exponentiation(4,2.5)
+            calc.math_lib.exponentiation(4,-2)
+        result_expo_2_2 = calc.math_lib.exponentiation(2,2)
+        self.assertEqual(result_expo_2_2,4)
+        result_expo_4_3 = calc.math_lib.exponentiation(4, 3)
+        self.assertEqual(result_expo_4_3, 64)
