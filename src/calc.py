@@ -1,4 +1,22 @@
-#TODO HLAVICKA
+###########################################
+# Project name: IVS - projekt
+# File: calc.py
+# Date: 13. 03. 2021
+# Last change: 13. 03. 2021
+# Team: S_POSTERS
+# Supervisor: ...
+# Authors:  Vaňo Michal
+#           Kuzník Jakub
+#           Kratochvíl Pavel
+#           Svobodová Lucie
+#
+# Brief: Calculator
+###########################################
+
+## @file calc.py
+#
+#  @brief calculator
+
 import time
 # Mathematical library of all operation and Exceptions
 import math_lib
