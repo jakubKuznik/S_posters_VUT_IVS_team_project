@@ -1,5 +1,17 @@
-# TODO HLAVICKA
-
+###########################################
+# Project name: IVS - projekt
+# File: test_calc_tdd.py
+# Date: 13. 03. 2021
+# Last change: 13. 03. 2021
+# Team: S_POSTERS
+# Supervisor: ...
+# Authors:  Vaňo Michal
+#           Kuzník Jakub
+#           Kratochvíl Pavel
+#           Svobodová Lucie
+#
+# Brief:
+###########################################
 
 import unittest
 import calc
