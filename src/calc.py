@@ -9,7 +9,7 @@ import math_lib
 def main():
 
     ## THIS COMMENT WILL BE IN DOXYGEN
-    print(math_lib.add(9, 5))
+    print(math_lib.fact(9))
     # THIS COMENT WILL NOT BE IN DOXYGEN
 
     #while true(do MATH)
