@@ -27,7 +27,7 @@ import math_lib
 def main():
 
     ## THIS COMMENT WILL BE IN DOXYGEN
-    print(math_lib.fact(9))
+    print(math_lib.fact(-5))
     # THIS COMENT WILL NOT BE IN DOXYGEN
 
     #while true(do MATH)
