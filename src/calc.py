@@ -11,8 +11,8 @@ import math_lib #Math library containing all the math operation.
 #  This is how doxygen function documentation looks like .
 def main():
 
-    ## THIS COMENT WILL BE IN DOXYGEN
-    print(math_lib.plus(9, 5))
+    ## THIS COMMENT WILL BE IN DOXYGEN
+    print(math_lib.add(9, 5))
     # THIS COMENT WILL NOT BE IN DOXYGEN
 
     #while true(do MATH)
