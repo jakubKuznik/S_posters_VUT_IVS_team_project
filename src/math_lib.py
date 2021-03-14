@@ -16,6 +16,11 @@
 ## @file math_lib.py
 #
 #  @brief math library
+#
+#  @author Vaňo Michal
+#  @author Kuzník Jakub
+#  @author Kratochvíl Pavel
+#  @author Svobodová Lucie
 
 class DivByZero(Exception):
     pass

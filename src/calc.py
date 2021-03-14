@@ -16,6 +16,11 @@
 ## @file calc.py
 #
 #  @brief calculator
+#
+#  @author Vaňo Michal
+#  @author Kuzník Jakub
+#  @author Kratochvíl Pavel
+    #  @author Svobodová Lucie
 
 import time
 # Mathematical library of all operation and Exceptions
