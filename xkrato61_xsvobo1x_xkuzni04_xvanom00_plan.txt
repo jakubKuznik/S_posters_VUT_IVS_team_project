@@ -7,34 +7,45 @@ Zloženie tímu S_Posters
 
 Stanovené termíny
 -----------------
-21.3 = Funkčné testy na celú matematickú knižnicu - jednotkové aj integračné
-24.3 = Dokončená matematická knižnica - xvanom00
-28.3 = Funkčný MAKEFILE (ktorý má vytvoriť .exe, zatiaľ pracujeme len s prototypom)
-11.4 = Grafické rozhranie (GUI) pro kalkulačku
-15.4 = Nápoveda
-21.4 = Dokumentácia (priebežná doxygen) + Uživateľská dokumentácia
-24.4 = Inštalátor
-25.4 = Profiling
-28.4 = PRODUKT + ODEVZDÁNÍ + PRODUKTU
+21.3. = Funkčné testy na celú matematickú knižnicu - jednotkové aj integračné
+24.3. = Dokončená matematická knižnica
+28.3. = Funkčný MAKEFILE (ktorý má vytvoriť .exe, zatiaľ pracujeme len s prototypom)
+11.4. = Grafické rozhranie (GUI) pro kalkulačku
+15.4. = Nápoveda
+21.4. = Dokumentácia (priebežná doxygen) + Uživateľská dokumentácia
+24.4. = Inštalátor
+25.4. = Profiling
+26.4. = Mockup
+27.4. = Soubor porovnání plánu a skutečností
+28.4. = PRODUKT + ODEVZDÁNÍ 
+
 
 Pridelenie úloh
 ---------------
-Vytvorenie repozitáru a komunikačných kanálov, profiling a inštalátor          - xkuzni04
-Vytvorenie dokumentácie + makefile/CMake                                       - xsvobo1x
+Vytvorenie repozitáru a komunikačných kanálov, inštalátor	               - xkuzni04
+Vytvorenie dokumentácie + makefile/CMake, profiling                            - xsvobo1x
 Základné mat. funkcie a GUI                                                    - xkrato61
 Matematické fukcie/parser/výpočet/presnosť                                     - xvanom00
 
+Pozn:
+Samozřejmostí je společná průběžná kontrola práce uskutečněné jednotlivými členy teamu. Rovněž platí, že si členové teamu pomáhají napříč svými zodpovědnostmi.
 
 Zvolené kanály pre komunikáciu
 ------------------------------
 11.2.2021 bol založený Discord server, ktorý bude používaný ako hlavný komunikačný kanál. Dôležité je jeho rozdelenie na roomky,
-ktoré umožňujú rýchle hľadanie informácii. Tieto roomky sú napríklad "linky", "plán-práce", "todo", "git", "zadání", "knihovny/balíčky/aplikace".
-Dôležité sú časté team meetingy, na ktorých sa preberá to, čo sa už urobilo, to, čo sa robiť bude, a to, čo sa robí práve teraz - t.j. počas 
+ktoré umožňujú rýchle hľadanie informácii. Tieto roomky sú napríklad "pracovní-výkaz", "plán-práce", "todo", "git", "zadání", "knihovny/balíčky/aplikace".
+Dôležité sú časté online team meetingy, na ktorých sa preberá to, čo sa už urobilo, to, čo sa robiť bude, a to, čo sa robí práve teraz - t.j. počas 
 práce spolu voláme a radíme si navzájom. Na offtopic diskusiu sa používa roomka na to určená. Pravidlom je nezahlcovať roomky obsahom, ktorý
 sa ich netýka, offtopic diskusiu na miestach, ktoré na to nie sú určené, netolerujeme. Účasť na team meetingoch je povinná.
 
 Zvolený systém pre správu verzii a hostingu
 -------------------------------------------
-Zvolili sme github
+Zvolili sme github, kde mamé svůj repozitář, a tedy můžeme pracovat paralelně pomocí větví.
 
+
+Informace pro vyučující/cvičícího: 
+-------------------------------------------
+Bylo přidáno oprávnění pro uživatele ivskontrola s emailovou adresou ivs.kontrola@gmail.com. Tomuto účtu jsme poslali pozvánku na kolaboraci a ta je potřeba potvrdit. 
+Repozitář je na webové adrese:
+https://github.com/jakubKuznik/S_posters_VUT_IVS_team_project
 
