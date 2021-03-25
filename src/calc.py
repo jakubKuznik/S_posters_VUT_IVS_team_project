@@ -20,7 +20,7 @@
 #  @author Vaňo Michal
 #  @author Kuzník Jakub
 #  @author Kratochvíl Pavel
-    #  @author Svobodová Lucie
+#  @author Svobodová Lucie
 import sys
 import time
 # Mathematical library of all operation and Exceptions
@@ -48,22 +48,9 @@ class Main(QMainWindow):
 ## Documentation for a function.
 #  This is how doxygen function documentation looks like .
 def main():
-
     calc = QApplication(sys.argv)
     instance = Main()
     sys.exit(calc.exec_())
-
-    #while true(do MATH)
-        #read numbers | operation
-        #do operation
-        #print result
-
-
-    return 0
-
-
-
-
 
 
 #This is hou the main function is defined in python

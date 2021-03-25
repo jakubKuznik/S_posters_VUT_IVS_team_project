@@ -64,6 +64,16 @@ def div(a, b):
     return a/b
 
 
+## This function will return the b-th root of a.
+#  This is how doxygen function documentation looks like.
+#  @param a first operand
+#  @param b second operand
+def root(a, b):
+    if b < 0:
+        raise DomainError
+    return a**(1/b)
+
+
 ## This function will return the factorial of a given positive integer..
 #  This is how doxygen function documentation looks like.
 #  @param factorized_number 
@@ -78,5 +88,5 @@ def fact(factorized_number):
 def exponentiation(base, power):
     if type(power) !=int or power<0 or (power == 0 and base == 0):
         raise DomainError
-    return (base ** power)
+    return base ** power
 
