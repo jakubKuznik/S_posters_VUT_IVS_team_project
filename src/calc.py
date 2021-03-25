@@ -49,7 +49,7 @@ class Main(QMainWindow):
 #  This is how doxygen function documentation looks like .
 def main():
     calc = QApplication(sys.argv)
-    Main()
+    instance = Main()
     sys.exit(calc.exec_())
 
 

@@ -10,9 +10,9 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-
 class Ui_s_cals(object):
-
+    def __init__(self):
+        self.content=[]
     def setupUi(self, s_cals):
         s_cals.setObjectName("s_cals")
         s_cals.resize(294, 474)
@@ -167,8 +167,8 @@ class Ui_s_cals(object):
         self.pushButton_ssqr.setText(_translate("s_cals", "^"))
         self.pushButton_sfrac.setText(_translate("s_cals", "1/x"))
         self.pushButton_help.setText(_translate("s_cals", "?"))
-
-
+    def change(self,command):
+        self.content.append(command)
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
