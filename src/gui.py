@@ -12,6 +12,8 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class Ui_s_cals(object):
+    def __init__(self,DisplayedContent):
+        self.DisplayedContent=DisplayedContent
     def setupUi(self, s_cals):
         s_cals.setObjectName("s_cals")
         s_cals.resize(294, 474)
@@ -108,7 +110,6 @@ class Ui_s_cals(object):
         self.output.setGeometry(QtCore.QRect(20, 10, 251, 71))
         self.output.setText("")
         self.output.setObjectName("output")
-
         self.retranslateUi(s_cals)
         QtCore.QMetaObject.connectSlotsByName(s_cals)
 

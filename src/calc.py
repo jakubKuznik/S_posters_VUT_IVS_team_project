@@ -38,21 +38,28 @@ from gui import *
 # n == number_button (0 1 2 3)
 # s == symbol button (div, mult, percent ....)
 class Main(QMainWindow):
-    def __init__(self):
+    def __init__(self,DisplayedContent):
         super().__init__()
-        self.ui = Ui_s_cals()
+        self.ui = Ui_s_cals(DisplayContent)
         self.ui.setupUi(self)
         self.show()
+
+
+
+class DisplayContent():
+    def __init__(self):
+        current=[]
+    def change(self,character):
+        self.current.append(character)
 
 
 ## Documentation for a function.
 #  This is how doxygen function documentation looks like .
 def main():
-
+    DisplayedContent=DisplayContent();
     calc = QApplication(sys.argv)
-    instance = Main()
+    Main(DisplayedContent)
     sys.exit(calc.exec_())
-
     #while true(do MATH)
         #read numbers | operation
         #do operation
