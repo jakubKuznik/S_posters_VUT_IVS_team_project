@@ -27,7 +27,7 @@ help:
 #	zip $(PACK_NAME).zip $(ALLDIRS)
 
 doc:
-	doxygen ./Doxyfile
+	cd .. && mkdir doc && cd doc && doxygen ../src/Doxyfile
 
 # This function uses unittest to test our source files
 test:
