@@ -20,7 +20,7 @@
 #  @author Vaňo Michal
 #  @author Kuzník Jakub
 #  @author Kratochvíl Pavel
-    #  @author Svobodová Lucie
+#  @author Svobodová Lucie
 import sys
 import time
 # Mathematical library of all operation and Exceptions
@@ -38,39 +38,19 @@ from gui import *
 # n == number_button (0 1 2 3)
 # s == symbol button (div, mult, percent ....)
 class Main(QMainWindow):
-    def __init__(self,DisplayedContent):
+    def __init__(self):
         super().__init__()
-        self.ui = Ui_s_cals(DisplayContent)
+        self.ui = Ui_s_cals()
         self.ui.setupUi(self)
         self.show()
-
-
-
-class DisplayContent():
-    def __init__(self):
-        current=[]
-    def change(self,character):
-        self.current.append(character)
 
 
 ## Documentation for a function.
 #  This is how doxygen function documentation looks like .
 def main():
-    DisplayedContent=DisplayContent();
     calc = QApplication(sys.argv)
-    Main(DisplayedContent)
+    Main()
     sys.exit(calc.exec_())
-    #while true(do MATH)
-        #read numbers | operation
-        #do operation
-        #print result
-
-
-    return 0
-
-
-
-
 
 
 #This is hou the main function is defined in python

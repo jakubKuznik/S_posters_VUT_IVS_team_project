@@ -12,9 +12,8 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 
 class Ui_s_cals(object):
-    def __init__(self,DisplayedContent):
-        self.DisplayedContent=DisplayedContent
-    def setupUi(self, s_cals):
+
+    def setupui(self, s_cals):
         s_cals.setObjectName("s_cals")
         s_cals.resize(294, 474)
         self.pushButton_n7 = QtWidgets.QPushButton(s_cals)
@@ -104,11 +103,11 @@ class Ui_s_cals(object):
         self.pushButton_sfrac.setAutoFillBackground(False)
         self.pushButton_sfrac.setObjectName("pushButton_sfrac")
         self.pushButton_help = QtWidgets.QPushButton(s_cals)
-        self.pushButton_help.setGeometry(QtCore.QRect(0, 0, 21, 30))
+        self.pushButton_help.setGeometry(QtCore.QRect(0, 0, 25, 30))
         self.pushButton_help.setObjectName("pushButton_help")
         self.output = QtWidgets.QLabel(s_cals)
         self.output.setGeometry(QtCore.QRect(20, 10, 251, 71))
-        self.output.setText("")
+        self.output.setText("5+5")
         self.output.setObjectName("output")
         self.retranslateUi(s_cals)
         QtCore.QMetaObject.connectSlotsByName(s_cals)
@@ -116,7 +115,7 @@ class Ui_s_cals(object):
     def retranslateUi(self, s_cals):
         _translate = QtCore.QCoreApplication.translate
         s_cals.setWindowTitle(_translate("s_cals", "Form"))
-        self.pushButton_n7.setText(_translate("s_cals", "7"))
+        #self.pushButton_n7.setText(_translate("s_cals", "7"))
         self.pushButton_n8.setText(_translate("s_cals", "8"))
         self.pushButton_n9.setText(_translate("s_cals", "9"))
         self.pushButton_n4.setText(_translate("s_cals", "4"))
@@ -148,6 +147,6 @@ if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     s_cals = QtWidgets.QWidget()
     ui = Ui_s_cals()
-    ui.setupUi(s_cals)
+    ui.setupui(s_cals)
     s_cals.show()
     sys.exit(app.exec_())
