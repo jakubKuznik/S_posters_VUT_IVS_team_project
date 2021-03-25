@@ -13,7 +13,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 class Ui_s_cals(object):
 
-    def setupui(self, s_cals):
+    def setupUi(self, s_cals):
         s_cals.setObjectName("s_cals")
         s_cals.resize(294, 474)
         self.pushButton_n7 = QtWidgets.QPushButton(s_cals)
@@ -147,6 +147,6 @@ if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     s_cals = QtWidgets.QWidget()
     ui = Ui_s_cals()
-    ui.setupui(s_cals)
+    ui.setupUi(s_cals)
     s_cals.show()
     sys.exit(app.exec_())
