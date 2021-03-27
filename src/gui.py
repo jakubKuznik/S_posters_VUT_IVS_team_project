@@ -13,6 +13,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_s_cals(object):
     def __init__(self):
         self.content=[]
+        #self.setTriggers()
     def setupUi(self, s_cals):
         s_cals.setObjectName("s_cals")
         s_cals.resize(294, 474)
@@ -142,7 +143,7 @@ class Ui_s_cals(object):
     def retranslateUi(self, s_cals):
         _translate = QtCore.QCoreApplication.translate
         s_cals.setWindowTitle(_translate("s_cals", "Form"))
-        #self.pushButton_n7.setText(_translate("s_cals", "7"))
+        self.pushButton_n7.setText(_translate("s_cals", "7"))
         self.pushButton_n8.setText(_translate("s_cals", "8"))
         self.pushButton_n9.setText(_translate("s_cals", "9"))
         self.pushButton_n4.setText(_translate("s_cals", "4"))
@@ -167,8 +168,29 @@ class Ui_s_cals(object):
         self.pushButton_ssqr.setText(_translate("s_cals", "^"))
         self.pushButton_sfrac.setText(_translate("s_cals", "1/x"))
         self.pushButton_help.setText(_translate("s_cals", "?"))
-    def change(self,command):
-        self.content.append(command)
+
+        self.pushButton_n0.clicked.connect(lambda:self.print("0"))
+        self.pushButton_n1.clicked.connect(lambda: self.print("1"))
+        self.pushButton_n2.clicked.connect(lambda: self.print("2"))
+        self.pushButton_n3.clicked.connect(lambda: self.print("3"))
+        self.pushButton_n4.clicked.connect(lambda: self.print("4"))
+        self.pushButton_n5.clicked.connect(lambda: self.print("5"))
+        self.pushButton_n6.clicked.connect(lambda: self.print("6"))
+        self.pushButton_n7.clicked.connect(lambda: self.print("7"))
+        self.pushButton_n8.clicked.connect(lambda: self.print("8"))
+        self.pushButton_n9.clicked.connect(lambda: self.print("9"))
+        self.pushButton_back.clicked.connect(self.delete)
+        self.pushButton_splus.clicked.connect(lambda: self.print("+"))
+        self.pushButton_sminus.clicked.connect(lambda: self.print("-"))
+        self.pushButton_smultiply.clicked.connect(lambda: self.print("*"))
+        self.pushButton_sdot.clicked.connect(lambda: self.print("."))
+        self.pushButton_ssqr.clicked.connect(lambda: self.print("**"))
+    def print(self,number):
+        self.content.append(number)
+        print(self.content)
+    def delete(self):
+        self.content.pop()
+        print(self.content)
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
