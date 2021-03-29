@@ -9,15 +9,20 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtGui import QFont
 
 
 class Ui_s_cals(object):
     def __init__(self):
-        self.content=[]
+        self.content = []
+        self.window = None
+
     def setupUi(self, s_cals):
         s_cals.setObjectName("s_cals")
         s_cals.resize(300, 500)
         s_cals.setWindowTitle("Calc voe")
+
+
 
         self.pushButton_n9 = QtWidgets.QPushButton(s_cals)
         self.pushButton_n9.setGeometry(QtCore.QRect(150, 190, 61, 61))
@@ -158,10 +163,18 @@ class Ui_s_cals(object):
         self.pushButton_help.setObjectName("pushButton_help")
         self.pushButton_help.setText("?")
 
-        self.output = QtWidgets.QLabel(s_cals)
-        self.output.setGeometry(QtCore.QRect(20, 10, 251, 71))
-        self.output.setText("5+5")
-        self.output.setObjectName("output")
+        self.output1 = QtWidgets.QLabel(s_cals)
+        self.output1.setGeometry(QtCore.QRect(20, 10, 251, 40))
+        self.output1.setText("5+ayyy")
+        self.output1.setFont(QFont('Comic Sans MS', 15))
+        self.output1.setAlignment(QtCore.Qt.AlignRight | QtCore.Qt.AlignVCenter)
+        self.output1.setObjectName("output1")
+
+        self.output2 = QtWidgets.QLabel(s_cals)
+        self.output2.setGeometry(QtCore.QRect(20, 41, 251, 71))
+        self.output2.setText("5+5")
+        self.output2.setFont(QFont('Comic Sans MS', 20))
+        self.output2.setObjectName("output2")
 
         self.retranslateUi(s_cals)
 
@@ -176,9 +189,9 @@ class Ui_s_cals(object):
 
 if __name__ == "__main__":
     import sys
-    app = QtWidgets.QApplication(sys.argv)
-    s_cals = QtWidgets.QWidget()
+    app = QtWidgets.QApplication([])
+    window = QtWidgets.QWidget()
     ui = Ui_s_cals()
-    ui.setupUi(s_cals)
-    s_cals.show()
+    ui.setupUi(window)
+    window.show()
     sys.exit(app.exec_())
