@@ -69,10 +69,11 @@ class Ui_s_cals(object):
         self.pushButton_n0.setObjectName("pushButton_n0")
         self.pushButton_n0.setText("0")
 
-        self.pushButton_sidk = QtWidgets.QPushButton(s_cals)
-        self.pushButton_sidk.setGeometry(QtCore.QRect(10, 400, 61, 61))
-        self.pushButton_sidk.setAutoFillBackground(False)
-        self.pushButton_sidk.setObjectName("pushButton_sidk")
+        self.pushButton_smem = QtWidgets.QPushButton(s_cals)
+        self.pushButton_smem.setGeometry(QtCore.QRect(10, 400, 61, 61))
+        self.pushButton_smem.setAutoFillBackground(False)
+        self.pushButton_smem.setObjectName("pushButton_smem")
+        self.pushButton_smem.setText("M")
 
         self.pushButton_sdot = QtWidgets.QPushButton(s_cals)
         self.pushButton_sdot.setGeometry(QtCore.QRect(150, 400, 61, 61))
@@ -128,11 +129,11 @@ class Ui_s_cals(object):
         self.pushButton_sdivide.setObjectName("pushButton_sdivide")
         self.pushButton_sdivide.setText("÷")
 
-        self.pushButton_spercent = QtWidgets.QPushButton(s_cals)
-        self.pushButton_spercent.setGeometry(QtCore.QRect(10, 90, 61, 41))
-        self.pushButton_spercent.setAutoFillBackground(False)
-        self.pushButton_spercent.setObjectName("pushButton_spercent")
-        self.pushButton_spercent.setText("%")
+        self.pushButton_smemminus = QtWidgets.QPushButton(s_cals)
+        self.pushButton_smemminus.setGeometry(QtCore.QRect(220, 90, 61, 41))
+        self.pushButton_smemminus.setAutoFillBackground(False)
+        self.pushButton_smemminus.setObjectName("pushButton_smemminus")
+        self.pushButton_smemminus.setText("M-")
 
         self.pushButton_sqrt = QtWidgets.QPushButton(s_cals)
         self.pushButton_sqrt.setGeometry(QtCore.QRect(80, 90, 61, 41))
@@ -141,16 +142,16 @@ class Ui_s_cals(object):
         self.pushButton_sqrt.setText("√")
 
         self.pushButton_ssqr = QtWidgets.QPushButton(s_cals)
-        self.pushButton_ssqr.setGeometry(QtCore.QRect(150, 90, 61, 41))
+        self.pushButton_ssqr.setGeometry(QtCore.QRect(10, 90, 61, 41))
         self.pushButton_ssqr.setAutoFillBackground(False)
         self.pushButton_ssqr.setObjectName("pushButton_ssqr")
         self.pushButton_ssqr.setText("^")
 
-        self.pushButton_sfrac = QtWidgets.QPushButton(s_cals)
-        self.pushButton_sfrac.setGeometry(QtCore.QRect(220, 90, 61, 41))
-        self.pushButton_sfrac.setAutoFillBackground(False)
-        self.pushButton_sfrac.setObjectName("pushButton_sfrac")
-        self.pushButton_sfrac.setText("1/x")
+        self.pushButton_smemplus = QtWidgets.QPushButton(s_cals)
+        self.pushButton_smemplus.setGeometry(QtCore.QRect(150, 90, 61, 41))
+        self.pushButton_smemplus.setAutoFillBackground(False)
+        self.pushButton_smemplus.setObjectName("pushButton_smemplus")
+        self.pushButton_smemplus.setText("M+")
 
         self.pushButton_help = QtWidgets.QPushButton(s_cals)
         self.pushButton_help.setGeometry(QtCore.QRect(0, 0, 25, 30))
@@ -168,7 +169,6 @@ class Ui_s_cals(object):
 
     def retranslateUi(self, s_cals):
         _translate = QtCore.QCoreApplication.translate
-        self.pushButton_sidk.setText(_translate("s_cals", "+/-"))
 
     def change(self, command):
         self.content.append(command)
