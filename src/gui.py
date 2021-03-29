@@ -10,19 +10,21 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtGui import QFont
+import sys
+from PyQt5.QtWidgets import QApplication
+from PyQt5.QtWebEngineWidgets import QWebEngineView
 
 
 class Ui_s_cals(object):
     def __init__(self):
-        self.content = []
-        self.window = None
-
+        self.content=[]
+        self.memory=[]
+        self.result=0
+        self.operators=['+','-','*','/']
     def setupUi(self, s_cals):
         s_cals.setObjectName("s_cals")
         s_cals.resize(300, 500)
         s_cals.setWindowTitle("Calc voe")
-
-
 
         self.pushButton_n9 = QtWidgets.QPushButton(s_cals)
         self.pushButton_n9.setGeometry(QtCore.QRect(150, 190, 61, 61))
@@ -165,20 +167,37 @@ class Ui_s_cals(object):
 
         self.output1 = QtWidgets.QLabel(s_cals)
         self.output1.setGeometry(QtCore.QRect(20, 10, 251, 40))
-        self.output1.setText("5+ayyy")
         self.output1.setFont(QFont('Comic Sans MS', 15))
         self.output1.setAlignment(QtCore.Qt.AlignRight | QtCore.Qt.AlignVCenter)
         self.output1.setObjectName("output1")
 
         self.output2 = QtWidgets.QLabel(s_cals)
         self.output2.setGeometry(QtCore.QRect(20, 41, 251, 71))
-        self.output2.setText("5+5")
         self.output2.setFont(QFont('Comic Sans MS', 20))
         self.output2.setObjectName("output2")
 
         self.retranslateUi(s_cals)
 
         QtCore.QMetaObject.connectSlotsByName(s_cals)
+        self.pushButton_n0.clicked.connect(lambda:self.print("0"))
+        self.pushButton_n1.clicked.connect(lambda: self.print("1"))
+        self.pushButton_n2.clicked.connect(lambda: self.print("2"))
+        self.pushButton_n3.clicked.connect(lambda: self.print("3"))
+        self.pushButton_n4.clicked.connect(lambda: self.print("4"))
+        self.pushButton_n5.clicked.connect(lambda: self.print("5"))
+        self.pushButton_n6.clicked.connect(lambda: self.print("6"))
+        self.pushButton_n7.clicked.connect(lambda: self.print("7"))
+        self.pushButton_n8.clicked.connect(lambda: self.print("8"))
+        self.pushButton_n9.clicked.connect(lambda: self.print("9"))
+        self.pushButton_back.clicked.connect(self.delete)
+        self.pushButton_splus.clicked.connect(lambda: self.print("+"))
+        self.pushButton_sminus.clicked.connect(lambda: self.print("-"))
+        self.pushButton_smultiply.clicked.connect(lambda: self.print("*"))
+        self.pushButton_sdot.clicked.connect(lambda: self.print("."))
+        self.pushButton_ssqr.clicked.connect(lambda: self.print("**"))
+        self.pushButton_smem.clicked.connect(lambda: self.print("**"))
+        self.pushButton_smemplus.clicked.connect(lambda: self.print("**"))
+        self.pushButton_smemminus.clicked.connect(lambda: self.print("**"))
 
     def retranslateUi(self, s_cals):
         _translate = QtCore.QCoreApplication.translate
@@ -186,12 +205,37 @@ class Ui_s_cals(object):
     def change(self, command):
         self.content.append(command)
 
+    def print(self,number):
+        self.content.append(number)
+        print(self.content)
+        self.output1.setText(''.join(self.content))
+        temp=''.join(self.content)
+        try:
+            temp=eval(temp)
+            self.output2.setText(str(temp))
+        except:
+            pass
+
+
+    def delete(self):
+        if len(self.content)!=0:
+            self.content.pop()
+            print(self.content)
+            self.output1.setText(''.join(self.content))
+            temp = ''.join(self.content)
+            try:
+                temp = eval(temp)
+                self.output2.setText(str(temp))
+            except:
+                pass
+            if len(self.content)==0:
+                self.output2.setText('')
 
 if __name__ == "__main__":
     import sys
-    app = QtWidgets.QApplication([])
-    window = QtWidgets.QWidget()
+    app = QtWidgets.QApplication(sys.argv)
+    s_cals = QtWidgets.QWidget()
     ui = Ui_s_cals()
-    ui.setupUi(window)
-    window.show()
+    ui.setupUi(s_cals)
+    s_cals.show()
     sys.exit(app.exec_())
