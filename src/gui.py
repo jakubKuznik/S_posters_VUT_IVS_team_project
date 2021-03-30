@@ -22,154 +22,148 @@ class Window_Ui:
         self.view = view
         self.edit = edit
 
-        self.pushButton_n9 = QtWidgets.QPushButton(Window_Ui)
+        self.pushButton_n9 = QtWidgets.QPushButton(widget)
         self.pushButton_n9.setGeometry(QtCore.QRect(150, 190, 61, 61))
         self.pushButton_n9.setObjectName("pushButton_n9")
         self.pushButton_n9.setText("9")
 
-        self.pushButton_n8 = QtWidgets.QPushButton(Window_Ui)
+        self.pushButton_n8 = QtWidgets.QPushButton(widget)
         self.pushButton_n8.setGeometry(QtCore.QRect(80, 190, 61, 61))
         self.pushButton_n8.setObjectName("pushButton_n8")
         self.pushButton_n8.setText("8")
 
-        self.pushButton_n7 = QtWidgets.QPushButton(Window_Ui)
+        self.pushButton_n7 = QtWidgets.QPushButton(widget)
         self.pushButton_n7.setGeometry(QtCore.QRect(10, 190, 61, 61))
         self.pushButton_n7.setObjectName("pushButton_n7")
         self.pushButton_n7.setText("7")
 
-        self.pushButton_n6 = QtWidgets.QPushButton(Window_Ui)
+        self.pushButton_n6 = QtWidgets.QPushButton(widget)
         self.pushButton_n6.setGeometry(QtCore.QRect(150, 260, 61, 61))
         self.pushButton_n6.setObjectName("pushButton_n6")
         self.pushButton_n6.setText("6")
 
-        self.pushButton_n5 = QtWidgets.QPushButton(Window_Ui)
+        self.pushButton_n5 = QtWidgets.QPushButton(widget)
         self.pushButton_n5.setGeometry(QtCore.QRect(80, 260, 61, 61))
         self.pushButton_n5.setObjectName("pushButton_n5")
         self.pushButton_n5.setText("5")
 
-        self.pushButton_n4 = QtWidgets.QPushButton(Window_Ui)
+        self.pushButton_n4 = QtWidgets.QPushButton(widget)
         self.pushButton_n4.setGeometry(QtCore.QRect(10, 260, 61, 61))
         self.pushButton_n4.setObjectName("pushButton_n4")
         self.pushButton_n4.setText("4")
 
-        self.pushButton_n3 = QtWidgets.QPushButton(Window_Ui)
+        self.pushButton_n3 = QtWidgets.QPushButton(widget)
         self.pushButton_n3.setGeometry(QtCore.QRect(150, 330, 61, 61))
         self.pushButton_n3.setObjectName("pushButton_n3")
         self.pushButton_n3.setText("3")
 
-        self.pushButton_n2 = QtWidgets.QPushButton(Window_Ui)
+        self.pushButton_n2 = QtWidgets.QPushButton(widget)
         self.pushButton_n2.setGeometry(QtCore.QRect(80, 330, 61, 61))
         self.pushButton_n2.setObjectName("pushButton_n2")
         self.pushButton_n2.setText("2")
 
-        self.pushButton_n1 = QtWidgets.QPushButton(Window_Ui)
+        self.pushButton_n1 = QtWidgets.QPushButton(widget)
         self.pushButton_n1.setGeometry(QtCore.QRect(10, 330, 61, 61))
         self.pushButton_n1.setObjectName("pushButton_n1")
         self.pushButton_n1.setText("1")
 
-        self.pushButton_n0 = QtWidgets.QPushButton(Window_Ui)
+        self.pushButton_n0 = QtWidgets.QPushButton(widget)
         self.pushButton_n0.setGeometry(QtCore.QRect(80, 400, 61, 61))
         self.pushButton_n0.setObjectName("pushButton_n0")
         self.pushButton_n0.setText("0")
 
-        self.pushButton_sidk = QtWidgets.QPushButton(Window_Ui)
+        self.pushButton_sidk = QtWidgets.QPushButton(widget)
         self.pushButton_sidk.setGeometry(QtCore.QRect(10, 400, 61, 61))
         self.pushButton_sidk.setAutoFillBackground(False)
         self.pushButton_sidk.setObjectName("pushButton_sidk")
 
-        self.pushButton_sdot = QtWidgets.QPushButton(Window_Ui)
+        self.pushButton_sdot = QtWidgets.QPushButton(widget)
         self.pushButton_sdot.setGeometry(QtCore.QRect(150, 400, 61, 61))
         self.pushButton_sdot.setAutoFillBackground(False)
         self.pushButton_sdot.setObjectName("pushButton_sdot")
         self.pushButton_sdot.setText(",")
 
-        self.pushButton_s_equal = QtWidgets.QPushButton(Window_Ui)
+        self.pushButton_s_equal = QtWidgets.QPushButton(widget)
         self.pushButton_s_equal.setGeometry(QtCore.QRect(220, 400, 61, 61))
         self.pushButton_s_equal.setAutoFillBackground(False)
         self.pushButton_s_equal.setObjectName("pushButton_s_equal")
         self.pushButton_s_equal.setText("=")
 
-        self.pushButton_smultiply = QtWidgets.QPushButton(Window_Ui)
+        self.pushButton_smultiply = QtWidgets.QPushButton(widget)
         self.pushButton_smultiply.setGeometry(QtCore.QRect(220, 190, 61, 61))
         self.pushButton_smultiply.setAutoFillBackground(False)
         self.pushButton_smultiply.setObjectName("pushButton_smultiply")
         self.pushButton_smultiply.setText("*")
 
-        self.pushButton_sminus = QtWidgets.QPushButton(Window_Ui)
+        self.pushButton_sminus = QtWidgets.QPushButton(widget)
         self.pushButton_sminus.setGeometry(QtCore.QRect(220, 260, 61, 61))
         self.pushButton_sminus.setAutoFillBackground(False)
         self.pushButton_sminus.setObjectName("pushButton_sminus")
         self.pushButton_sminus.setText("-")
 
-        self.pushButton_splus = QtWidgets.QPushButton(Window_Ui)
+        self.pushButton_splus = QtWidgets.QPushButton(widget)
         self.pushButton_splus.setGeometry(QtCore.QRect(220, 330, 61, 61))
         self.pushButton_splus.setAutoFillBackground(False)
         self.pushButton_splus.setObjectName("pushButton_splus")
         self.pushButton_splus.setText("+")
 
-        self.pushButton_left_bracket = QtWidgets.QPushButton(Window_Ui)
+        self.pushButton_left_bracket = QtWidgets.QPushButton(widget)
         self.pushButton_left_bracket.setGeometry(QtCore.QRect(10, 140, 61, 41))
         self.pushButton_left_bracket.setAutoFillBackground(False)
         self.pushButton_left_bracket.setObjectName("pushButton_left_bracket")
         self.pushButton_left_bracket.setText("(")
 
-        self.pushButton_right_bracket = QtWidgets.QPushButton(Window_Ui)
+        self.pushButton_right_bracket = QtWidgets.QPushButton(widget)
         self.pushButton_right_bracket.setGeometry(QtCore.QRect(80, 140, 61, 41))
         self.pushButton_right_bracket.setAutoFillBackground(False)
         self.pushButton_right_bracket.setObjectName("pushButton_right_bracket")
         self.pushButton_right_bracket.setText(")")
 
-        self.pushButton_back = QtWidgets.QPushButton(Window_Ui)
+        self.pushButton_back = QtWidgets.QPushButton(widget)
         self.pushButton_back.setGeometry(QtCore.QRect(150, 140, 61, 41))
         self.pushButton_back.setAutoFillBackground(False)
         self.pushButton_back.setObjectName("pushButton_back")
         self.pushButton_back.setText("←")
 
-        self.pushButton_sdivide = QtWidgets.QPushButton(Window_Ui)
+        self.pushButton_sdivide = QtWidgets.QPushButton(widget)
         self.pushButton_sdivide.setGeometry(QtCore.QRect(220, 140, 61, 41))
         self.pushButton_sdivide.setAutoFillBackground(False)
         self.pushButton_sdivide.setObjectName("pushButton_sdivide")
         self.pushButton_sdivide.setText("÷")
 
-        self.pushButton_spercent = QtWidgets.QPushButton(Window_Ui)
+        self.pushButton_spercent = QtWidgets.QPushButton(widget)
         self.pushButton_spercent.setGeometry(QtCore.QRect(10, 90, 61, 41))
         self.pushButton_spercent.setAutoFillBackground(False)
         self.pushButton_spercent.setObjectName("pushButton_spercent")
         self.pushButton_spercent.setText("%")
 
-        self.pushButton_sqrt = QtWidgets.QPushButton(Window_Ui)
+        self.pushButton_sqrt = QtWidgets.QPushButton(widget)
         self.pushButton_sqrt.setGeometry(QtCore.QRect(80, 90, 61, 41))
         self.pushButton_sqrt.setAutoFillBackground(False)
         self.pushButton_sqrt.setObjectName("pushButton_sqrt")
         self.pushButton_sqrt.setText("√")
 
-        self.pushButton_ssqr = QtWidgets.QPushButton(Window_Ui)
+        self.pushButton_ssqr = QtWidgets.QPushButton(widget)
         self.pushButton_ssqr.setGeometry(QtCore.QRect(150, 90, 61, 41))
         self.pushButton_ssqr.setAutoFillBackground(False)
         self.pushButton_ssqr.setObjectName("pushButton_ssqr")
         self.pushButton_ssqr.setText("^")
 
-        self.pushButton_sfrac = QtWidgets.QPushButton(Window_Ui)
+        self.pushButton_sfrac = QtWidgets.QPushButton(widget)
         self.pushButton_sfrac.setGeometry(QtCore.QRect(220, 90, 61, 41))
         self.pushButton_sfrac.setAutoFillBackground(False)
         self.pushButton_sfrac.setObjectName("pushButton_sfrac")
         self.pushButton_sfrac.setText("1/x")
 
-        self.pushButton_help = QtWidgets.QPushButton(Window_Ui)
+        self.pushButton_help = QtWidgets.QPushButton(widget)
         self.pushButton_help.setGeometry(QtCore.QRect(0, 0, 25, 30))
         self.pushButton_help.setObjectName("pushButton_help")
         self.pushButton_help.setText("?")
+        self.retranslateUi(widget)
 
-        self.output = QtWidgets.QLabel(Window_Ui)
-        self.output.setGeometry(QtCore.QRect(20, 10, 251, 71))
-        self.output.setText("5+5")
-        self.output.setObjectName("output")
+        QtCore.QMetaObject.connectSlotsByName(widget)
 
-        self.retranslateUi(Window_Ui)
-
-        QtCore.QMetaObject.connectSlotsByName(Window_Ui)
-
-    def retranslateUi(self, Window_Ui):
+    def retranslateUi(self, widget):
         _translate = QtCore.QCoreApplication.translate
-        self.pushButton_sidk.setText(_translate("Window_Ui", "+/-"))
+        self.pushButton_sidk.setText(_translate("widget", "+/-"))
 
