@@ -13,6 +13,10 @@ from PyQt5.QtWebEngineWidgets import QWebEngineView
 
 class Window_Ui:
     def setupUi(self, widget):
+        widget.setObjectName("s_cals")
+        widget.resize(300, 500)
+        widget.setWindowTitle("Calc voe")
+
         view = QWebEngineView()
         edit = QtWidgets.QLineEdit()
         layout = QtWidgets.QVBoxLayout()
@@ -21,7 +25,7 @@ class Window_Ui:
         widget.setLayout(layout)
         self.view = view
         self.edit = edit
-
+        view.setGeometry()
         self.pushButton_n9 = QtWidgets.QPushButton(widget)
         self.pushButton_n9.setGeometry(QtCore.QRect(150, 190, 61, 61))
         self.pushButton_n9.setObjectName("pushButton_n9")

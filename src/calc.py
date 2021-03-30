@@ -8,6 +8,11 @@ html = """
 
   <title>MathJax v3 with interactive TeX input and HTML output</title>
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  <script>MathJax.Hub.Config({
+    jax: ["input/TeX","output/HTML-CSS"],
+    displayAlign: "left"
+});
+  </script>
   <script>
     function convert(input) {
       output = document.getElementById('output');
@@ -26,14 +31,11 @@ html = """
   </script>
   <style>
   body, html {
-    padding: 0;
-    margin: 0;
+  .MathJax_Display { text-align : left !important; }
   }
   #output {
-    font-size: 120%;
+    font-size: 100%;
     min-height: 2em;
-    padding: 0;
-    margin: 0;
   }
   </style>
 </head>
@@ -53,7 +55,7 @@ class Window(QtWidgets.QWidget):
         ui.view.setHtml(html)
         page = ui.view.page()
         page.loadFinished.connect(self.onLoadFinished)
-        ui.edit.setText("{-b \\pm \\sqrt{b^2-4ac} \\over 2a}")
+        ui.edit.setText("")
         ui.edit.textChanged.connect(self.onTextChanged)
         self._ready = False
 
@@ -64,13 +66,11 @@ class Window(QtWidgets.QWidget):
         self.onTextChanged(self._ui.edit.text())
 
     def onTextChanged(self, text):
-        ui = self._ui
-        text = text.replace("\\","\\\\")
-        page = ui.view.page()
+        text = text.replace("\\","\\\\") #To escape special characters
+        print(text)
+        page = self._ui.view.page()
         page.runJavaScript('convert("{}");'.format(text))
 
-    def sizeHint(self):
-        return QtCore.QSize(300,150)
 
 
 if __name__ == "__main__":
