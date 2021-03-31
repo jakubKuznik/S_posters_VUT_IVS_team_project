@@ -1,6 +1,6 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWebEngineWidgets import QWebEngineView
-from sympy import *
+from pytexit import py2tex
 
 
 class Ui_s_cals(object):
@@ -9,6 +9,7 @@ class Ui_s_cals(object):
         self.memory = []
         self.result = 0
         self.operators = ['+', '-', '*', '/']
+        self.op_on = False
 
     def setupUi(self, widget):
         # UI components declarations
@@ -162,8 +163,20 @@ class Ui_s_cals(object):
         self.pushButton_smemminus.clicked.connect(lambda: self.print("**"))
 
     def print(self, command):
+        if self.op_on:
+            self.content.pop()
+            self.op_on = False
         self.content.append(command)
-        self.edit.setText(latex(sympify(''.join(self.content))))
+
+        if command in self.operators:
+            self.content.append('0')
+            self.op_on = True
+            print(py2tex(''.join(self.content)[2:-2]))
+            self.edit.setText(py2tex(''.join(self.content)[2:-2]))
+        else:
+            self.edit.setText(py2tex(''.join(self.content))[2:-2])
+
+
         print(self.content)
         # TODO: fix converting strings ending with an operator
         # mozno to spravit iba ako vysvietene tlacitko, program si bude pamatat iba jedno posledne
