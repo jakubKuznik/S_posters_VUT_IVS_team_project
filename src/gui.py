@@ -1,5 +1,6 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWebEngineWidgets import QWebEngineView
+from sympy import *
 from pytexit import py2tex
 
 
@@ -134,6 +135,7 @@ class Ui_s_cals(object):
         self.view = QWebEngineView(widget)
         self.view.setGeometry(QtCore.QRect(20, 10, 251, 71))
         self.edit = QtWidgets.QLineEdit(widget)
+        self.edit.hide()
 
         widget.setObjectName("widget")
         widget.resize(300, 500)
@@ -163,19 +165,19 @@ class Ui_s_cals(object):
         self.pushButton_smemminus.clicked.connect(lambda: self.print("**"))
 
     def print(self, command):
+        if command in self.operators and self.op_on:
+            return
         if self.op_on:
-            self.content.pop()
             self.op_on = False
         self.content.append(command)
 
         if command in self.operators:
             self.content.append('0')
             self.op_on = True
-            print(py2tex(''.join(self.content)[2:-2]))
-            self.edit.setText(py2tex(''.join(self.content)[2:-2]))
+            self.edit.setText(py2tex(''.join(self.content))[2:-3])
+            self.content.pop()
         else:
             self.edit.setText(py2tex(''.join(self.content))[2:-2])
-
 
         print(self.content)
         # TODO: fix converting strings ending with an operator
