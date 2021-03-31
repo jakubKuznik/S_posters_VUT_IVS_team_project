@@ -1,21 +1,21 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWebEngineWidgets import QWebEngineView
 from gui import *
+
 html = """
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
   <title>MathJax v3 with interactive TeX input and HTML output</title>
   <script type="text/javascript" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
-  
+
     MathJax.Hub.Config({
     jax: ["input/TeX","output/HTML-CSS"],
     displayAlign: "left"
-  
+
   </script>
-  
-  
+
+
   <script>
     function convert(input) {
       output = document.getElementById('output');
@@ -59,9 +59,9 @@ html = """
 
 
 class Window(QtWidgets.QWidget):
-    def __init__(self, parent = None):
+    def __init__(self, parent=None):
         super().__init__(parent)
-        ui = Window_Ui()
+        ui = Ui_s_cals()
         ui.setupUi(self)
         self.ui = ui
         ui.view.setHtml(html)
@@ -78,11 +78,9 @@ class Window(QtWidgets.QWidget):
         self.onTextChanged(self.ui.edit.text())
 
     def onTextChanged(self, text):
-        text = text.replace("\\","\\\\") #To escape special characters
-        print(text)
+        text = text.replace("\\", "\\\\")  # To escape special characters
         page = self.ui.view.page()
         page.runJavaScript('convert("{}");'.format(text))
-
 
 
 if __name__ == "__main__":
