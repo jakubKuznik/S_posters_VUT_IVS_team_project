@@ -15,17 +15,11 @@ class Window_Ui:
     def setupUi(self, widget):
         widget.setObjectName("s_cals")
         widget.resize(300, 500)
-        widget.setWindowTitle("Calc voe")
+        widget.setWindowTitle("Calc")
+        widget.setFixedSize(290,480)
 
-        view = QWebEngineView()
-        edit = QtWidgets.QLineEdit()
-        layout = QtWidgets.QVBoxLayout()
-        layout.addWidget(view)
-        layout.addWidget(edit)
-        widget.setLayout(layout)
-        self.view = view
-        self.edit = edit
-        view.setGeometry()
+
+
         self.pushButton_n9 = QtWidgets.QPushButton(widget)
         self.pushButton_n9.setGeometry(QtCore.QRect(150, 190, 61, 61))
         self.pushButton_n9.setObjectName("pushButton_n9")
@@ -166,6 +160,18 @@ class Window_Ui:
         self.retranslateUi(widget)
 
         QtCore.QMetaObject.connectSlotsByName(widget)
+
+        view = QWebEngineView(widget)
+        edit = QtWidgets.QLineEdit(widget)
+
+        #layout = QtWidgets.QVBoxLayout()
+        #layout.addWidget(edit)
+        #layout.addWidget(view)
+
+        #widget.setLayout(layout)
+
+        self.view = view
+        self.edit = edit
 
     def retranslateUi(self, widget):
         _translate = QtCore.QCoreApplication.translate

@@ -7,12 +7,15 @@ html = """
 <head>
 
   <title>MathJax v3 with interactive TeX input and HTML output</title>
-  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
-  <script>MathJax.Hub.Config({
+  <script type="text/javascript" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+  
+    MathJax.Hub.Config({
     jax: ["input/TeX","output/HTML-CSS"],
     displayAlign: "left"
-});
+  
   </script>
+  
+  
   <script>
     function convert(input) {
       output = document.getElementById('output');
@@ -31,7 +34,6 @@ html = """
   </script>
   <style>
   body, html {
-  .MathJax_Display { text-align : left !important; }
   }
   #output {
     font-size: 100%;
@@ -40,7 +42,7 @@ html = """
   </style>
 </head>
 <body>
-<div id="output"></div>
+<div id="output">25</div>
 </body>
 </html>
 """
