@@ -162,6 +162,7 @@ class Window_Ui:
         QtCore.QMetaObject.connectSlotsByName(widget)
 
         view = QWebEngineView(widget)
+        view.setGeometry(QtCore.QRect(20, 10, 251, 71))
         edit = QtWidgets.QLineEdit(widget)
 
         #layout = QtWidgets.QVBoxLayout()
@@ -169,6 +170,11 @@ class Window_Ui:
         #layout.addWidget(view)
 
         #widget.setLayout(layout)
+
+        #self.output = QtWidgets.QLabel(s_cals)
+        #self.output.setGeometry(QtCore.QRect(20, 10, 251, 71))
+        #self.output.setText("5+5")
+        #self.output.setObjectName("output")
 
         self.view = view
         self.edit = edit

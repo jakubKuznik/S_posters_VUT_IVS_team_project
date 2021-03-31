@@ -34,15 +34,25 @@ html = """
   </script>
   <style>
   body, html {
+    padding: 0;
+    margin: 0;
   }
   #output {
-    font-size: 100%;
+    font-size: 120%;
     min-height: 2em;
+    padding: 0;
+    margin: 0;
+  }
+  .left {
+    float: left;
+  }
+  .right {
+    float: right;
   }
   </style>
 </head>
 <body>
-<div id="output">25</div>
+<div id="output" class="left"></div>
 </body>
 </html>
 """
@@ -53,7 +63,7 @@ class Window(QtWidgets.QWidget):
         super().__init__(parent)
         ui = Window_Ui()
         ui.setupUi(self)
-        self._ui = ui
+        self.ui = ui
         ui.view.setHtml(html)
         page = ui.view.page()
         page.loadFinished.connect(self.onLoadFinished)
@@ -65,12 +75,12 @@ class Window(QtWidgets.QWidget):
         if self._ready:
             return
         self._ready = True
-        self.onTextChanged(self._ui.edit.text())
+        self.onTextChanged(self.ui.edit.text())
 
     def onTextChanged(self, text):
         text = text.replace("\\","\\\\") #To escape special characters
         print(text)
-        page = self._ui.view.page()
+        page = self.ui.view.page()
         page.runJavaScript('convert("{}");'.format(text))
 
 
