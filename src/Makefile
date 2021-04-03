@@ -22,12 +22,11 @@ help:
 #profile:
 
 # TO-DO create a repo structure in a pack (replace (ALLDIRS))
-#pack:
-#	tar cvzf $(PACK_NAME).tar.gz $(ALLDIRS)
-#	zip $(PACK_NAME).zip $(ALLDIRS)
+pack:
+	cd ../.. && zip -r xvanom00_xkuzni04_xkrato61_xsvobo1x.zip S_posters_VUT_IVS_team_project
 
-doc:
-	cd .. && mkdir doc && cd doc && doxygen ../src/Doxyfile
+doc: Doxyfile
+	cd .. && rm -rf doc && mkdir doc && cd doc && doxygen ../src/Doxyfile
 
 # This function uses unittest to test our source files
 test:
