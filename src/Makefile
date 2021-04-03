@@ -26,8 +26,7 @@ pack:
 	cd ../.. && zip -r xvanom00_xkuzni04_xkrato61_xsvobo1x.zip S_posters_VUT_IVS_team_project
 
 doc: Doxyfile
-	cd .. && rm -rf doc
-	cd .. && mkdir doc && cd doc && doxygen ../src/Doxyfile
+	cd .. && rm -rf doc && mkdir doc && cd doc && doxygen ../src/Doxyfile
 
 # This function uses unittest to test our source files
 test:
