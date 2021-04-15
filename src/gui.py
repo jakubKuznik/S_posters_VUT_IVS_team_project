@@ -6,11 +6,13 @@ from PyQt5.QtWidgets import QWidget, QPushButton
 class App(QWidget):
     def __init__(self, ):
         super().__init__()
-        self.content = []
-        self.memory = []
+        self.content = ['0']
+        self.memory = '0'
+        self.displayed_content=['0']
         self.result = 0
-        self.operators = ['+', '-', '*', '/']
-        self.setFixedSize(290, 400)
+        self.operators = ['+', '-', '*', '/','**0.5','.']
+        self.numbers = ['1','2','3','4','5','6','7','8','9']
+        self.setFixedSize(290, 500)
         # TODO: icon
 
         # UI ELEMENTS
@@ -124,7 +126,7 @@ class App(QWidget):
 
         self.pushButton_sqrt.setGeometry(QtCore.QRect(80, 90, 61, 41))
         self.pushButton_sqrt.setAutoFillBackground(False)
-        self.pushButton_sqrt.setText("√")
+        self.pushButton_sqrt.setText("[2]√")
 
         self.pushButton_ssqr.setGeometry(QtCore.QRect(10, 90, 61, 41))
         self.pushButton_ssqr.setAutoFillBackground(False)
@@ -144,45 +146,56 @@ class App(QWidget):
         self.output2.setGeometry(QtCore.QRect(20, 41, 251, 71))
         self.output2.setFont(QFont('Comic Sans MS', 20))
 
-        self.pushButton_n0.clicked.connect(lambda: self.print("0"))
-        self.pushButton_n1.clicked.connect(lambda: self.print("1"))
-        self.pushButton_n2.clicked.connect(lambda: self.print("2"))
-        self.pushButton_n3.clicked.connect(lambda: self.print("3"))
-        self.pushButton_n4.clicked.connect(lambda: self.print("4"))
-        self.pushButton_n5.clicked.connect(lambda: self.print("5"))
-        self.pushButton_n6.clicked.connect(lambda: self.print("6"))
-        self.pushButton_n7.clicked.connect(lambda: self.print("7"))
-        self.pushButton_n8.clicked.connect(lambda: self.print("8"))
-        self.pushButton_n9.clicked.connect(lambda: self.print("9"))
+        self.pushButton_n0.clicked.connect(lambda: self.print("0","0"))
+        self.pushButton_n1.clicked.connect(lambda: self.print("1","1"))
+        self.pushButton_n2.clicked.connect(lambda: self.print("2","2"))
+        self.pushButton_n3.clicked.connect(lambda: self.print("3","3"))
+        self.pushButton_n4.clicked.connect(lambda: self.print("4","4"))
+        self.pushButton_n5.clicked.connect(lambda: self.print("5","5"))
+        self.pushButton_n6.clicked.connect(lambda: self.print("6","6"))
+        self.pushButton_n7.clicked.connect(lambda: self.print("7","7"))
+        self.pushButton_n8.clicked.connect(lambda: self.print("8","8"))
+        self.pushButton_n9.clicked.connect(lambda: self.print("9","9"))
         self.pushButton_back.clicked.connect(self.delete)
-        self.pushButton_splus.clicked.connect(lambda: self.print("+"))
-        self.pushButton_sminus.clicked.connect(lambda: self.print("-"))
-        self.pushButton_smultiply.clicked.connect(lambda: self.print("*"))
-        self.pushButton_sdot.clicked.connect(lambda: self.print("."))
-        self.pushButton_ssqr.clicked.connect(lambda: self.print("**"))
-        self.pushButton_smem.clicked.connect(lambda: self.print("**"))
-        self.pushButton_smemplus.clicked.connect(lambda: self.print("**"))
-        self.pushButton_smemminus.clicked.connect(lambda: self.print("**"))
-
+        self.pushButton_splus.clicked.connect(lambda: self.print("+","+"))
+        self.pushButton_sminus.clicked.connect(lambda: self.print("-","-"))
+        self.pushButton_smultiply.clicked.connect(lambda: self.print("*","*"))
+        self.pushButton_sdot.clicked.connect(lambda: self.print(".","."))
+        self.pushButton_ssqr.clicked.connect(lambda: self.print("**","^"))
+        self.pushButton_sqrt.clicked.connect(lambda: self.print("**0.5","[2]√"))
+        self.pushButton_sdivide.clicked.connect(lambda: self.print("/","/"))
+        self.pushButton_smem.clicked.connect(lambda: self.print(self.memory,"M"))
+        self.pushButton_smemplus.clicked.connect(self.add_to_memory)
+        self.pushButton_smemminus.clicked.connect(self.remove_from_memory)
+        self.pushButton_left_bracket.clicked.connect(lambda: self.print('(','('))
+        self.pushButton_right_bracket.clicked.connect(lambda: self.print(')', ')'))
+        self.output1.setText(''.join(self.displayed_content))
     def change(self, command):
         self.content.append(command)
 
-    def print(self, number):
-        self.content.append(number)
-        print(self.content)
-        self.output1.setText(''.join(self.content))
-        temp = ''.join(self.content)
-        try:
-            temp = eval(temp)
-            self.output2.setText(str(temp))
-        except SyntaxError:
-            pass
+    def print(self, term,displayed_term):
+        print(self.memory)
+        if self.validate(term,displayed_term)==True:
+            self.content.append(term)
+            self.displayed_content.append(displayed_term)
+            self.output1.setText(''.join(self.displayed_content))
+            temp = ''.join(self.content)
+            try:
+                self.result = eval(temp)
+                self.output2.setText(str(self.result))
+            except SyntaxError:
+                pass
+    def add_to_memory(self):
+        self.memory=str(self.result)
+        print(self.memory)
 
+    def remove_from_memory(self):
+        self.memory="0"
     def delete(self):
         if len(self.content) != 0:
             self.content.pop()
-            print(self.content)
-            self.output1.setText(''.join(self.content))
+            self.displayed_content.pop()
+            self.output1.setText(''.join(self.displayed_content))
             temp = ''.join(self.content)
             try:
                 temp = eval(temp)
@@ -190,4 +203,29 @@ class App(QWidget):
             except SyntaxError:
                 pass
             if len(self.content) == 0:
-                self.output2.setText('')
+                self.output2.setText('0')
+                self.output1.setText('0')
+                self.content=['0']
+                self.displayed_content=['0']
+    def validate(self,term,displayed_term):
+        if self.content==['0'] and (term in self.numbers or (displayed_term=="M" and self.memory!="0")):
+            self.content.pop()
+            self.displayed_content.pop()
+            return True
+        elif self.content==['0'] and term=='0':
+            return False
+        elif term=="0" and self.content[-1]=="/":
+            self.output2.setText("Cannot divide by zero.")
+            return False
+        elif term in self.operators and (self.content[-1] in self.operators or self.displayed_content[-1]=="M"):
+            return False
+        elif term=='.' and '.' in self.content:
+            return False
+        elif (term=='(') and self.content[-1] not in self.operators:
+            return False
+        elif (term==')') and self.content[-1] in self.operators:
+            return False
+        elif((self.displayed_content[-1] not in self.operators) and displayed_term=="M"):
+            return False
+        else:
+            return True
