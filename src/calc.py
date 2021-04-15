@@ -24,10 +24,9 @@
 
 import sys
 
-from PyQt5.QtWidgets import *
 from gui import *
 ## Documentation for a function.
-#  This is how doxygen function documentation looks like .
+#  This is what doxygen function documentation looks like .
 def main():
     calc = QtWidgets.QApplication(sys.argv)
     app = App()

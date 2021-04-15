@@ -11,6 +11,7 @@ class App(QWidget):
         self.result = 0
         self.operators = ['+', '-', '*', '/']
         self.setFixedSize(290, 400)
+        # TODO: icon
 
         # UI ELEMENTS
         self.pushButton_n9 = QPushButton(self)
@@ -166,7 +167,7 @@ class App(QWidget):
     def change(self, command):
         self.content.append(command)
 
-    def print(self,number):
+    def print(self, number):
         self.content.append(number)
         print(self.content)
         self.output1.setText(''.join(self.content))
@@ -174,8 +175,7 @@ class App(QWidget):
         try:
             temp = eval(temp)
             self.output2.setText(str(temp))
-        except:
-            # TODO: najst exception
+        except SyntaxError:
             pass
 
     def delete(self):
@@ -187,8 +187,7 @@ class App(QWidget):
             try:
                 temp = eval(temp)
                 self.output2.setText(str(temp))
-            except:
-                # TODO: najst exception
+            except SyntaxError:
                 pass
             if len(self.content) == 0:
                 self.output2.setText('')
