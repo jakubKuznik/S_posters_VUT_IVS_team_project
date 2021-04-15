@@ -1,16 +1,16 @@
-## This function will turn the string into the reverse polished notation
+## This function will turn the string into the reverse polish notation
 
-input_str = "3 + 4 × 2 ÷ ( 1 − 5 ) ^ 2 ^ 3"
-input_str = input_str.split(' ')
+input = "3 + 4 × 2 ÷ ( 1 − 5 ) ^ 2 ^ 3"
+input = input.split(' ')
 
-nonNumbers = ['+', '-', '*', '/', '(', ')', '^']
-operators = {'+': 1,  '-': 1, '*': 2, '/': 2, '^': 3}
+nonNumbers = ['+','-','*','/','(',')','^']
+operators = {'+':1,  '-':1,  '*':2,  '/':2,  '^':3}
 opStack = []
 output = []
 
 
-for token in input_str:
+for token in input:
     if token not in nonNumbers:
         output.append(token)
-    else:
+    elif 1==1:
         print("Hello")

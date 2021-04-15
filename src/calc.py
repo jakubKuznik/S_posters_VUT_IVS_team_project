@@ -1,40 +1,60 @@
-from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWebEngineWidgets import QWebEngineView
+###########################################
+# Project name: IVS - projekt
+# File: calc.py
+# Date: 13. 03. 2021
+# Last change: 13. 03. 2021
+# Team: S_POSTERS
+# Supervisor: ...
+# Authors:  Vaňo Michal
+#           Kuzník Jakub
+#           Kratochvíl Pavel
+#           Svobodová Lucie
+#
+# Brief: Calculator
+###########################################
+
+## @file calc.py
+#
+#  @brief calculator
+#
+#  @author Vaňo Michal
+#  @author Kuzník Jakub
+#  @author Kratochvíl Pavel
+#  @author Svobodová Lucie
+import sys
+import time
+# Mathematical library of all operation and Exceptions
+import math_lib
+
+from PyQt5.QtCore import *
+from PyQt5.QtGui import *
+from PyQt5.QtWidgets import *
 from gui import *
 
 
-class Window(QtWidgets.QWidget):
-    def __init__(self, parent=None):
-        super().__init__(parent)
-        ui = Ui_s_cals()
-        ui.setupUi(self)
-        self.ui = ui
-        ui.view.setHtml(self.open_html_template())
-        page = ui.view.page()
-        page.loadFinished.connect(self.onLoadFinished)
-        ui.edit.setText("")
-        ui.edit.textChanged.connect(self.onTextChanged)
-        self.ready = False
-
-    def onLoadFinished(self):
-        if self.ready:
-            return
-        self.ready = True
-        self.onTextChanged(self.ui.edit.text())
-
-    def onTextChanged(self, text):
-        text = text.replace("\\", "\\\\")  # To escape special characters
-        page = self.ui.view.page()
-        page.runJavaScript('convert("{}");'.format(text))
-
-    @staticmethod
-    def open_html_template():
-        with open('template.html') as f:
-            return ''.join(f.readlines())
+##
+# Function ll create window that was create
+# button click meaning
+# n == number_button (0 1 2 3)
+# s == symbol button (div, mult, percent ....)
+class Main(QMainWindow):
+    def __init__(self):
+        super().__init__()
+        self.ui = Ui_s_cals()
+        self.ui.setupUi(self)
+        self.show()
 
 
-if __name__ == "__main__":
-    app = QtWidgets.QApplication([])
-    window = Window()
-    window.show()
-    app.exec()
+## Documentation for a function.
+#  This is how doxygen function documentation looks like .
+def main():
+    calc = QApplication(sys.argv)
+    instance = Main()
+    sys.exit(calc.exec_())
+
+
+#This is hou the main function is defined in python
+if __name__ == '__main__':
+    start = time.time()
+    main()
+    print(time.time() - start)
