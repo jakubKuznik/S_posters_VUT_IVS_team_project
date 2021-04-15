@@ -11,7 +11,6 @@ class App(QWidget):
         self.result = 0
         self.operators = ['+', '-', '*', '/']
         self.setFixedSize(290, 400)
-        #self.setWindowIcon("../icon.png")
 
         # UI ELEMENTS
         self.pushButton_n9 = QPushButton(self)
