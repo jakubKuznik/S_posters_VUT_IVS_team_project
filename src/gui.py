@@ -17,6 +17,9 @@ class App(QWidget):
         self.setFixedSize(290, 480)
         # TODO: icon
 
+        self.window = QtWidgets.QApplication(sys.argv)
+        self.form = Form()
+
         # UI ELEMENTS
         self.pushButton_smem = QPushButton(self)
         self.pushButton_s_equal = QPushButton(self)
@@ -160,8 +163,6 @@ class App(QWidget):
     # @param sel (App)
     #
     def help_click(self):
-        self.window = QtWidgets.QApplication(sys.argv)
-        self.form = Form()
         self.form.show()
 
     def change(self, command):
@@ -268,4 +269,3 @@ class Form(QWidget):
         self.textEdit.setFont(QFont('Comic Sans MS', 15))
         with open("help_form_html.txt") as f:
             self.textEdit.setHtml(''.join(f.readlines()))
-
