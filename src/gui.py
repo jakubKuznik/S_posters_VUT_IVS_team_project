@@ -51,6 +51,7 @@ class App(QWidget):
 
         # UI ELEMENTS
         self.pushButton_s_equal = QPushButton(self)
+        self.pushButton_memplus = QPushButton(self)
         self.pushButton_help = QPushButton(self)
         self.output1 = QtWidgets.QLabel(self)
         self.output2 = QtWidgets.QLabel(self)
@@ -84,7 +85,6 @@ class App(QWidget):
                         ["←", [150, 140], "S", self.delete],
                         ["√", [80, 90], "S", self.print, "**0.5", "[2]√"],
                         ["^", [10, 90], "S", self.print, "**", "^"],
-                        ["M", [150, 90], "S", self.print, self.memory, "M"],
                         ["M+", [220, 90], "S", self.add_to_memory],
                         ["M-", [290, 90], "S", self.remove_from_memory],
                         ]
@@ -134,7 +134,7 @@ class App(QWidget):
                 self.list_of_buttons[i].clicked.connect(lambda checked, t=term, d_t=displayed_term, fn=callback_fn: fn(t, d_t))
 
         # set button colors
-        for j in range(10, 28):
+        for j in range(10, 27):
             self.list_of_buttons[j].setStyleSheet("background-color: rgb(200,245,255)")
         self.pushButton_s_equal.setStyleSheet("background-color: rgb(200,245,255)")
         self.pushButton_help.setStyleSheet("background-color: rgb(200,245,255)")
@@ -143,6 +143,10 @@ class App(QWidget):
 
         self.pushButton_s_equal.setGeometry(QtCore.QRect(220, 400, 130, 65))
         self.pushButton_s_equal.setText("=")
+
+        self.pushButton_memplus.setGeometry(QtCore.QRect(150, 90, 130, 65))
+        self.pushButton_memplus.setText("M")
+        self.pushButton_memplus.clicked.connect(lambda:  self.print(self.memory, "M"))
 
         self.pushButton_help.setGeometry(QtCore.QRect(0, 0, 35, 35))
         self.pushButton_help.setText("?")
@@ -357,5 +361,5 @@ class Form(QWidget):
         self.textEdit.setGeometry(QtCore.QRect(0, 0, 501, 651))
         self.textEdit.setReadOnly(True)
         self.textEdit.setFont(QFont('Comic Sans MS', 15))
-        with open("help_form.html") as f:
+        with open("help_form.html", encoding='utf-8') as f:
             self.textEdit.setHtml(''.join(f.readlines()))
