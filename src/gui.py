@@ -25,7 +25,7 @@
 import sys
 
 from PyQt5 import QtWidgets, QtCore
-from PyQt5.QtGui import QFont
+from PyQt5.QtGui import QFont, QFontDatabase
 from PyQt5.QtWidgets import QWidget, QPushButton
 
 
@@ -52,7 +52,7 @@ class App(QWidget):
 
         self.list_of_buttons = []
 
-        # visible text, coordinates, size (S = small, button, M = medium button, L=large button),
+        # visible text, coordinates, size (S = small button, M = medium button, L=large button),
         # callback function, term, displayed term
         self.buttons = [["0", [80, 400], "M",self.print, "0", "0"],
                         ["1", [10, 330], "M", self.print, "1", "1"],
@@ -116,7 +116,14 @@ class App(QWidget):
 
             self.list_of_buttons.append(QPushButton(text, self))
             self.list_of_buttons[i].setGeometry(QtCore.QRect(x_coord, y_coord, size_x, size_y))
-            
+            # Load the font:
+            font_db = QFontDatabase()
+            font_id = font_db.addApplicationFont("Quicksand.ttf")
+            # families = font_db.applicationFontFamilies(font_id)
+            your_ttf_font = QFont("Quicksand", 25)
+
+            self.list_of_buttons[i].setFont(your_ttf_font)
+
             # if for buttons with less arguments, e.g. "←", "M", "M+", "M-",
             if len(self.buttons[i]) == 4:
                 self.list_of_buttons[i].clicked.connect(lambda checked, fn=callback_fn: fn())
@@ -151,6 +158,52 @@ class App(QWidget):
         self.output1.setStyleSheet("")
 
         self.output1.setText(''.join(self.displayed_content))
+
+        #######
+        self.button = QPushButton("Toggle", self)
+
+        # setting geometry of button
+        self.button.setGeometry(30, 30, 20, 20)
+
+        # setting checkable to true
+        self.button.setCheckable(True)
+
+        # setting calling method by button
+        self.button.clicked.connect(self.change_color)
+
+        # setting default color of button to light-grey
+        self.button.setStyleSheet("background-color : lightgrey")
+
+    def change_color(self):
+
+        # if button is checked
+        if self.button.isChecked():
+
+            # setting background color to light-blue
+            #self.button.setStyleSheet("background-color : lightblue")
+            #self.setStyleSheet("background-color : lightblue")
+
+            for j in range(10):
+                self.list_of_buttons[j].setStyleSheet("background-color: rgb(255, 255, 255); color: rgb(86, 73, 76); border-radius: 15px; border-color: rgb(214, 237, 255)") #siva
+
+            for j in range(10, 28):
+                self.list_of_buttons[j].setStyleSheet("color: rgb(0, 151, 136); border-radius: 15px")
+            self.pushButton_s_equal.setStyleSheet("color: rgb(0, 151, 136); border-radius: 15px")
+            self.pushButton_help.setStyleSheet("color: rgb(0, 151, 136); border-radius: 15px")
+        # if it is unchecked
+        else:
+
+            # set background color back to light-grey
+            #self.button.setStyleSheet("background-color : lightgrey")
+            #self.setStyleSheet("background-color : lightgrey")
+
+            for j in range(10):
+                self.list_of_buttons[j].setStyleSheet("background-color: rgb(40,54,55)") #siva
+
+            for j in range(10, 28):
+                self.list_of_buttons[j].setStyleSheet("background-color: rgb(200,245,255)")
+            self.pushButton_s_equal.setStyleSheet("background-color: rgb(200,245,255)")
+            self.pushButton_help.setStyleSheet("background-color: rgb(200,245,255)")
 
     ## This function reimplements the default keyPressEvent function from PyQt5
     # @brief Rebinds numbers and operators keys as new signals
