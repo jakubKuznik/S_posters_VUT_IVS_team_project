@@ -1,6 +1,6 @@
 from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtGui import QFont
-from PyQt5.QtWidgets import QWidget, QPushButton
+from PyQt5.QtWidgets import QWidget, QPushButton, QMessageBox
 
 
 class App(QWidget):
@@ -45,6 +45,19 @@ class App(QWidget):
         self.output2 = QtWidgets.QLabel(self)
 
         self.setup_ui()
+
+    @staticmethod
+    def show_dialog():
+        msg = QMessageBox()
+        msg.setIcon(QMessageBox.Information)
+
+        msg.setText("This is a message box")
+        msg.setInformativeText("This is additional information")
+        msg.setWindowTitle("MessageBox demo")
+        msg.setDetailedText("The details are as follows:")
+        msg.setStandardButtons(QMessageBox.Ok | QMessageBox.Cancel)
+        return_value = msg.exec_()
+        print("value of pressed message box button:", return_value)
 
     def setup_ui(self):
         self.resize(300, 500)
@@ -136,7 +149,7 @@ class App(QWidget):
         self.pushButton_smemplus.setAutoFillBackground(False)
         self.pushButton_smemplus.setText("M+")
 
-        self.pushButton_help.setGeometry(QtCore.QRect(0, 0, 25, 30))
+        self.pushButton_help.setGeometry(QtCore.QRect(0, 0, 35, 35))
         self.pushButton_help.setText("?")
 
         self.output1.setGeometry(QtCore.QRect(20, 10, 251, 40))
@@ -170,6 +183,8 @@ class App(QWidget):
         self.pushButton_left_bracket.clicked.connect(lambda: self.print('(', '('))
         self.pushButton_right_bracket.clicked.connect(lambda: self.print(')', ')'))
         self.output1.setText(''.join(self.displayed_content))
+        self.pushButton_help.clicked.connect(self.show_dialog)
+
 
     def change(self, command):
         self.content.append(command)
