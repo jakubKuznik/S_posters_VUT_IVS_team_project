@@ -14,7 +14,7 @@ class App(QWidget):
         self.result = 0
         self.operators = ['+', '-', '*', '/', '**0.5', '.']
         self.numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
-        self.setFixedSize(290, 480)
+        self.setFixedSize(360, 480)
         # TODO: icon
 
         self.window = QtWidgets.QApplication(sys.argv)
@@ -23,12 +23,13 @@ class App(QWidget):
         # UI ELEMENTS
         self.pushButton_smem = QPushButton(self)
         self.pushButton_s_equal = QPushButton(self)
-        self.pushButton_back = QtWidgets.QPushButton(self)
-        self.pushButton_smemminus = QtWidgets.QPushButton(self)
-        self.pushButton_sqrt = QtWidgets.QPushButton(self)
-        self.pushButton_ssqr = QtWidgets.QPushButton(self)
-        self.pushButton_smemplus = QtWidgets.QPushButton(self)
-        self.pushButton_help = QtWidgets.QPushButton(self)
+        self.pushButton_back = QPushButton(self)
+        self.pushButton_smemminus = QPushButton(self)
+        self.pushButton_sqrt = QPushButton(self)
+        self.pushButton_ssqr = QPushButton(self)
+        self.pushButton_smemplus = QPushButton(self)
+        self.pushButton_help = QPushButton(self)
+        self.pushButton_sce = QPushButton(self)
         self.output1 = QtWidgets.QLabel(self)
         self.output2 = QtWidgets.QLabel(self)
         self.list_of_buttons = []
@@ -49,6 +50,10 @@ class App(QWidget):
                         [")", [80, 140, 61, 41]],
                         [".", [150, 400, 61, 61]],
                         ["/", [220, 140, 61, 41]],
+                        ["x", [290, 140, 61, 41]],
+                        ["n!", [290, 190, 61, 61]],
+                        ["mod", [290, 260, 61, 61]],
+                        ["%", [290, 330, 61, 61]],
                         ]
         self.setup_ui()
 
@@ -70,36 +75,39 @@ class App(QWidget):
             self.list_of_buttons[i].setGeometry(QtCore.QRect(x_coord, y_coord, x_size, y_size))
             self.list_of_buttons[i].clicked.connect(lambda checked, arg=text: self.print(arg, arg))
 
-        self.pushButton_smem.setGeometry(QtCore.QRect(10, 400, 61, 61))
-        self.pushButton_smem.setText("M")
+        self.pushButton_sce.setGeometry(QtCore.QRect(10, 400, 61, 61))
+        self.pushButton_sce.setText("CE")
 
-        self.pushButton_s_equal.setGeometry(QtCore.QRect(220, 400, 61, 61))
+        self.pushButton_s_equal.setGeometry(QtCore.QRect(220, 400, 131, 61))
         self.pushButton_s_equal.setText("=")
 
         self.pushButton_back.setGeometry(QtCore.QRect(150, 140, 61, 41))
         self.pushButton_back.setText("←")
 
-        self.pushButton_smemminus.setGeometry(QtCore.QRect(220, 90, 61, 41))
-        self.pushButton_smemminus.setText("M-")
-
         self.pushButton_sqrt.setGeometry(QtCore.QRect(80, 90, 61, 41))
-        self.pushButton_sqrt.setText("[2]√")
+        self.pushButton_sqrt.setText("√")
 
         self.pushButton_ssqr.setGeometry(QtCore.QRect(10, 90, 61, 41))
         self.pushButton_ssqr.setText("^")
 
-        self.pushButton_smemplus.setGeometry(QtCore.QRect(150, 90, 61, 41))
+        self.pushButton_smem.setGeometry(QtCore.QRect(150, 90, 61, 41))
+        self.pushButton_smem.setText("M")
+
+        self.pushButton_smemplus.setGeometry(QtCore.QRect(220, 90, 61, 41))
         self.pushButton_smemplus.setText("M+")
+
+        self.pushButton_smemminus.setGeometry(QtCore.QRect(290, 90, 61, 41))
+        self.pushButton_smemminus.setText("M-")
 
         self.pushButton_help.setGeometry(QtCore.QRect(0, 0, 35, 35))
         self.pushButton_help.setText("?")
         self.pushButton_help.clicked.connect(self.help_click)
 
-        self.output1.setGeometry(QtCore.QRect(20, 10, 251, 40))
+        self.output1.setGeometry(QtCore.QRect(35, 10, 320, 40))
         self.output1.setFont(QFont('Comic Sans MS', 15))
         self.output1.setAlignment(QtCore.Qt.AlignRight | QtCore.Qt.AlignVCenter)
 
-        self.output2.setGeometry(QtCore.QRect(20, 41, 251, 71))
+        self.output2.setGeometry(QtCore.QRect(20, 40, 320, 50))
         self.output2.setFont(QFont('Comic Sans MS', 20))
 
         self.pushButton_back.clicked.connect(self.delete)
@@ -156,6 +164,8 @@ class App(QWidget):
             self.print(".", ".")
         elif event.key() == QtCore.Qt.Key_Comma:
             self.print(".", ".")
+        elif event.key() == QtCore.Qt.Key_Multi_key:
+            self.print("*", "*")
 
     ## Slot to display the help message for user.
     # @brief Displays a short form containing instructions for basic use.
