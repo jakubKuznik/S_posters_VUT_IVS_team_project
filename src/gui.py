@@ -18,15 +18,8 @@ class App(QWidget):
         # UI ELEMENTS
 
         self.pushButton_smem = QPushButton(self)
-        self.pushButton_sdot = QPushButton(self)
         self.pushButton_s_equal = QPushButton(self)
-        self.pushButton_smultiply = QPushButton(self)
-        self.pushButton_sminus = QPushButton(self)
-        self.pushButton_splus = QPushButton(self)
-        self.pushButton_left_bracket = QtWidgets.QPushButton(self)
-        self.pushButton_right_bracket = QtWidgets.QPushButton(self)
         self.pushButton_back = QtWidgets.QPushButton(self)
-        self.pushButton_sdivide = QtWidgets.QPushButton(self)
         self.pushButton_smemminus = QtWidgets.QPushButton(self)
         self.pushButton_sqrt = QtWidgets.QPushButton(self)
         self.pushButton_ssqr = QtWidgets.QPushButton(self)
@@ -46,7 +39,15 @@ class App(QWidget):
                               ["6", [150, 260, 61, 61]],
                               ["7", [10, 190, 61, 61]],
                               ["8", [80, 190, 61, 61]],
-                              ["9", [150, 190, 61, 61]]]
+                              ["9", [150, 190, 61, 61]],
+                              ["+", [220, 330, 61, 61]],
+                              ["-", [220, 260, 61, 61]],
+                              ["*", [220, 190, 61, 61]],
+                              ["(", [10, 140, 61, 41]],
+                              [")", [80, 140, 61, 41]],
+                              [".", [150, 400, 61, 61]],
+                              ["/", [220, 140, 61, 41]],
+                              ]
 
         self.setup_ui()
 
@@ -67,44 +68,24 @@ class App(QWidget):
         self.resize(300, 500)
         self.setWindowTitle("Imposter Calculator")
 
-        for i in range(10):
+        for i in range(len(self.digit_buttons)):
             x_coord = self.digit_buttons[i][1][0]
             y_coord = self.digit_buttons[i][1][1]
+            x_size = self.digit_buttons[i][1][2]
+            y_size = self.digit_buttons[i][1][3]
             text = self.digit_buttons[i][0]
-            size = 61
             self.list_of_buttons.append(QPushButton(text, self))
-            self.list_of_buttons[i].setGeometry(QtCore.QRect(x_coord, y_coord, size, size))
+            self.list_of_buttons[i].setGeometry(QtCore.QRect(x_coord, y_coord, x_size, y_size))
             self.list_of_buttons[i].clicked.connect(lambda checked, arg=text: self.print(arg, arg))
 
         self.pushButton_smem.setGeometry(QtCore.QRect(10, 400, 61, 61))
         self.pushButton_smem.setText("M")
 
-        self.pushButton_sdot.setGeometry(QtCore.QRect(150, 400, 61, 61))
-        self.pushButton_sdot.setText(",")
-
         self.pushButton_s_equal.setGeometry(QtCore.QRect(220, 400, 61, 61))
         self.pushButton_s_equal.setText("=")
 
-        self.pushButton_smultiply.setGeometry(QtCore.QRect(220, 190, 61, 61))
-        self.pushButton_smultiply.setText("*")
-
-        self.pushButton_sminus.setGeometry(QtCore.QRect(220, 260, 61, 61))
-        self.pushButton_sminus.setText("-")
-
-        self.pushButton_splus.setGeometry(QtCore.QRect(220, 330, 61, 61))
-        self.pushButton_splus.setText("+")
-
-        self.pushButton_left_bracket.setGeometry(QtCore.QRect(10, 140, 61, 41))
-        self.pushButton_left_bracket.setText("(")
-
-        self.pushButton_right_bracket.setGeometry(QtCore.QRect(80, 140, 61, 41))
-        self.pushButton_right_bracket.setText(")")
-
         self.pushButton_back.setGeometry(QtCore.QRect(150, 140, 61, 41))
         self.pushButton_back.setText("←")
-
-        self.pushButton_sdivide.setGeometry(QtCore.QRect(220, 140, 61, 41))
-        self.pushButton_sdivide.setText("÷")
 
         self.pushButton_smemminus.setGeometry(QtCore.QRect(220, 90, 61, 41))
         self.pushButton_smemminus.setText("M-")
@@ -129,18 +110,11 @@ class App(QWidget):
         self.output2.setFont(QFont('Comic Sans MS', 20))
 
         self.pushButton_back.clicked.connect(self.delete)
-        self.pushButton_splus.clicked.connect(lambda: self.print("+", "+"))
-        self.pushButton_sminus.clicked.connect(lambda: self.print("-", "-"))
-        self.pushButton_smultiply.clicked.connect(lambda: self.print("*", "*"))
-        self.pushButton_sdot.clicked.connect(lambda: self.print(".", "."))
         self.pushButton_ssqr.clicked.connect(lambda: self.print("**", "^"))
         self.pushButton_sqrt.clicked.connect(lambda: self.print("**0.5", "[2]√"))
-        self.pushButton_sdivide.clicked.connect(lambda: self.print("/", "/"))
         self.pushButton_smem.clicked.connect(lambda: self.print(self.memory, "M"))
         self.pushButton_smemplus.clicked.connect(self.add_to_memory)
         self.pushButton_smemminus.clicked.connect(self.remove_from_memory)
-        self.pushButton_left_bracket.clicked.connect(lambda: self.print('(', '('))
-        self.pushButton_right_bracket.clicked.connect(lambda: self.print(')', ')'))
         self.output1.setText(''.join(self.displayed_content))
         self.pushButton_help.clicked.connect(self.show_dialog)
 
