@@ -2,7 +2,7 @@ import sys
 
 from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtGui import QFont
-from PyQt5.QtWidgets import QWidget, QPushButton, QMessageBox
+from PyQt5.QtWidgets import QWidget, QPushButton
 
 
 class App(QWidget):
@@ -47,7 +47,7 @@ class App(QWidget):
                         [")", [80, 140], "S", self.print, ")", ")"],
                         [".", [150, 400], "M", self.print, ".", "."],
                         ["/", [220, 140], "S", self.print, "/", "/"],
-                        ["x", [290, 140], "S", self.print, "x", "x"],
+                        ["%", [290, 140], "S", self.print, "%", "%"],
                         ["n!", [290, 190], "M", self.print, "!", "!"],
                         ["mod", [290, 260], "M", self.print, "?", "?"],
                         ["%", [290, 330], "M", self.print, "%", "%"],
@@ -166,11 +166,12 @@ class App(QWidget):
             self.print(".", ".")
         elif event.key() == QtCore.Qt.Key_Multi_key:
             self.print("*", "*")
+        # TODO: zvysne tlacitka, ktore sa daju zadat z klavesnice
 
     ## Slot to display the help message for user.
     # @brief Displays a short form containing instructions for basic use.
     #
-    # @param sel (App)
+    # @param self(App)
     #
     def help_click(self):
         self.form.show()
