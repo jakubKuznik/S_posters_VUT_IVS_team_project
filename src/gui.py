@@ -337,7 +337,7 @@ class App(QWidget):
         elif term == "0" and self.content[-1] == "/":
             self.output2.setText("Cannot divide by zero.")
             return False
-        elif term in self.operators and (self.content[-1] in self.operators or self.displayed_content[-1] == "M"):
+        elif term in self.operators and (self.content[-1] in self.operators):
             return False
         elif term == '.' and '.' in self.content:
             return False
