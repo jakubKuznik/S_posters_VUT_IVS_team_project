@@ -4,7 +4,7 @@ PACK_NAME = xvanom00_xkuzni04_xkrato61_xsvobo1x
 #ALL_DIRS = ./doc ./install ./repo	# directories in a pack
 
 # .PHONY defines parts of the makefile that are not dependant on any specific file
-.PHONY = help test run clean doc
+.PHONY = help test run clean doc bundle
 
 # Defines the default target that `make` will to try to make, or in the case of a phony target, execute the specified commands
 # This target is executed whenever we just type `make`
@@ -35,6 +35,9 @@ test:
 
 run:
 	${PYTHON} calc.py
+
+install:
+	pyinstaller --onefile --windowed calc.py
 
 clean:
 	rm -r *.project

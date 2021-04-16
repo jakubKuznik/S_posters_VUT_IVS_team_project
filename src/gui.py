@@ -18,7 +18,6 @@ class App(QWidget):
         # TODO: icon
 
         # UI ELEMENTS
-
         self.pushButton_smem = QPushButton(self)
         self.pushButton_s_equal = QPushButton(self)
         self.pushButton_back = QtWidgets.QPushButton(self)
@@ -29,40 +28,41 @@ class App(QWidget):
         self.pushButton_help = QtWidgets.QPushButton(self)
         self.output1 = QtWidgets.QLabel(self)
         self.output2 = QtWidgets.QLabel(self)
-
         self.list_of_buttons = []
-
-        self.digit_buttons = [["0", [80, 400, 61, 61]],
-                              ["1", [10, 330, 61, 61]],
-                              ["2", [80, 330, 61, 61]],
-                              ["3", [150, 330, 61, 61]],
-                              ["4", [10, 260, 61, 61]],
-                              ["5", [80, 260, 61, 61]],
-                              ["6", [150, 260, 61, 61]],
-                              ["7", [10, 190, 61, 61]],
-                              ["8", [80, 190, 61, 61]],
-                              ["9", [150, 190, 61, 61]],
-                              ["+", [220, 330, 61, 61]],
-                              ["-", [220, 260, 61, 61]],
-                              ["*", [220, 190, 61, 61]],
-                              ["(", [10, 140, 61, 41]],
-                              [")", [80, 140, 61, 41]],
-                              [".", [150, 400, 61, 61]],
-                              ["/", [220, 140, 61, 41]],
-                              ]
-
+        self.buttons = [["0", [80, 400, 61, 61]],
+                        ["1", [10, 330, 61, 61]],
+                        ["2", [80, 330, 61, 61]],
+                        ["3", [150, 330, 61, 61]],
+                        ["4", [10, 260, 61, 61]],
+                        ["5", [80, 260, 61, 61]],
+                        ["6", [150, 260, 61, 61]],
+                        ["7", [10, 190, 61, 61]],
+                        ["8", [80, 190, 61, 61]],
+                        ["9", [150, 190, 61, 61]],
+                        ["+", [220, 330, 61, 61]],
+                        ["-", [220, 260, 61, 61]],
+                        ["*", [220, 190, 61, 61]],
+                        ["(", [10, 140, 61, 41]],
+                        [")", [80, 140, 61, 41]],
+                        [".", [150, 400, 61, 61]],
+                        ["/", [220, 140, 61, 41]],
+                        ]
         self.setup_ui()
 
+    ## This function creates the user interface of the app, connects signals to slots.
+    # @brief In a for loop, all generic buttons are created, triggers setup. Other buttons are created manually.
+    #
+    # @param self(App)
+    #
     def setup_ui(self):
-        self.resize(300, 500)
         self.setWindowTitle("Imposter Calculator")
 
-        for i in range(len(self.digit_buttons)):
-            x_coord = self.digit_buttons[i][1][0]
-            y_coord = self.digit_buttons[i][1][1]
-            x_size = self.digit_buttons[i][1][2]
-            y_size = self.digit_buttons[i][1][3]
-            text = self.digit_buttons[i][0]
+        for i in range(len(self.buttons)):
+            x_coord = self.buttons[i][1][0]
+            y_coord = self.buttons[i][1][1]
+            x_size = self.buttons[i][1][2]
+            y_size = self.buttons[i][1][3]
+            text = self.buttons[i][0]
             self.list_of_buttons.append(QPushButton(text, self))
             self.list_of_buttons[i].setGeometry(QtCore.QRect(x_coord, y_coord, x_size, y_size))
             self.list_of_buttons[i].clicked.connect(lambda checked, arg=text: self.print(arg, arg))
@@ -88,8 +88,6 @@ class App(QWidget):
         self.pushButton_smemplus.setGeometry(QtCore.QRect(150, 90, 61, 41))
         self.pushButton_smemplus.setText("M+")
 
-
-        # HELP BUTTON
         self.pushButton_help.setGeometry(QtCore.QRect(0, 0, 35, 35))
         self.pushButton_help.setText("?")
         self.pushButton_help.clicked.connect(self.help_click)
@@ -109,8 +107,58 @@ class App(QWidget):
         self.pushButton_smemminus.clicked.connect(self.remove_from_memory)
         self.output1.setText(''.join(self.displayed_content))
 
-    ##
-    # Function that opens help_form
+    ## This function reimplements the default keyPressEvent function from PyQt5
+    # @brief Rebinds numbers and operators keys as new signals
+    #
+    # @param self(App)
+    #
+    def keyPressEvent(self, event):
+        print(event.key())
+        if event.key() == QtCore.Qt.Key_0:
+            self.print('0', '0')
+        elif event.key() == QtCore.Qt.Key_1:
+            self.print('1', '1')
+        elif event.key() == QtCore.Qt.Key_2:
+            self.print('2', '2')
+        elif event.key() == QtCore.Qt.Key_3:
+            self.print('3', '3')
+        elif event.key() == QtCore.Qt.Key_4:
+            self.print('4', '4')
+        elif event.key() == QtCore.Qt.Key_5:
+            self.print('5', '5')
+        elif event.key() == QtCore.Qt.Key_6:
+            self.print('6', '6')
+        elif event.key() == QtCore.Qt.Key_7:
+            self.print('7', '7')
+        elif event.key() == QtCore.Qt.Key_8:
+            self.print('8', '8')
+        elif event.key() == QtCore.Qt.Key_9:
+            self.print('9', '9')
+
+        elif event.key() == QtCore.Qt.Key_F1:
+            self.help_click()
+        elif event.key() == QtCore.Qt.Key_Plus:
+            self.print('+', '+')
+        elif event.key() == QtCore.Qt.Key_Minus:
+            self.print('-', '-')
+        elif event.key() == QtCore.Qt.Key_Slash:
+            self.print('/', '/')
+        elif event.key() == QtCore.Qt.Key_ParenLeft:
+            self.print('(', '(')
+        elif event.key() == QtCore.Qt.Key_ParenRight:
+            self.print(')', ')')
+        elif event.key() == QtCore.Qt.Key_AsciiCircum:
+            self.print("**", "^")
+        elif event.key() == QtCore.Qt.Key_Period:
+            self.print(".", ".")
+        elif event.key() == QtCore.Qt.Key_Comma:
+            self.print(".", ".")
+
+    ## Slot to display the help message for user.
+    # @brief Displays a short form containing instructions for basic use.
+    #
+    # @param sel (App)
+    #
     def help_click(self):
         self.window = QtWidgets.QApplication(sys.argv)
         self.Form = QtWidgets.QWidget()

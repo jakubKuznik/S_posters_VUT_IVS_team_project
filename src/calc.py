@@ -26,8 +26,9 @@ import sys
 from gui import *
 
 
-## Documentation for a function.
-#  This is what doxygen function documentation looks like .
+## This function initializes the app window.
+# @brief The main function which launches the calculator app itself.
+#
 def main():
     calc = QtWidgets.QApplication(sys.argv)
     app = App()
