@@ -12,5 +12,5 @@ output = []
 for token in input:
     if token not in nonNumbers:
         output.append(token)
-    elif 1==1:
+    elif 1 == 1:
         print("Hello")

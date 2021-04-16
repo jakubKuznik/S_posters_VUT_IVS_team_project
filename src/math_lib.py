@@ -25,6 +25,7 @@
 class DivByZero(Exception):
     pass
 
+
 class DomainError(Exception):
     pass
 
@@ -37,7 +38,7 @@ def add(a, b):
     return a+b
 
 
-## This function will return the result of substraction of two numbers.
+## This function will return the result of subtraction of two numbers.
 #  This is how doxygen function documentation looks like.
 #  @param a first operand
 #  @param b second operand
@@ -60,7 +61,6 @@ def mult(a, b):
 def div(a, b):
     if b == 0:
         raise DivByZero
-
     return a/b
 
 
@@ -78,15 +78,16 @@ def root(a, b):
 #  This is how doxygen function documentation looks like.
 #  @param factorized_number 
 def fact(factorized_number):
-    if type(factorized_number)!=int or factorized_number<0:
+    if type(factorized_number) != int or factorized_number < 0:
         raise DomainError
     if factorized_number == 0:
         return 1
     else:
-        return factorized_number*fact(factorized_number-1)
+        return factorized_number * fact(factorized_number - 1)
+
 
 def exponentiation(base, power):
-    if type(power) !=int or power<0 or (power == 0 and base == 0):
+    if type(power) != int or power < 0 or (power == 0 and base == 0):
         raise DomainError
     return base ** power
 
