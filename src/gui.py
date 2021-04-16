@@ -161,10 +161,8 @@ class App(QWidget):
     #
     def help_click(self):
         self.window = QtWidgets.QApplication(sys.argv)
-        self.Form = QtWidgets.QWidget()
-        self.ui = Ui_Form()
-        self.ui.setupUi(self.Form)
-        self.Form.show()
+        self.form = Form()
+        self.form.show()
 
     def change(self, command):
         self.content.append(command)
@@ -182,13 +180,34 @@ class App(QWidget):
             except SyntaxError:
                 pass
 
+    ##
+    # @brief Funkce dělá ...
+    #
+    # @param p1 popis
+    # @param p2 popis
+    # @return popis výsledku
+    #
     def add_to_memory(self):
         self.memory = str(self.result)
         print(self.memory)
 
+    ##
+    # @brief Funkce dělá ...
+    #
+    # @param p1 popis
+    # @param p2 popis
+    # @return popis výsledku
+    #
     def remove_from_memory(self):
         self.memory = "0"
 
+    ##
+    # @brief Funkce dělá ...
+    #
+    # @param p1 popis
+    # @param p2 popis
+    # @return popis výsledku
+    #
     def delete(self):
         if len(self.content) != 0:
             self.content.pop()
@@ -206,6 +225,13 @@ class App(QWidget):
                 self.content = ['0']
                 self.displayed_content = ['0']
 
+    ##
+    # @brief Funkce dělá ...
+    #
+    # @param p1 popis
+    # @param p2 popis
+    # @return popis výsledku
+    #
     def validate(self, term, displayed_term):
         if self.content == ['0'] and (term in self.numbers or (displayed_term == "M" and self.memory != "0")):
             self.content.pop()
@@ -231,62 +257,15 @@ class App(QWidget):
 
 
 ##
-# HELP_FORM open after ? button click
-class Ui_Form(object):
-    def setupUi(self, Form):
-        Form.setObjectName("Nápověda")
-        Form.resize(499, 653)
-        self.textEdit = QtWidgets.QTextEdit(Form)
+# HELP_FORM class to open after ? button click
+class Form(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle("Nápověda")
+        self.textEdit = QtWidgets.QTextEdit(self)
         self.textEdit.setGeometry(QtCore.QRect(0, 0, 501, 651))
-        self.textEdit.setObjectName("textEdit")
-
-        self.retranslateUi(Form)
-        QtCore.QMetaObject.connectSlotsByName(Form)
-
-    def retranslateUi(self, Form):
-        _translate = QtCore.QCoreApplication.translate
-        Form.setWindowTitle(_translate("Form", "Form"))
-        self.textEdit.setHtml(_translate("Form", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'Ubuntu\'; font-size:11pt; font-weight:400; font-style:normal;\">\n"
-"<p align=\"center\" style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">Nápověda:</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">Zadávání:</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">Čísla a operace můžete zadat pomocí klávesnice, nebo myši.</p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">Smaž poslední znak &lt;-</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">1.Klikni na symbol šipky zpět</p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">Clear C</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">1.Klikni na sybol C a vymaže se celá pamět</p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">Základní operace (+ - * /)</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">1. Pro výpočet prvně zadejte číslo</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">2. Zvolte operaci</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">3. Zvolte druhé čísla</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">4. Zmáčkněte symbol =</p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">Faktoriál !</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">1. Zvolte <span style=\" font-weight:600;\">CELÉ KLADNÉ (1, 2, 3 ...) </span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">2. Stiskněte symbol faktoriálu !</p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">Odmocnina √</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">1. Zvolte <span style=\" font-weight:600;\">CELÉ ČÍSLO </span>jako základ odmocniny</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">2. Stiskněte symbol odmocniny  √</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">3. Zvolte číslo, které chcete odmocnit (mějte na paměti že kladná odmocnina ze záporného čísla není možná.)</p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">Mocnina ^</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">1. Zvolte číslo jako základ.</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">2. Zvolte číslo jako exponent</p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">Práce s paměti M  M+ M-</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">1. K uložení čísla do paměti stiskněte tlačítko <span style=\" font-weight:600;\">M+</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">2. K využítí čísla z paměti ve výpočtu stiskněte tlačítko<span style=\" font-weight:600;\"> M</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">3. Ke smazaní čísla z paměti použijte symbol <span style=\" font-weight:600;\">M-</span></p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">Práce se závorkami </span>()</p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">- Cokoliv uvedeme do závorek bude provedeno přednostně.</p>\n"
-"<p style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-weight:600;\">Desetinná čárka ,</span></p>\n"
-"<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">- Pro čísla s desetinnou čárkou je zde tlačítko ,</p></body></html>"))
+        self.textEdit.setReadOnly(True)
+        self.textEdit.setFont(QFont('Comic Sans MS', 15))
+        with open("help_form_html.txt") as f:
+            self.textEdit.setHtml(''.join(f.readlines()))
 

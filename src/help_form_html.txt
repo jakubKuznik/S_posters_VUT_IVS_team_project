@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-16">
+    </head>
+
+    <body>
+        <h1>Nápověda:</h1>
+        <p>Zadávání: čísla a operace můžete zadat pomocí klávesnice, nebo myši.</p>
+        <ul>
+            <li>
+                <h3>Smaž poslední znak ← </h3>
+                <ol>
+                  <li>Klikni na symbol šipky zpět</li>
+                </ol>
+            </li>
+
+            <li>
+                <h3>Základní operace (+ - * /)</h3>
+                <ol>
+                  <li>Pro výpočet prvně zadejte číslo</li>
+                  <li>Zvolte operaci</li>
+                  <li>Zvolte druhé čísla</li>
+                  <li>Zmáčkněte symbol =</li>
+                </ol>
+            </li>
+
+            <li>
+                <h3>Faktoriál n!</h3>
+                <ol>
+                  <li>Zvolte CELÉ KLADNÉ (1, 2, 3 ...)</li>
+                  <li>Stiskněte symbol faktoriálu !</li>
+                </ol>
+            </li>
+
+            <li>
+                <h3>Odmocnina √</h3>
+                <ol>
+                  <li>Zvolte CELÉ ČÍSLO jako základ odmocniny</li>
+                  <li>Stiskněte symbol odmocniny  √</li>
+                  <li>Zvolte číslo, které chcete odmocnit (mějte na paměti že kladná odmocnina ze záporného čísla není možná.)</li>
+                </ol>
+            </li>
+
+            <li>
+                <h3>Mocnina ^</h3>
+                <ol>
+                  <li>Zvolte číslo jako základ</li>
+                  <li>Zvolte číslo jako exponent</li>
+                </ol>
+            </li>
+
+            <li>
+                <h3>Práce s paměti M, M+, M-</h3>
+                <ol>
+                  <li>K uložení čísla do paměti stiskněte tlačítko M+</li>
+                  <li>K využítí čísla z paměti ve výpočtu stiskněte tlačítko M</li>
+                  <li>Ke smazaní čísla z paměti použijte symbol M-</li>
+                </ol>
+            </li>
+
+            <li>
+                <h3>Práce se závorkami ()</h3>
+                <ol>
+                  <li>Cokoliv co uvedeme do závorek bude provedeno přednostně </li>
+                </ol>
+            </li>
+
+            <li>
+                <h3>Desetinná čárka ,</h3>
+                <ol>
+                  <li>Pro čísla s desetinnou čárkou je zde tlačítko "," nebo "."</li>
+                </ol>
+            </li>
+        </ul>
+    </body>
+</html>
