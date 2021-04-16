@@ -278,5 +278,5 @@ class Form(QWidget):
         self.textEdit.setGeometry(QtCore.QRect(0, 0, 501, 651))
         self.textEdit.setReadOnly(True)
         self.textEdit.setFont(QFont('Comic Sans MS', 15))
-        with open("help_form_html.txt") as f:
+        with open("help_form.html") as f:
             self.textEdit.setHtml(''.join(f.readlines()))
