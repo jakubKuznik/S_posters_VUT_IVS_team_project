@@ -1,3 +1,27 @@
+###########################################
+# Project name: IVS - projekt
+# File: gui.py
+# Date: 25. 03. 2021
+# Last change: 16. 04. 2021
+# Team: S_POSTERS
+# Supervisor: ...
+# Authors:  Vaňo Michal
+#           Kuzník Jakub
+#           Kratochvíl Pavel
+#           Svobodová Lucie
+#
+# Brief: GUI for our calculator
+###########################################
+
+## @file gui.py
+#
+#  @brief calculator gui
+#
+#  @author Vaňo Michal
+#  @author Kuzník Jakub
+#  @author Kratochvíl Pavel
+#  @author Svobodová Lucie
+
 import sys
 
 from PyQt5 import QtWidgets, QtCore
