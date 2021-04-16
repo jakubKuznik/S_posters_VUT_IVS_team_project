@@ -72,9 +72,9 @@ class App(QWidget):
             y_coord = self.digit_buttons[i][1][1]
             text = self.digit_buttons[i][0]
             size = 61
-            button = QPushButton(self.digit_buttons[i][0], self)
-            button.setGeometry(QtCore.QRect(x_coord, y_coord, size, size))
-            button.clicked.connect(lambda: self.print(text, text))
+            self.list_of_buttons.append(QPushButton(text, self))
+            self.list_of_buttons[i].setGeometry(QtCore.QRect(x_coord, y_coord, size, size))
+            self.list_of_buttons[i].clicked.connect(lambda checked, arg=text: self.print(arg, arg))
 
         self.pushButton_smem.setGeometry(QtCore.QRect(10, 400, 61, 61))
         self.pushButton_smem.setText("M")
@@ -165,7 +165,7 @@ class App(QWidget):
         print(self.memory)
 
     def remove_from_memory(self):
-        self.memory="0"
+        self.memory = "0"
 
     def delete(self):
         if len(self.content) != 0:
