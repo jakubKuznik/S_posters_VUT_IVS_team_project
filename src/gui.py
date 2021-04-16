@@ -30,7 +30,7 @@ class App(QWidget):
 
         # visible text, coordinates, size (S = small, button, M = medium button, L=large button),
         # callback function, term, displayed term
-        self.buttons = [["0", [80, 400], "M", self.print, "0", "0"],
+        self.buttons = [["0", [80, 400], "M",self.print, "0", "0"],
                         ["1", [10, 330], "M", self.print, "1", "1"],
                         ["2", [80, 330], "M", self.print, "2", "2"],
                         ["3", [150, 330], "M", self.print, "3", "3"],
@@ -92,7 +92,7 @@ class App(QWidget):
 
             self.list_of_buttons.append(QPushButton(text, self))
             self.list_of_buttons[i].setGeometry(QtCore.QRect(x_coord, y_coord, size_x, size_y))
-
+            
             # if for buttons with less arguments, e.g. "←", "M", "M+", "M-",
             if len(self.buttons[i]) == 4:
                 self.list_of_buttons[i].clicked.connect(lambda checked, fn=callback_fn: fn())
@@ -101,6 +101,14 @@ class App(QWidget):
                 print(term)
                 displayed_term = self.buttons[i][5]
                 self.list_of_buttons[i].clicked.connect(lambda checked, t=term, d_t=displayed_term, fn=callback_fn: fn(t, d_t))
+
+        # set button colors
+        for j in range(10, 28):
+            self.list_of_buttons[j].setStyleSheet("background-color: rgb(200,245,255)")
+        self.pushButton_s_equal.setStyleSheet("background-color: rgb(200,245,255)")
+        self.pushButton_help.setStyleSheet("background-color: rgb(200,245,255)")
+
+        self.setStyleSheet("background-color: white")
 
         self.pushButton_s_equal.setGeometry(QtCore.QRect(220, 400, 130, 65))
         self.pushButton_s_equal.setText("=")
