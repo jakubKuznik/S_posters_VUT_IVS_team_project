@@ -21,39 +21,43 @@ class App(QWidget):
         self.form = Form()
 
         # UI ELEMENTS
-        self.pushButton_smem = QPushButton(self)
         self.pushButton_s_equal = QPushButton(self)
-        self.pushButton_back = QPushButton(self)
-        self.pushButton_smemminus = QPushButton(self)
-        self.pushButton_sqrt = QPushButton(self)
-        self.pushButton_ssqr = QPushButton(self)
-        self.pushButton_smemplus = QPushButton(self)
         self.pushButton_help = QPushButton(self)
-        self.pushButton_sce = QPushButton(self)
         self.output1 = QtWidgets.QLabel(self)
         self.output2 = QtWidgets.QLabel(self)
+
         self.list_of_buttons = []
-        self.buttons = [["0", [80, 400, 61, 61]],
-                        ["1", [10, 330, 61, 61]],
-                        ["2", [80, 330, 61, 61]],
-                        ["3", [150, 330, 61, 61]],
-                        ["4", [10, 260, 61, 61]],
-                        ["5", [80, 260, 61, 61]],
-                        ["6", [150, 260, 61, 61]],
-                        ["7", [10, 190, 61, 61]],
-                        ["8", [80, 190, 61, 61]],
-                        ["9", [150, 190, 61, 61]],
-                        ["+", [220, 330, 61, 61]],
-                        ["-", [220, 260, 61, 61]],
-                        ["*", [220, 190, 61, 61]],
-                        ["(", [10, 140, 61, 41]],
-                        [")", [80, 140, 61, 41]],
-                        [".", [150, 400, 61, 61]],
-                        ["/", [220, 140, 61, 41]],
-                        ["x", [290, 140, 61, 41]],
-                        ["n!", [290, 190, 61, 61]],
-                        ["mod", [290, 260, 61, 61]],
-                        ["%", [290, 330, 61, 61]],
+
+        # visible text, coordinates, size (S = small, button, M = medium button, L=large button),
+        # callback function, term, displayed term
+        self.buttons = [["0", [80, 400], "M", self.print, "0", "0"],
+                        ["1", [10, 330], "M", self.print, "1", "1"],
+                        ["2", [80, 330], "M", self.print, "2", "2"],
+                        ["3", [150, 330], "M", self.print, "3", "3"],
+                        ["4", [10, 260], "M", self.print, "5", "4"],
+                        ["5", [80, 260], "M", self.print, "5", "5"],
+                        ["6", [150, 260], "M", self.print, "6", "6"],
+                        ["7", [10, 190], "M", self.print, "7", "7"],
+                        ["8", [80, 190], "M", self.print, "8", "8"],
+                        ["9", [150, 190], "M", self.print, "9", "9"],
+                        ["+", [220, 330], "M", self.print, "+", "+"],
+                        ["-", [220, 260], "M", self.print, "-", "-"],
+                        ["*", [220, 190], "M", self.print, "*", "*"],
+                        ["(", [10, 140], "S", self.print, "(", "("],
+                        [")", [80, 140], "S", self.print, ")", ")"],
+                        [".", [150, 400], "M", self.print, ".", "."],
+                        ["/", [220, 140], "S", self.print, "/", "/"],
+                        ["x", [290, 140], "S", self.print, "x", "x"],
+                        ["n!", [290, 190], "M", self.print, "!", "!"],
+                        ["mod", [290, 260], "M", self.print, "?", "?"],
+                        ["%", [290, 330], "M", self.print, "%", "%"],
+                        ["CE", [10, 400], "M", self.print, "!", "!"],
+                        ["←", [150, 140], "S", self.delete],
+                        ["√", [80, 90], "S", self.print, "**0.5", "[2]√"],
+                        ["^", [10, 90], "S", self.print, "**", "^"],
+                        ["M", [150, 90], "S", self.print, self.memory, "M"],
+                        ["M+", [220, 90], "S", self.add_to_memory],
+                        ["M-", [290, 90], "S", self.remove_from_memory],
                         ]
         self.setup_ui()
 
@@ -68,36 +72,38 @@ class App(QWidget):
         for i in range(len(self.buttons)):
             x_coord = self.buttons[i][1][0]
             y_coord = self.buttons[i][1][1]
-            x_size = self.buttons[i][1][2]
-            y_size = self.buttons[i][1][3]
+
+            # text displayed on the button
             text = self.buttons[i][0]
+
+            # function to bind to key press
+            callback_fn = self.buttons[i][3]
+
+            # constant for every button except "="
+            size_x = 60
+
+            # assigning correct size according to the letter
+            if self.buttons[i][2] == "S":
+                size_y = 45
+            elif self.buttons[i][2] == "M":
+                size_y = 65
+            else:
+                size_y = 3
+
             self.list_of_buttons.append(QPushButton(text, self))
-            self.list_of_buttons[i].setGeometry(QtCore.QRect(x_coord, y_coord, x_size, y_size))
-            self.list_of_buttons[i].clicked.connect(lambda checked, arg=text: self.print(arg, arg))
+            self.list_of_buttons[i].setGeometry(QtCore.QRect(x_coord, y_coord, size_x, size_y))
 
-        self.pushButton_sce.setGeometry(QtCore.QRect(10, 400, 61, 61))
-        self.pushButton_sce.setText("CE")
+            # if for buttons with less arguments, e.g. "←", "M", "M+", "M-",
+            if len(self.buttons[i]) == 4:
+                self.list_of_buttons[i].clicked.connect(lambda checked, fn=callback_fn: fn())
+            else:
+                term = self.buttons[i][4]
+                print(term)
+                displayed_term = self.buttons[i][5]
+                self.list_of_buttons[i].clicked.connect(lambda checked, t=term, d_t=displayed_term, fn=callback_fn: fn(t, d_t))
 
-        self.pushButton_s_equal.setGeometry(QtCore.QRect(220, 400, 131, 61))
+        self.pushButton_s_equal.setGeometry(QtCore.QRect(220, 400, 130, 65))
         self.pushButton_s_equal.setText("=")
-
-        self.pushButton_back.setGeometry(QtCore.QRect(150, 140, 61, 41))
-        self.pushButton_back.setText("←")
-
-        self.pushButton_sqrt.setGeometry(QtCore.QRect(80, 90, 61, 41))
-        self.pushButton_sqrt.setText("√")
-
-        self.pushButton_ssqr.setGeometry(QtCore.QRect(10, 90, 61, 41))
-        self.pushButton_ssqr.setText("^")
-
-        self.pushButton_smem.setGeometry(QtCore.QRect(150, 90, 61, 41))
-        self.pushButton_smem.setText("M")
-
-        self.pushButton_smemplus.setGeometry(QtCore.QRect(220, 90, 61, 41))
-        self.pushButton_smemplus.setText("M+")
-
-        self.pushButton_smemminus.setGeometry(QtCore.QRect(290, 90, 61, 41))
-        self.pushButton_smemminus.setText("M-")
 
         self.pushButton_help.setGeometry(QtCore.QRect(0, 0, 35, 35))
         self.pushButton_help.setText("?")
@@ -110,12 +116,8 @@ class App(QWidget):
         self.output2.setGeometry(QtCore.QRect(20, 40, 320, 50))
         self.output2.setFont(QFont('Comic Sans MS', 20))
 
-        self.pushButton_back.clicked.connect(self.delete)
-        self.pushButton_ssqr.clicked.connect(lambda: self.print("**", "^"))
-        self.pushButton_sqrt.clicked.connect(lambda: self.print("**0.5", "[2]√"))
-        self.pushButton_smem.clicked.connect(lambda: self.print(self.memory, "M"))
-        self.pushButton_smemplus.clicked.connect(self.add_to_memory)
-        self.pushButton_smemminus.clicked.connect(self.remove_from_memory)
+        self.output1.setStyleSheet("")
+
         self.output1.setText(''.join(self.displayed_content))
 
     ## This function reimplements the default keyPressEvent function from PyQt5
@@ -124,7 +126,6 @@ class App(QWidget):
     # @param self(App)
     #
     def keyPressEvent(self, event):
-        print(event.key())
         if event.key() == QtCore.Qt.Key_0:
             self.print('0', '0')
         elif event.key() == QtCore.Qt.Key_1:
@@ -145,7 +146,6 @@ class App(QWidget):
             self.print('8', '8')
         elif event.key() == QtCore.Qt.Key_9:
             self.print('9', '9')
-
         elif event.key() == QtCore.Qt.Key_F1:
             self.help_click()
         elif event.key() == QtCore.Qt.Key_Plus:
