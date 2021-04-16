@@ -23,8 +23,9 @@
 #  @author Svobodová Lucie
 
 import sys
-
 from gui import *
+
+
 ## Documentation for a function.
 #  This is what doxygen function documentation looks like .
 def main():
