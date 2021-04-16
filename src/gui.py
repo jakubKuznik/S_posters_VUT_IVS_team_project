@@ -41,6 +41,11 @@ class App(QWidget):
         self.setFixedSize(360, 480)
         # TODO: icon
 
+        # Load the font:
+        font_db = QFontDatabase()
+        font_db.addApplicationFont("Quicksand.ttf")
+        self.font = QFont("Quicksand", 25)
+
         self.window = QtWidgets.QApplication(sys.argv)
         self.form = Form()
 
@@ -116,13 +121,8 @@ class App(QWidget):
 
             self.list_of_buttons.append(QPushButton(text, self))
             self.list_of_buttons[i].setGeometry(QtCore.QRect(x_coord, y_coord, size_x, size_y))
-            # Load the font:
-            font_db = QFontDatabase()
-            font_id = font_db.addApplicationFont("Quicksand.ttf")
-            # families = font_db.applicationFontFamilies(font_id)
-            your_ttf_font = QFont("Quicksand", 25)
 
-            self.list_of_buttons[i].setFont(your_ttf_font)
+            self.list_of_buttons[i].setFont(self.font)
 
             # if for buttons with less arguments, e.g. "←", "M", "M+", "M-",
             if len(self.buttons[i]) == 4:
@@ -175,35 +175,29 @@ class App(QWidget):
         self.button.setStyleSheet("background-color : lightgrey")
 
     def change_color(self):
-
-        # if button is checked
         if self.button.isChecked():
-
-            # setting background color to light-blue
-            #self.button.setStyleSheet("background-color : lightblue")
-            #self.setStyleSheet("background-color : lightblue")
-
-            for j in range(10):
-                self.list_of_buttons[j].setStyleSheet("background-color: rgb(255, 255, 255); color: rgb(86, 73, 76); border-radius: 15px; border-color: rgb(214, 237, 255)") #siva
-
-            for j in range(10, 28):
-                self.list_of_buttons[j].setStyleSheet("color: rgb(0, 151, 136); border-radius: 15px")
-            self.pushButton_s_equal.setStyleSheet("color: rgb(0, 151, 136); border-radius: 15px")
-            self.pushButton_help.setStyleSheet("color: rgb(0, 151, 136); border-radius: 15px")
-        # if it is unchecked
+            self.toggle_dark_mode()
         else:
+            self.toggle_light_mode()
 
-            # set background color back to light-grey
-            #self.button.setStyleSheet("background-color : lightgrey")
-            #self.setStyleSheet("background-color : lightgrey")
+    def toggle_dark_mode(self):
+        for j in range(10):
+            self.list_of_buttons[j].setStyleSheet("background-color: rgb(255, 255, 255); color: rgb(86, 73, 76); border-radius: 15px; border-color: rgb(214, 237, 255)")
 
-            for j in range(10):
-                self.list_of_buttons[j].setStyleSheet("background-color: rgb(40,54,55)") #siva
+        for j in range(10, 28):
+            self.list_of_buttons[j].setStyleSheet("color: rgb(0, 151, 136); border-radius: 15px")
+        self.pushButton_s_equal.setStyleSheet("color: rgb(0, 151, 136); border-radius: 15px")
+        self.pushButton_help.setStyleSheet("color: rgb(0, 151, 136); border-radius: 15px")
 
-            for j in range(10, 28):
-                self.list_of_buttons[j].setStyleSheet("background-color: rgb(200,245,255)")
-            self.pushButton_s_equal.setStyleSheet("background-color: rgb(200,245,255)")
-            self.pushButton_help.setStyleSheet("background-color: rgb(200,245,255)")
+    def toggle_light_mode(self):
+        for j in range(10):
+            self.list_of_buttons[j].setStyleSheet("background-color: rgb(40,54,55)")  # siva
+
+        for j in range(10, 28):
+            self.list_of_buttons[j].setStyleSheet("background-color: rgb(200,245,255)")
+        self.pushButton_s_equal.setStyleSheet("background-color: rgb(200,245,255)")
+        self.pushButton_help.setStyleSheet("background-color: rgb(200,245,255)")
+
 
     ## This function reimplements the default keyPressEvent function from PyQt5
     # @brief Rebinds numbers and operators keys as new signals
