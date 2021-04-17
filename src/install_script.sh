@@ -2,7 +2,6 @@ mkdir -p ../installer/usr/share/impcalc 2>/dev/null
 
 cp math_lib.py ../installer/usr/share/impcalc/math_lib.py
 cp gui.py ../installer/usr/share/impcalc/gui.py
-cp Quicksand.ttf ../installer/usr/share/impcalc/Quicksand.ttf
 cp parser.py ../installer/usr/share/impcalc/parser.py
 cp help_form.html ../installer/usr/share/impcalc/help_form.html
 cp  calc.py ../installer/usr/share/impcalc/calc.py && chmod +x ../installer/usr/share/impcalc/calc.py

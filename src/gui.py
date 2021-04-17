@@ -51,25 +51,24 @@ class App(QWidget):
         # TODO: icon
 
         # Load the font:
-        font_db = QFontDatabase()
-        font_db.addApplicationFont("Quicksand.ttf")
-        self.font = QFont("Quicksand", 25)
+        self.font = QFont("Arial", 20)
 
         self.window = QtWidgets.QApplication(sys.argv)
-        self.form = Form()
+        self.form = Form(self.font)
 
         # UI ELEMENTS
         self.pushButton_s_equal = QPushButton(self)
-        self.pushButton_memplus = QPushButton(self)
+        self.pushButton_mem = QPushButton(self)
         self.pushButton_help = QPushButton(self)
         self.output1 = QtWidgets.QLabel(self)
         self.output2 = QtWidgets.QLabel(self)
+        self.pushButton_color = QPushButton(self)
 
         self.list_of_buttons = []
 
         # visible text, coordinates, size (S = small button, M = medium button, L=large button),
         # callback function, term, displayed term
-        self.buttons = [["0", [80, 400], "M",self.print, "0", "0"],
+        self.buttons = [["0", [80, 400], "M", self.print, "0", "0"],
                         ["1", [10, 330], "M", self.print, "1", "1"],
                         ["2", [80, 330], "M", self.print, "2", "2"],
                         ["3", [150, 330], "M", self.print, "3", "3"],
@@ -98,6 +97,7 @@ class App(QWidget):
                         ["M-", [290, 90], "S", self.remove_from_memory],
                         ]
         self.setup_ui()
+        self.toggle_light_mode()
 
     ## This function creates the user interface of the app, connects signals to slots.
     # @brief In a for loop, all generic buttons are created, triggers setup. Other buttons are created manually.
@@ -142,75 +142,64 @@ class App(QWidget):
                 displayed_term = self.buttons[i][5]
                 self.list_of_buttons[i].clicked.connect(lambda checked, t=term, d_t=displayed_term, fn=callback_fn: fn(t, d_t))
 
-        # set button colors
-        for j in range(10, 27):
-            self.list_of_buttons[j].setStyleSheet("background-color: rgb(200,245,255)")
-        self.pushButton_s_equal.setStyleSheet("background-color: rgb(200,245,255)")
-        self.pushButton_help.setStyleSheet("background-color: rgb(200,245,255)")
-
-        self.setStyleSheet("background-color: white")
-
         self.pushButton_s_equal.setGeometry(QtCore.QRect(220, 400, 130, 65))
         self.pushButton_s_equal.setText("=")
+        self.list_of_buttons.append(self.pushButton_s_equal)
 
-        self.pushButton_memplus.setGeometry(QtCore.QRect(150, 90, 130, 65))
-        self.pushButton_memplus.setText("M")
-        self.pushButton_memplus.clicked.connect(lambda:  self.print(self.memory, "M"))
+        self.pushButton_mem.setGeometry(QtCore.QRect(150, 90, 60, 45))
+        self.pushButton_mem.setText("M")
+        self.pushButton_mem.clicked.connect(lambda:  self.print(self.memory, "M"))
+        self.list_of_buttons.append(self.pushButton_mem)
 
         self.pushButton_help.setGeometry(QtCore.QRect(0, 0, 35, 35))
         self.pushButton_help.setText("?")
         self.pushButton_help.clicked.connect(self.help_click)
+        self.list_of_buttons.append(self.pushButton_help)
 
         self.output1.setGeometry(QtCore.QRect(35, 10, 320, 40))
-        self.output1.setFont(QFont('Comic Sans MS', 15))
+        self.output1.setFont(self.font)
         self.output1.setAlignment(QtCore.Qt.AlignRight | QtCore.Qt.AlignVCenter)
-
-        self.output2.setGeometry(QtCore.QRect(20, 40, 320, 50))
-        self.output2.setFont(QFont('Comic Sans MS', 20))
-
-        self.output1.setStyleSheet("")
-
         self.output1.setText(''.join(self.displayed_content))
 
-        #######
-        self.button = QPushButton("Toggle", self)
+        self.output2.setGeometry(QtCore.QRect(35, 40, 320, 50))
+        self.output2.setFont(self.font)
 
-        # setting geometry of button
-        self.button.setGeometry(30, 30, 20, 20)
-
-        # setting checkable to true
-        self.button.setCheckable(True)
-
-        # setting calling method by button
-        self.button.clicked.connect(self.change_color)
-
-        # setting default color of button to light-grey
-        self.button.setStyleSheet("background-color : lightgrey")
+        self.pushButton_color.setGeometry(0, 35, 35, 35)
+        self.pushButton_color.setCheckable(True)
+        self.pushButton_color.setText("D")
+        self.pushButton_color.clicked.connect(self.change_color)
+        self.list_of_buttons.append(self.pushButton_color)
 
     def change_color(self):
-        if self.button.isChecked():
+        if self.pushButton_color.isChecked():
             self.toggle_dark_mode()
         else:
             self.toggle_light_mode()
 
     def toggle_dark_mode(self):
-        for j in range(10):
+        # background
+        self.setStyleSheet("background-color: rgb(40,54,55);")
+
+        # numpad
+        for j in range(len(self.list_of_buttons)):
+            self.list_of_buttons[j].setStyleSheet("color: rgb(0, 151, 136); border-radius: 100%")
+
+        # all other buttons
+        for j in range(10, len(self.list_of_buttons)):
             self.list_of_buttons[j].setStyleSheet("background-color: rgb(255, 255, 255); color: rgb(86, 73, 76); border-radius: 15px; border-color: rgb(214, 237, 255)")
 
-        for j in range(10, 28):
-            self.list_of_buttons[j].setStyleSheet("color: rgb(0, 151, 136); border-radius: 15px")
-        self.pushButton_s_equal.setStyleSheet("color: rgb(0, 151, 136); border-radius: 15px")
-        self.pushButton_help.setStyleSheet("color: rgb(0, 151, 136); border-radius: 15px")
-
     def toggle_light_mode(self):
-        for j in range(10):
-            self.list_of_buttons[j].setStyleSheet("background-color: rgb(40,54,55)")  # siva
+        # background
+        self.setStyleSheet("background-color: white;")
 
-        for j in range(10, 28):
-            self.list_of_buttons[j].setStyleSheet("background-color: rgb(200,245,255)")
-        self.pushButton_s_equal.setStyleSheet("background-color: rgb(200,245,255)")
-        self.pushButton_help.setStyleSheet("background-color: rgb(200,245,255)")
+        # numpad
+        for j in range(len(self.list_of_buttons)):
+            self.list_of_buttons[j].setStyleSheet(
+                "background-color: rgb(255, 255, 255); color: rgb(86, 73, 76); border-radius: 15px; border-color: rgb(214, 237, 255)")
 
+        # all other buttons
+        for j in range(10, len(self.list_of_buttons)):
+            self.list_of_buttons[j].setStyleSheet("color: rgb(0, 151, 136); border-radius: 15px")
 
     ## This function reimplements the default keyPressEvent function from PyQt5
     # @brief Rebinds numbers and operators keys as new signals
@@ -363,12 +352,12 @@ class App(QWidget):
 ##
 # HELP_FORM class to open after ? button click
 class Form(QWidget):
-    def __init__(self):
+    def __init__(self, font):
         super().__init__()
         self.setWindowTitle("Nápověda")
         self.textEdit = QtWidgets.QTextEdit(self)
         self.textEdit.setGeometry(QtCore.QRect(0, 0, 501, 651))
         self.textEdit.setReadOnly(True)
-        self.textEdit.setFont(QFont('Comic Sans MS', 15))
+        self.textEdit.setFont(font)
         with open("help_form.html", encoding='utf-8') as f:
             self.textEdit.setHtml(''.join(f.readlines()))
