@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 ###########################################
 # Project name: IVS - projekt
 # File: calc.py
@@ -29,12 +30,7 @@ from gui import *
 ## This function initializes the app window.
 # @brief The main function which launches the calculator app itself.
 #
-def main():
-    calc = QtWidgets.QApplication(sys.argv)
-    app = App()
-    app.show()
-    sys.exit(calc.exec_())
-
-
-if __name__ == '__main__':
-    main()
+calc = QtWidgets.QApplication(sys.argv)
+app = App()
+app.show()
+sys.exit(calc.exec_())
