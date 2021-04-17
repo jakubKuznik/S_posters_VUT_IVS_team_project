@@ -17,7 +17,7 @@ help:
 	@echo "To generate the documentation type make doc"
 	@echo "------------------------------------"
 
-#all:
+all: pip run
 #profile:
 
 # TO-DO create a repo structure in a pack (replace (ALLDIRS))
@@ -35,11 +35,16 @@ test:
 pip:
 	pip3 freeze
 
-run:
+init: requirements.txt
+	pip3 install -r requirements.txt
+
+run: calc.py
 	${PYTHON} calc.py
 
-installer: calc.py math_lib.py gui.py requirements.txt
+installer: calc.py math_lib.py gui.py parser.py requirements.txt help_form.html Quicksand.ttf
 	bash install_script.sh
 
 clean:
-	rm -r *.project
+	rm -rf ../installer/tmp
+	rm -rf ../installer/usr
+	rm -rf ../installer/*.deb
