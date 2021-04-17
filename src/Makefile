@@ -3,7 +3,6 @@ PYTHON = python3
 PACK_NAME = xvanom00_xkuzni04_xkrato61_xsvobo1x
 #ALL_DIRS = ./doc ./install ./repo	# directories in a pack
 
-# .PHONY defines parts of the makefile that are not dependant on any specific file
 .PHONY = help test run clean doc bundle
 
 # Defines the default target that `make` will to try to make, or in the case of a phony target, execute the specified commands
@@ -33,11 +32,14 @@ doc:
 test:
 	${PYTHON} -m unittest test_calc_tdd.py
 
+pip:
+	pip3 freeze
+
 run:
 	${PYTHON} calc.py
 
-install:
-	pyinstaller --onefile --windowed calc.py
+installer: calc.py math_lib.py gui.py requirements.txt
+	bash install_script.sh
 
 clean:
 	rm -r *.project

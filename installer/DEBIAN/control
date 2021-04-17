@@ -1,0 +1,6 @@
+Package: impcalc
+Version: 0.1
+Maintainer: author
+Architecture: all
+Description: imposter calc
+Depends: python3-pip

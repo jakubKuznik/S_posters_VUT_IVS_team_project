@@ -1,4 +1,4 @@
-###########################################
+##########################################
 # Project name: IVS - projekt
 # File: gui.py
 # Date: 25. 03. 2021
@@ -27,6 +27,15 @@ import sys
 from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtGui import QFont, QFontDatabase
 from PyQt5.QtWidgets import QWidget, QPushButton
+
+##
+# @brief Class that
+#
+#
+# Description
+#
+#
+#
 
 
 class App(QWidget):
