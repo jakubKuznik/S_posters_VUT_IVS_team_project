@@ -49,9 +49,9 @@ class App(QWidget):
         self.numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
         self.setFixedSize(360, 480)
         self.rootCounter = 0
-        self.inRoot=False
-        self.root_base=[]
-        self.root_content=[]
+        self.inRoot = False
+        self.root_base = []
+        self.root_content = []
         # TODO: icon
 
         # Load the font:
@@ -252,9 +252,9 @@ class App(QWidget):
         elif event.key() == QtCore.Qt.Key_Asterisk:
             self.print("*", "*")
         elif event.key() == QtCore.Qt.Key_BracketLeft:
-            self.print("(","(")
+            self.print("(", "(")
         elif event.key() == QtCore.Qt.Key_BracketRight:
-            self.print(")",")")
+            self.print(")", ")")
         elif event.key() == QtCore.Qt.Key_Delete:
             self.complete_delete()
         elif event.key() == QtCore.Qt.Key_Return:
@@ -272,19 +272,18 @@ class App(QWidget):
         self.displayed_content.append('√')
         self.displayed_content.append('( )')
         self.output1.setText(''.join(self.displayed_content))
-        self.inRoot=True
-
+        self.inRoot = True
 
     def move_in_root(self):
         print("TF")
         if self.inRoot:
-            if self.rootCounter==0:
-                self.rootCounter=1
-            elif self.rootCounter==1:
+            if self.rootCounter == 0:
+                self.rootCounter = 1
+            elif self.rootCounter == 1:
                 print(''.join(self.root_content))
                 print(''.join(self.root_base))
-                self.rootCounter=0
-                self.inRoot=False
+                self.rootCounter = 0
+                self.inRoot = False
                 self.content.append(''.join(self.root_content))
                 self.content.append("**")
                 self.content.append(str(1/int(''.join(self.root_base))))
@@ -294,16 +293,15 @@ class App(QWidget):
                     self.output2.setText(str(self.result))
                 except:
                     pass
-                self.root_base = []
-                self.root_content = []
-    def type_in_root(self,term):
-        if self.rootCounter==0:
+
+    def type_in_root(self, term):
+        if self.rootCounter == 0:
             self.root_base.append(term)
-            self.displayed_content[-3]='['+''.join(self.root_base)+']'
+            self.displayed_content[-3] = '['+''.join(self.root_base)+']'
             self.output1.setText(''.join(self.displayed_content))
-        if self.rootCounter==1:
+        if self.rootCounter == 1:
             self.root_content.append(term)
-            self.displayed_content[-1]='('+''.join(self.root_content)+')'
+            self.displayed_content[-1] = '('+''.join(self.root_content)+')'
             self.output1.setText(''.join(self.displayed_content))
 
     def help_click(self):
@@ -313,7 +311,7 @@ class App(QWidget):
         self.content.append(command)
 
     def print(self, term, displayed_term):
-        if self.inRoot==False:
+        if not self.inRoot:
             if self.validate(term, displayed_term):
                 self.content.append(term)
                 self.displayed_content.append(displayed_term)
@@ -375,8 +373,8 @@ class App(QWidget):
                 self.displayed_content = ['0']
 
     def complete_delete(self):
-        self.content=['0']
-        self.displayed_content=['0']
+        self.content = ['0']
+        self.displayed_content = ['0']
         self.output1.setText(''.join(self.displayed_content))
         self.output2.setText(''.join(self.content))
     ##
