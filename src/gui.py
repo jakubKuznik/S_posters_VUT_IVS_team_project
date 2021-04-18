@@ -294,6 +294,8 @@ class App(QWidget):
                     self.output2.setText(str(self.result))
                 except:
                     pass
+                self.root_base = []
+                self.root_content = []
     def type_in_root(self,term):
         if self.rootCounter==0:
             self.root_base.append(term)
