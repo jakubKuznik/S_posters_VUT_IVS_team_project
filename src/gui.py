@@ -293,6 +293,8 @@ class App(QWidget):
                     self.output2.setText(str(self.result))
                 except:
                     pass
+                self.root_content=[]
+                self.root_base=[]
 
     def type_in_root(self, term):
         if self.rootCounter == 0:
