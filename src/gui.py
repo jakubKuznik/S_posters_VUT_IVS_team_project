@@ -45,9 +45,13 @@ class App(QWidget):
         self.memory = '0'
         self.displayed_content = ['0']
         self.result = 0
-        self.operators = ['+', '-', '*', '/', '**0.5', '.']
+        self.operators = ['+', '-', '*', '/', '**0.5', '.','**']
         self.numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
         self.setFixedSize(360, 480)
+        self.rootCounter = 0
+        self.inRoot=False
+        self.root_base=[]
+        self.root_content=[]
         # TODO: icon
 
         # Load the font:
@@ -89,9 +93,9 @@ class App(QWidget):
                         ["n!", [290, 190], "M", self.print, "!", "!"],
                         ["mod", [290, 260], "M", self.print, "?", "?"],
                         ["%", [290, 330], "M", self.print, "%", "%"],
-                        ["CE", [10, 400], "M", self.print, "!", "!"],
+                        ["CE", [10, 400], "M", self.complete_delete],
                         ["←", [150, 140], "S", self.delete],
-                        ["√", [80, 90], "S", self.print, "**0.5", "[2]√"],
+                        ["√", [80, 90], "S", self.root],
                         ["^", [10, 90], "S", self.print, "**", "^"],
                         ["M+", [220, 90], "S", self.add_to_memory],
                         ["M-", [290, 90], "S", self.remove_from_memory],
@@ -235,18 +239,24 @@ class App(QWidget):
             self.print('-', '-')
         elif event.key() == QtCore.Qt.Key_Slash:
             self.print('/', '/')
-        elif event.key() == QtCore.Qt.Key_ParenLeft:
-            self.print('(', '(')
-        elif event.key() == QtCore.Qt.Key_ParenRight:
-            self.print(')', ')')
         elif event.key() == QtCore.Qt.Key_AsciiCircum:
             self.print("**", "^")
         elif event.key() == QtCore.Qt.Key_Period:
             self.print(".", ".")
         elif event.key() == QtCore.Qt.Key_Comma:
             self.print(".", ".")
-        elif event.key() == QtCore.Qt.Key_Multi_key:
+        elif event.key() == QtCore.Qt.Key_Backspace:
+            self.delete()
+        elif event.key() == QtCore.Qt.Key_Asterisk:
             self.print("*", "*")
+        elif event.key() == QtCore.Qt.Key_BracketLeft:
+            self.print("(","(")
+        elif event.key() == QtCore.Qt.Key_BracketRight:
+            self.print(")",")")
+        elif event.key() == QtCore.Qt.Key_Delete:
+            self.complete_delete()
+        elif event.key() == QtCore.Qt.Key_Return:
+            self.move_in_root()
         # TODO: zvysne tlacitka, ktore sa daju zadat z klavesnice
 
     ## Slot to display the help message for user.
@@ -254,6 +264,44 @@ class App(QWidget):
     #
     # @param self(App)
     #
+
+    def root(self):
+        self.displayed_content.append('[ ]')
+        self.displayed_content.append('√')
+        self.displayed_content.append('( )')
+        self.output1.setText(''.join(self.displayed_content))
+        self.inRoot=True
+
+
+    def move_in_root(self):
+        print("TF")
+        if self.inRoot:
+            if self.rootCounter==0:
+                self.rootCounter=1
+            elif self.rootCounter==1:
+                print(''.join(self.root_content))
+                print(''.join(self.root_base))
+                self.rootCounter=0
+                self.inRoot=False
+                self.content.append(''.join(self.root_content))
+                self.content.append("**")
+                self.content.append(str(1/int(''.join(self.root_base))))
+                temp = ''.join(self.content)
+                try:
+                    self.result = eval(temp)
+                    self.output2.setText(str(self.result))
+                except:
+                    pass
+    def type_in_root(self,term):
+        if self.rootCounter==0:
+            self.root_base.append(term)
+            self.displayed_content[-3]='['+''.join(self.root_base)+']'
+            self.output1.setText(''.join(self.displayed_content))
+        if self.rootCounter==1:
+            self.root_content.append(term)
+            self.displayed_content[-1]='('+''.join(self.root_content)+')'
+            self.output1.setText(''.join(self.displayed_content))
+
     def help_click(self):
         self.form.show()
 
@@ -261,16 +309,21 @@ class App(QWidget):
         self.content.append(command)
 
     def print(self, term, displayed_term):
-        print(self.memory)
-        if self.validate(term, displayed_term):
-            self.content.append(term)
-            self.displayed_content.append(displayed_term)
-            self.output1.setText(''.join(self.displayed_content))
-            temp = ''.join(self.content)
-            try:
-                self.result = eval(temp)
-                self.output2.setText(str(self.result))
-            except SyntaxError:
+        if self.inRoot==False:
+            if self.validate(term, displayed_term):
+                self.content.append(term)
+                self.displayed_content.append(displayed_term)
+                self.output1.setText(''.join(self.displayed_content))
+                temp = ''.join(self.content)
+                try:
+                    self.result = eval(temp)
+                    self.output2.setText(str(self.result))
+                except SyntaxError:
+                    pass
+        else:
+            if term in self.numbers:
+                self.type_in_root(term)
+            else:
                 pass
 
     ##
@@ -282,7 +335,6 @@ class App(QWidget):
     #
     def add_to_memory(self):
         self.memory = str(self.result)
-        print(self.memory)
 
     ##
     # @brief Funkce dělá ...
@@ -318,6 +370,11 @@ class App(QWidget):
                 self.content = ['0']
                 self.displayed_content = ['0']
 
+    def complete_delete(self):
+        self.content=['0']
+        self.displayed_content=['0']
+        self.output1.setText(''.join(self.displayed_content))
+        self.output2.setText(''.join(self.content))
     ##
     # @brief Funkce dělá ...
     #
@@ -325,6 +382,7 @@ class App(QWidget):
     # @param p2 popis
     # @return popis výsledku
     #
+
     def validate(self, term, displayed_term):
         if self.content == ['0'] and (term in self.numbers or (displayed_term == "M" and self.memory != "0")):
             self.content.pop()
@@ -336,10 +394,12 @@ class App(QWidget):
             self.output2.setText("Cannot divide by zero.")
             return False
         elif term in self.operators and (self.content[-1] in self.operators):
+            print("why")
             return False
         elif term == '.' and '.' in self.content:
             return False
         elif (term == '(') and self.content[-1] not in self.operators:
+            print(self.content)
             return False
         elif (term == ')') and self.content[-1] in self.operators:
             return False
