@@ -131,8 +131,6 @@ class App(QWidget):
             self.list_of_buttons.append(QPushButton(text, self))
             self.list_of_buttons[i].setGeometry(QtCore.QRect(x_coord, y_coord, size_x, size_y))
 
-            self.list_of_buttons[i].setFont(self.font)
-
             # if for buttons with less arguments, e.g. "←", "M", "M+", "M-",
             if len(self.buttons[i]) == 4:
                 self.list_of_buttons[i].clicked.connect(lambda checked, fn=callback_fn: fn())
@@ -169,6 +167,10 @@ class App(QWidget):
         self.pushButton_color.setText("D")
         self.pushButton_color.clicked.connect(self.change_color)
         self.list_of_buttons.append(self.pushButton_color)
+
+        # setting default font to each button
+        for i in range(len(self.list_of_buttons)):
+            self.list_of_buttons[i].setFont(self.font)
 
     def change_color(self):
         if self.pushButton_color.isChecked():
