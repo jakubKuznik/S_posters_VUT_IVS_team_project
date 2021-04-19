@@ -97,5 +97,5 @@ def exponentiation(base, power):
 #  @param b second operand
 #  @return
 def modulo(a, b):
-    a % b
+    return a % b
 
