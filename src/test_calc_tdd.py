@@ -144,6 +144,7 @@ class TestBasicOperations(unittest.TestCase):
         result_expo_4_3 = calc.math_lib.exponentiation(4, 3)
         self.assertEqual(result_expo_4_3, 64)
 
+
     ## Set of tests for root
     #  @param self The object pointer.
     def test_root(self):
@@ -154,5 +155,21 @@ class TestBasicOperations(unittest.TestCase):
         self.assertEqual(result_root_2_4, 2)
         result_root_3_neg8 = calc.math_lib.root(3, -8)
         self.assertEqual(result_root_3_neg8, -2)
+
+    ## Test for modulo operation %
+    #  @param self The object pointer.
+    def test_modulo(self):
+        result_pos_operands = calc.math_lib.modulo(7, 7)
+        self.assertEqual(result_pos_operands, 0)
+
+        result_pos_operands = calc.math_lib.modulo(-100, 3)
+        self.assertEqual(result_pos_operands, 2)
+
+        result_pos_operands = calc.math_lib.modulo(7, 7)
+        self.assertEqual(result_pos_operands, 0)
+
+        result_pos_operands = calc.math_lib.modulo(20, 5)
+        self.assertEqual(result_pos_operands, 0)
+
 
 
