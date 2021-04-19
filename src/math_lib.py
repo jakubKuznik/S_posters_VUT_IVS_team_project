@@ -30,16 +30,16 @@ class DomainError(Exception):
     pass
 
 
-## This function will return the result of addition of two numbers.
-#  This is how doxygen function documentation looks like.
+## @brief This function will return the result of addition of two numbers.
+#
 #  @param a first operand
 #  @param b second operand
+#  @return a+b
 def add(a, b):
     return a+b
 
 
 ## This function will return the result of subtraction of two numbers.
-#  This is how doxygen function documentation looks like.
 #  @param a first operand
 #  @param b second operand
 def sub(a, b):
@@ -47,7 +47,6 @@ def sub(a, b):
 
 
 ## This function will return the result of multiplication of two numbers.
-#  This is how doxygen function documentation looks like.
 #  @param a first operand
 #  @param b second operand
 def mult(a, b):
@@ -65,7 +64,6 @@ def div(a, b):
 
 
 ## This function will return the b-th root of a.
-#  This is how doxygen function documentation looks like.
 #  @param a first operand
 #  @param b second operand
 def root(a, b):
@@ -75,7 +73,6 @@ def root(a, b):
 
 
 ## This function will return the factorial of a given positive integer..
-#  This is how doxygen function documentation looks like.
 #  @param factorized_number 
 def fact(factorized_number):
     if type(factorized_number) != int or factorized_number < 0:
@@ -85,9 +82,20 @@ def fact(factorized_number):
     else:
         return factorized_number * fact(factorized_number - 1)
 
-
+## This is function for sqr operation
+#
+#
 def exponentiation(base, power):
     if (power == 0 and base == 0):
         raise DomainError
     return base ** power
+
+
+## @brief This is modulo % operation function
+#
+#  @param a first operand
+#  @param b second operand
+#  @return
+def modulo(a, b):
+    a % b
 
