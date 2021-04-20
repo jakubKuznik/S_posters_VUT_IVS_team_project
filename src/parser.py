@@ -30,7 +30,7 @@ input_str = "3 + 4 × 2 ÷ ( 1 − 5 ) ^ 2 ^ 3"
 input_str = input_str.split(' ')
 
 nonNumbers = ['+', '-', '*', '/', '(', ')', '^']
-operators = {'+': 1, '-': 1, '*': 2, '/': 2, '**': 3,'(':0,')':0}
+operators = {'(':0,')':0,'+': 1, '-': 1, '*': 2, '/': 2, '**': 3, '!':4}
 opStack = []
 output = []
 
@@ -57,9 +57,7 @@ def infixToRPN(Infix_array):
                     break
                 if operators[operator]>=operators[i]:
                     RPN_array.append(stack.pop())
-
             stack.append(i)
-
 
     while len(stack)!=0:
         RPN_array.append(stack.pop())
@@ -103,5 +101,5 @@ def isNumber(token):
     except ValueError:
         return False
 
-infixToRPN(['4','+','5','*','(','3','/','2',')','-','8','**','0.5'])
+infixToRPN(['-4','+','5','*','(','2','-','3',')'])
 #RPNEval(['7','8','3','2','**','*','4','+','+'])

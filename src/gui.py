@@ -92,7 +92,7 @@ class App(QWidget):
                         ["%", [290, 140], "S", self.print, "%", "%"],
                         ["n!", [290, 190], "M", self.print, "!", "!"],
                         ["mod", [290, 260], "M", self.print, "?", "?"],
-                        ["%", [290, 330], "M", self.print, "%", "%"],
+                        ["π", [290, 330], "M", self.print, "3.1415926535", "π"],
                         ["CE", [10, 400], "M", self.complete_delete],
                         ["←", [150, 140], "S", self.delete],
                         ["√", [80, 90], "S", self.root],
@@ -275,18 +275,16 @@ class App(QWidget):
         self.inRoot = True
 
     def move_in_root(self):
-        print("TF")
         if self.inRoot:
             if self.rootCounter == 0:
                 self.rootCounter = 1
             elif self.rootCounter == 1:
-                print(''.join(self.root_content))
-                print(''.join(self.root_base))
                 self.rootCounter = 0
                 self.inRoot = False
                 self.content.append(''.join(self.root_content))
-                self.content.append("**")
-                self.content.append(str(1/int(''.join(self.root_base))))
+                self.content.append("//")
+                self.content.append(''.join(self.root_base))
+                print(self.content)
                 temp = ''.join(self.content)
                 try:
                     self.result = eval(temp)
@@ -321,6 +319,7 @@ class App(QWidget):
                 temp = ''.join(self.content)
                 try:
                     self.result = eval(temp)
+                    print(temp)
                     self.output2.setText(str(self.result))
                 except SyntaxError:
                     pass
@@ -398,12 +397,10 @@ class App(QWidget):
             self.output2.setText("Cannot divide by zero.")
             return False
         elif term in self.operators and (self.content[-1] in self.operators):
-            print("why")
             return False
         elif term == '.' and '.' in self.content:
             return False
         elif (term == '(') and self.content[-1] not in self.operators:
-            print(self.content)
             return False
         elif (term == ')') and self.content[-1] in self.operators:
             return False
