@@ -34,9 +34,6 @@ opStack = []
 output = []
 
 def SplitString(CalcString):
-
-
-
     split_string = re.findall(r'[0-9\.]+|[^0-9\.]', CalcString)
 
     if validate(split_string)==False:
