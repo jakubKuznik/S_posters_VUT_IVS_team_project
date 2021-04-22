@@ -23,11 +23,12 @@
 #  @author Svobodová Lucie
 
 import sys
-from parser import *
+
 
 from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtGui import QFont, QFontDatabase
 from PyQt5.QtWidgets import QWidget, QPushButton
+from calc_parser import *
 
 ##
 # @brief Class that
@@ -42,9 +43,9 @@ from PyQt5.QtWidgets import QWidget, QPushButton
 class App(QWidget):
     def __init__(self, ):
         super().__init__()
-        self.content = ['0']
+        self.content = []
         self.memory = '0'
-        self.displayed_content = ['0']
+        self.displayed_content = []
         self.result = 0
         self.operators = ['+', '-', '*', '/', '**0.5', '.','**']
         self.numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
@@ -77,7 +78,7 @@ class App(QWidget):
                         ["1", [10, 330], "M", self.print, "1", "1"],
                         ["2", [80, 330], "M", self.print, "2", "2"],
                         ["3", [150, 330], "M", self.print, "3", "3"],
-                        ["4", [10, 260], "M", self.print, "5", "4"],
+                        ["4", [10, 260], "M", self.print, "4", "4"],
                         ["5", [80, 260], "M", self.print, "5", "5"],
                         ["6", [150, 260], "M", self.print, "6", "6"],
                         ["7", [10, 190], "M", self.print, "7", "7"],
@@ -97,7 +98,7 @@ class App(QWidget):
                         ["CE", [10, 400], "M", self.complete_delete],
                         ["←", [150, 140], "S", self.delete],
                         ["√", [80, 90], "S", self.root],
-                        ["^", [10, 90], "S", self.print, "**", "^"],
+                        ["^", [10, 90], "S", self.print, "&", "^"],
                         ["M+", [220, 90], "S", self.add_to_memory],
                         ["M-", [290, 90], "S", self.remove_from_memory],
                         ]
@@ -147,6 +148,7 @@ class App(QWidget):
 
         self.pushButton_s_equal.setGeometry(QtCore.QRect(220, 400, 130, 65))
         self.pushButton_s_equal.setText("=")
+        self.pushButton_s_equal.clicked.connect(lambda: self.evaluate())
         self.list_of_buttons.append(self.pushButton_s_equal)
 
         self.pushButton_mem.setGeometry(QtCore.QRect(150, 90, 60, 45))
@@ -243,7 +245,7 @@ class App(QWidget):
         elif event.key() == QtCore.Qt.Key_Slash:
             self.print('/', '/')
         elif event.key() == QtCore.Qt.Key_AsciiCircum:
-            self.print("**", "^")
+            self.print("&", "^")
         elif event.key() == QtCore.Qt.Key_Period:
             self.print(".", ".")
         elif event.key() == QtCore.Qt.Key_Comma:
@@ -268,6 +270,12 @@ class App(QWidget):
     # @param self(App)
     #
 
+
+    def evaluate(self):
+
+        self.result = SplitString(''.join(self.content))
+        self.output2.setText(str(self.result))
+
     def root(self):
         self.displayed_content.append('[ ]')
         self.displayed_content.append('√')
@@ -283,7 +291,7 @@ class App(QWidget):
                 self.rootCounter = 0
                 self.inRoot = False
                 self.content.append(''.join(self.root_content))
-                self.content.append("//")
+                self.content.append("$")
                 self.content.append(''.join(self.root_base))
                 print(self.content)
                 temp = ''.join(self.content)
@@ -313,17 +321,15 @@ class App(QWidget):
 
     def print(self, term, displayed_term):
         if not self.inRoot:
-            if self.validate(term, displayed_term):
+            if term!='!':
                 self.content.append(term)
-                self.displayed_content.append(displayed_term)
-                self.output1.setText(''.join(self.displayed_content))
-                temp = ''.join(self.content)
-                try:
-                    self.result = eval(temp)
-                    print(temp)
-                    self.output2.setText(str(self.result))
-                except SyntaxError:
-                    pass
+            else:
+                self.content.append(term)
+                self.content.append('0')
+            self.displayed_content.append(displayed_term)
+            self.output1.setText("".join(self.displayed_content))
+            print(self.content)
+            print(self.displayed_content)
         else:
             if term in self.numbers:
                 self.type_in_root(term)
@@ -362,53 +368,12 @@ class App(QWidget):
             self.content.pop()
             self.displayed_content.pop()
             self.output1.setText(''.join(self.displayed_content))
-            temp = ''.join(self.content)
-            try:
-                temp = eval(temp)
-                self.output2.setText(str(temp))
-            except SyntaxError:
-                pass
-            if len(self.content) == 0:
-                self.output2.setText('0')
-                self.output1.setText('0')
-                self.content = ['0']
-                self.displayed_content = ['0']
 
     def complete_delete(self):
-        self.content = ['0']
-        self.displayed_content = ['0']
+        self.content = []
+        self.displayed_content = []
         self.output1.setText(''.join(self.displayed_content))
         self.output2.setText(''.join(self.content))
-    ##
-    # @brief Funkce dělá ...
-    #
-    # @param p1 popis
-    # @param p2 popis
-    # @return popis výsledku
-    #
-
-    def validate(self, term, displayed_term):
-        if self.content == ['0'] and (term in self.numbers or (displayed_term == "M" and self.memory != "0")):
-            self.content.pop()
-            self.displayed_content.pop()
-            return True
-        elif self.content == ['0'] and term == '0':
-            return False
-        elif term == "0" and self.content[-1] == "/":
-            self.output2.setText("Cannot divide by zero.")
-            return False
-        elif term in self.operators and (self.content[-1] in self.operators):
-            return False
-        elif term == '.' and '.' in self.content:
-            return False
-        elif (term == '(') and self.content[-1] not in self.operators:
-            return False
-        elif (term == ')') and self.content[-1] in self.operators:
-            return False
-        elif (self.displayed_content[-1] not in self.operators) and displayed_term == "M":
-            return False
-        else:
-            return True
 
 
 ##
