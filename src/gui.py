@@ -93,7 +93,7 @@ class App(QWidget):
                         ["/", [220, 140], "S", self.print, "/", "/"],
                         ["→", [290, 140], "S", self.move_in_root],
                         ["n!", [290, 190], "M", self.print, "!", "!"],
-                        ["mod", [290, 260], "M", self.print, "?", "?"],
+                        ["mod", [290, 260], "M", self.print, "?", "mod"],
                         ["π", [290, 330], "M", self.print, "3.1415926535", "π"],
                         ["CE", [10, 400], "M", self.complete_delete],
                         ["←", [150, 140], "S", self.delete],
@@ -293,13 +293,6 @@ class App(QWidget):
                 self.content.append(''.join(self.root_content))
                 self.content.append("$")
                 self.content.append(''.join(self.root_base))
-                print(self.content)
-                temp = ''.join(self.content)
-                try:
-                    self.result = eval(temp)
-                    self.output2.setText(str(self.result))
-                except:
-                    pass
                 self.root_content=[]
                 self.root_base=[]
 
@@ -365,8 +358,28 @@ class App(QWidget):
     #
     def delete(self):
         if len(self.content) != 0:
-            self.content.pop()
-            self.displayed_content.pop()
+            if self.displayed_content[-1]=='!':
+                self.content.pop()
+                self.content.pop()
+                self.displayed_content.pop()
+            elif self.inRoot==True:
+                self.root_content=[]
+                self.root_base=[]
+                self.displayed_content.pop()
+                self.displayed_content.pop()
+                self.displayed_content.pop()
+                self.inRoot=False
+                self.rootCounter = 0
+            elif len(self.displayed_content[-1])>1 and self.displayed_content[-1][-1]==')':
+                self.displayed_content.pop()
+                self.displayed_content.pop()
+                self.displayed_content.pop()
+                self.content.pop()
+                self.content.pop()
+                self.content.pop()
+            else:
+                self.content.pop()
+                self.displayed_content.pop()
             self.output1.setText(''.join(self.displayed_content))
 
     def complete_delete(self):

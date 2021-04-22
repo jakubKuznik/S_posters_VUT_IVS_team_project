@@ -29,23 +29,18 @@ import re
 
 
 nonNumbers = ['+', '-', '*', '/', '(', ')', '^']
-operators = {'(':0,')':0,'+': 1, '-': 1, '*': 2, '/': 2, '&': 3, '$':3, '!':3}
+operators = {'(':0,')':0,'+': 1, '-': 1, '*': 2, '/': 2, '?':2, '&': 3, '$':3, '!':3}
 opStack = []
 output = []
 
 def SplitString(CalcString):
 
-    parentheses_counter = 0
-    for i in CalcString:
-        if i == "(":
-            parentheses_counter += 1
-        elif i == ")":
-            parentheses_counter -= 1
-        if parentheses_counter < 0:
-            return False
+
 
     split_string = re.findall(r'[0-9\.]+|[^0-9\.]', CalcString)
 
+    if validate(split_string)==False:
+        return "Syntax Error"
 
     for i in range(len(split_string)-1):
         if i == 0 and split_string[i]=='-' and isNumber(split_string[1]):
@@ -59,6 +54,7 @@ def SplitString(CalcString):
         else:
             minus_list.append('-1')
             minus_list.append('*')
+
     return infixToRPN(minus_list)
 
 def infixToRPN(Infix_array):
@@ -90,7 +86,6 @@ def infixToRPN(Infix_array):
 def RPNEval(RPN_array):
     stack=[]
     temp=[0,0]
-    value=0
     for i in RPN_array:
         if isNumber(i):
             stack.append(i)
@@ -118,6 +113,9 @@ def RPNEval(RPN_array):
             elif i == '!':
                 value =fact(float(temp[0]))
                 stack.append(value)
+            elif i == '?':
+                value = modulo(float(temp[0]), float(temp[1]))
+                stack.append(value)
     result=stack[0]
     return result
 
@@ -127,12 +125,76 @@ def isNumber(token):
         return True
     except ValueError:
         return False
-"""
-def validate(list_to_validate):
-    for i in range(len(list_to_validate)):
-        if list_to_validate == '!':
-            
 
-    else:
-        return True
-"""
+def validate(split_string):
+    parentheses_counter = 0
+    for i in split_string:
+        if i == "(":
+            parentheses_counter += 1
+        elif i == ")":
+            parentheses_counter -= 1
+        if parentheses_counter < 0:
+            return False
+
+    binary_operators = ['+','-','*','/','&','$','?']
+    for i in range(len(split_string)):
+        if split_string[i]==')':
+            if split_string[i-1]=='(' or split_string[i-1] in binary_operators:
+                return False
+        elif split_string[i]=='(':
+            if i!=0:
+                if split_string[i-1] == ')':
+                    return False
+                elif split_string[i-1] not in binary_operators:
+                    return False
+        elif split_string[i]== '+':
+            if i==0:
+                return False
+            if split_string[i-1] in binary_operators:
+                return False
+        elif split_string[i] == '-':
+            if i==0:
+                return False
+            if split_string[i-1] in binary_operators:
+                return False
+        elif split_string[i] == '*':
+            if i==0:
+                return False
+            if split_string[i-1] in binary_operators:
+                return False
+        elif split_string[i] == '/':
+            if i==0:
+                return False
+            if split_string[i-1] in binary_operators:
+                return False
+        elif split_string[i] == '&':
+            if i==0:
+                return False
+            if split_string[i-1] in binary_operators:
+                return False
+        elif split_string[i] == '$':
+            if i==0:
+                return False
+            if split_string[i-1] in binary_operators:
+                return False
+        elif split_string[i] == '!':
+            if i==0:
+                return False
+        elif split_string[i] == '?':
+            if i == 0:
+                return False
+            if split_string[i-1] in binary_operators:
+                return False
+        else:
+            if split_string[i][0]=='.':
+                return False
+            if split_string[i].count(".")>1:
+                return False
+            if split_string[i][0]=='0' and len(split_string[i])!=1 and split_string[i].count(".")==0:
+                return False
+            if split_string[i].count(".")==1:
+                decimal_location = split_string[i].index('.')
+                tested_list = split_string[i][:decimal_location]
+                if tested_list[0]=='0' and len(tested_list)!=1:
+                    return False
+    return True
