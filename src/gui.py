@@ -23,6 +23,7 @@
 #  @author Svobodová Lucie
 
 import sys
+from parser import *
 
 from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtGui import QFont, QFontDatabase

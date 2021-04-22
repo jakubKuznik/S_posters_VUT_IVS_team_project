@@ -25,18 +25,46 @@
 ## This function will turn the string into the reverse polish notation
 
 from math_lib import *
+import re
 
-input_str = "3 + 4 × 2 ÷ ( 1 − 5 ) ^ 2 ^ 3"
+input_str = "15 + 22.6 * 3-4 / 2"
 input_str = input_str.split(' ')
 
 nonNumbers = ['+', '-', '*', '/', '(', ')', '^']
-operators = {'(':0,')':0,'+': 1, '-': 1, '*': 2, '/': 2, '**': 3, '!':4}
+operators = {'(':0,')':0,'+': 1, '-': 1, '*': 2, '/': 2, '&': 3, '$':3, '!':4}
 opStack = []
 output = []
 
-def SolveFactorials(Infix_array):
-    #TODO
-    return
+def SplitString(CalcString):
+
+    parentheses_counter = 0
+    for i in CalcString:
+        if i == "(":
+            parentheses_counter += 1
+        elif i == ")":
+            parentheses_counter -= 1
+        if parentheses_counter < 0:
+            return False
+
+    split_string = re.findall(r'[0-9\.]+|[^0-9\.]', CalcString)
+    print(split_string)
+    for i in range(len(split_string)-1):
+        if split_string[0]=='-' and isNumber(split_string[1]):
+            split_string[1]='-'+split_string[1]
+            del split_string[0]
+        elif split_string[i]=='-' and split_string[i-1] == '(' and isNumber(split_string[i+1]):
+            split_string[i+1]='-'+split_string[i+1]
+            del split_string[i]
+    SolveFactorials(split_string)
+    infixToRPN(split_string)
+
+def SolveFactorials(split_string):
+    print(split_string)
+    for i in range(len(split_string)-1):
+        if split_string[i]=='!':
+            FactValue = fact(int(split_string[i-1]))
+            split_string[i-1]=FactValue
+            del split_string[i]
 
 def infixToRPN(Infix_array):
     RPN_array=[]
@@ -75,7 +103,10 @@ def RPNEval(RPN_array):
         else:
             temp[1]=stack.pop()
             temp[0]=stack.pop()
-            if i=='**':
+            if i =='$':
+                value = root(float(temp[0]),float(temp[1]))
+                stack.append(value)
+            if i=='&':
                 value = exponentiation(float(temp[0]),float(temp[1]))
                 stack.append(value)
             elif i=='*':
@@ -101,5 +132,4 @@ def isNumber(token):
     except ValueError:
         return False
 
-infixToRPN(['-4','+','5','*','(','2','-','3',')'])
-#RPNEval(['7','8','3','2','**','*','4','+','+'])
+SplitString('4!+5')

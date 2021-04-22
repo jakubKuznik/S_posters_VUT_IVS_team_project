@@ -95,7 +95,7 @@ def root(a, b):
 # @exception DomainError in case factorizedNumber is not integer or is negative
 # @return factorial of number factorizedNumber
 def fact(factorizedNumber):
-    if type(factorizedNumber) != int or factorizedNumber < 0:
+    if factorizedNumber < 0:
         raise DomainError
     if factorizedNumber == 0:
         return 1
