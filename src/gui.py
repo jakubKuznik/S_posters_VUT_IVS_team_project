@@ -24,11 +24,11 @@
 
 import sys
 
-
 from PyQt5 import QtWidgets, QtCore
-from PyQt5.QtGui import QFont, QFontDatabase
+from PyQt5.QtGui import QFont
 from PyQt5.QtWidgets import QWidget, QPushButton
 from calc_parser import *
+
 
 ##
 # @brief Class that
@@ -47,7 +47,7 @@ class App(QWidget):
         self.memory = '0'
         self.displayed_content = []
         self.result = 0
-        self.operators = ['+', '-', '*', '/', '**0.5', '.','**']
+        self.operators = ['+', '-', '*', '/', '**0.5', '.', '**']
         self.numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
         self.setFixedSize(360, 480)
         self.rootCounter = 0
@@ -144,7 +144,8 @@ class App(QWidget):
                 term = self.buttons[i][4]
                 print(term)
                 displayed_term = self.buttons[i][5]
-                self.list_of_buttons[i].clicked.connect(lambda checked, t=term, d_t=displayed_term, fn=callback_fn: fn(t, d_t))
+                self.list_of_buttons[i].clicked.connect(
+                    lambda checked, t=term, d_t=displayed_term, fn=callback_fn: fn(t, d_t))
 
         self.pushButton_s_equal.setGeometry(QtCore.QRect(220, 400, 130, 65))
         self.pushButton_s_equal.setText("=")
@@ -153,7 +154,7 @@ class App(QWidget):
 
         self.pushButton_mem.setGeometry(QtCore.QRect(150, 90, 60, 45))
         self.pushButton_mem.setText("M")
-        self.pushButton_mem.clicked.connect(lambda:  self.print(self.memory, "M"))
+        self.pushButton_mem.clicked.connect(lambda: self.print(self.memory, "M"))
         self.list_of_buttons.append(self.pushButton_mem)
 
         self.pushButton_help.setGeometry(QtCore.QRect(0, 0, 35, 35))
@@ -195,7 +196,8 @@ class App(QWidget):
 
         # all other buttons
         for j in range(10, len(self.list_of_buttons)):
-            self.list_of_buttons[j].setStyleSheet("background-color: rgb(255, 255, 255); color: rgb(86, 73, 76); border-radius: 15px; border-color: rgb(214, 237, 255)")
+            self.list_of_buttons[j].setStyleSheet(
+                "background-color: rgb(255, 255, 255); color: rgb(86, 73, 76); border-radius: 15px; border-color: rgb(214, 237, 255)")
 
     def toggle_light_mode(self):
         # background
@@ -270,11 +272,9 @@ class App(QWidget):
     # @param self(App)
     #
 
-
     def evaluate(self):
-
-        #self.result = SplitString(''.join(self.content))
-        self.result = SplitString(self.content,self.displayed_content)
+        # self.result = SplitString(''.join(self.content))
+        self.result = SplitString(self.content, self.displayed_content)
         self.output2.setText(str(self.result))
 
     def root(self):
@@ -294,17 +294,17 @@ class App(QWidget):
                 self.content.append(''.join(self.root_content))
                 self.content.append("$")
                 self.content.append(''.join(self.root_base))
-                self.root_content=[]
-                self.root_base=[]
+                self.root_content = []
+                self.root_base = []
 
     def type_in_root(self, term):
         if self.rootCounter == 0:
             self.root_base.append(term)
-            self.displayed_content[-3] = '['+''.join(self.root_base)+']'
+            self.displayed_content[-3] = '[' + ''.join(self.root_base) + ']'
             self.output1.setText(''.join(self.displayed_content))
         if self.rootCounter == 1:
             self.root_content.append(term)
-            self.displayed_content[-1] = '('+''.join(self.root_content)+')'
+            self.displayed_content[-1] = '(' + ''.join(self.root_content) + ')'
             self.output1.setText(''.join(self.displayed_content))
 
     def help_click(self):
@@ -315,7 +315,7 @@ class App(QWidget):
 
     def print(self, term, displayed_term):
         if not self.inRoot:
-            if term!='!':
+            if term != '!':
                 self.content.append(term)
             else:
                 self.content.append(term)
@@ -359,19 +359,19 @@ class App(QWidget):
     #
     def delete(self):
         if len(self.content) != 0:
-            if self.displayed_content[-1]=='!':
+            if self.displayed_content[-1] == '!':
                 self.content.pop()
                 self.content.pop()
                 self.displayed_content.pop()
-            elif self.inRoot==True:
-                self.root_content=[]
-                self.root_base=[]
+            elif self.inRoot:
+                self.root_content = []
+                self.root_base = []
                 self.displayed_content.pop()
                 self.displayed_content.pop()
                 self.displayed_content.pop()
-                self.inRoot=False
+                self.inRoot = False
                 self.rootCounter = 0
-            elif len(self.displayed_content[-1])>1 and self.displayed_content[-1][-1]==')':
+            elif len(self.displayed_content[-1]) > 1 and self.displayed_content[-1][-1] == ')':
                 self.displayed_content.pop()
                 self.displayed_content.pop()
                 self.displayed_content.pop()
