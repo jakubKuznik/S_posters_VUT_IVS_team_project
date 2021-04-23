@@ -33,7 +33,13 @@ operators = {'(':0,')':0,'+': 1, '-': 1, '*': 2, '/': 2, '?':2, '&': 3, '$':3, '
 opStack = []
 output = []
 
-def SplitString(CalcString):
+def SplitString(CalcString,DisplayedContent):
+
+    for i in range(1,len(DisplayedContent)):
+        if DisplayedContent[i]=='π' or DisplayedContent[i]=='M':
+            if isNumber(DisplayedContent[i-1]):
+                return "Syntax Error"
+    CalcString=''.join(CalcString)
     split_string = re.findall(r'[0-9\.]+|[^0-9\.]', CalcString)
 
     if not validate(split_string):

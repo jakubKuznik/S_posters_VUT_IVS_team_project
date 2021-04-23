@@ -273,7 +273,8 @@ class App(QWidget):
 
     def evaluate(self):
 
-        self.result = SplitString(''.join(self.content))
+        #self.result = SplitString(''.join(self.content))
+        self.result = SplitString(self.content,self.displayed_content)
         self.output2.setText(str(self.result))
 
     def root(self):
