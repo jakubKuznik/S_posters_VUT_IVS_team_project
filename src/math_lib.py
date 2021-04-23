@@ -94,13 +94,14 @@ def root(a, b):
 # @param factorizedNumber factorial of this number will be calculated
 # @exception DomainError in case factorizedNumber is not integer or is negative
 # @return factorial of number factorizedNumber
-def fact(factorizedNumber):
-    if factorizedNumber < 0:
+def fact(factorized_number):
+    if factorized_number < 0:
         raise DomainError
-    if factorizedNumber == 0:
+    if factorized_number == 0:
         return 1
     else:
-        return factorizedNumber * fact(factorizedNumber - 1)
+        return factorized_number * fact(factorized_number - 1)
+
 
 ## 
 # @brief This function will return the result of exponentiation.
@@ -110,7 +111,7 @@ def fact(factorizedNumber):
 # @exception DomainError when exponent and base are both equal to zero
 # @return base raised to the power of exponent
 def exponentiation(base, exponent):
-    if (exponent == 0 and base == 0):
+    if exponent == 0 and base == 0:
         raise DomainError
     return base ** exponent
 
@@ -126,4 +127,3 @@ def modulo(a, b):
     if b == 0:
         raise DivByZero
     return a % b
-
