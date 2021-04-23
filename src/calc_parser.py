@@ -36,7 +36,7 @@ output = []
 def SplitString(CalcString):
     split_string = re.findall(r'[0-9\.]+|[^0-9\.]', CalcString)
 
-    if validate(split_string)==False:
+    if not validate(split_string):
         return "Syntax Error"
 
     for i in range(len(split_string)-1):
@@ -124,6 +124,7 @@ def isNumber(token):
         return False
 
 def validate(split_string):
+    # TODO: cislo nemoze koncit bodkou a nemozu byt dve cisla za sebou
     parentheses_counter = 0
     for i in split_string:
         if i == "(":
@@ -133,7 +134,7 @@ def validate(split_string):
         if parentheses_counter < 0:
             return False
 
-    binary_operators = ['+','-','*','/','&','$','?']
+    binary_operators = ['+', '-','*','/','&','$','?']
     for i in range(len(split_string)):
         if split_string[i]==')':
             if split_string[i-1]=='(' or split_string[i-1] in binary_operators:
