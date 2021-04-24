@@ -94,6 +94,7 @@ def root(a, b):
         return "Math Error"
     if a < 0:
         if b%2==1:
+            a=a*(-1)
             return -1*a**(1/b)
         else:
             return "Math Error"
