@@ -33,7 +33,6 @@ import select
 # @return arr array of floats
 #
 def separate_numbers(input_str):
-    print(input_str)
     # input string contains characters that are replaced with whitespace and than splitted in an array
     input_str = str(input_str).replace("[", ' ').replace("]", ' ').replace("\\n", ' ').replace("\\t", ' ').replace("\'", ' ').replace(",", ' ').split()
     
@@ -62,8 +61,7 @@ def mean(input_array):
     for i in range(arr_size):
         total_sum = math_lib.add(total_sum, input_array[i])
     
-    mean = math_lib.div(total_sum, arr_size)
-    return mean
+    return math_lib.div(total_sum, arr_size)
 
 ##
 # @brief Function calculates the standard deviation.
@@ -73,11 +71,11 @@ def mean(input_array):
 #
 def std_dev(input_array):
   arr_size = len(input_array)     # number of elements in input_array
-  mean = mean(input_array)        # count the mean
+  avg = mean(input_array)        # count the mean
   total_sum = 0.0                 # sum of numbers in array
   
   for i in range(arr_size):
-    tmp_res = math_lib.sub(input_array[i], mean)
+    tmp_res = math_lib.sub(input_array[i], avg)
     tmp_res = math_lib.exponentiation(tmp_res, 2)
     total_sum = math_lib.add(total_sum, tmp_res)
   
