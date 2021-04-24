@@ -76,7 +76,7 @@ def std_dev(input_array):
   
   for i in range(arr_size):
     tmp_res = math_lib.sub(input_array[i], avg)
-    tmp_res = math_lib.exponentiation(tmp_res, 2)
+    tmp_res = math_lib.exp(tmp_res, 2)
     total_sum = math_lib.add(total_sum, tmp_res)
   
   tmp_res = math_lib.div(total_sum, arr_size)
