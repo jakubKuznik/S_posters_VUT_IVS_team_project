@@ -141,7 +141,7 @@ def rpn_eval(rpn_array):
                 value = fact(float(temp[0]))
                 stack.append(value)
             elif i == '?':
-                value = modulo(float(temp[0]), float(temp[1]))
+                value = mod(float(temp[0]), float(temp[1]))
                 stack.append(value)
     result = stack[0]
     return result
