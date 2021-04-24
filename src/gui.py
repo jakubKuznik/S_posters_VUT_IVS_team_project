@@ -30,50 +30,68 @@ from PyQt5.QtWidgets import QWidget, QPushButton
 from calc_parser import *
 
 
-##
-# @brief Class that
+## Main window class
+# @brief Class of the entire PyQt GUI of the calculator. Connects user interaction with backend evaluation
 #
 #
-# Description
+# Handles interaction, button presses, displays evaluated equations, shows user help form and handles light/dark mode
+# changes.
 #
 #
-#
-
-
 class App(QWidget):
-    def __init__(self, ):
+    ## Init function of the App class.
+    # @brief Initializes all configuration parameters as well as global parameters for user interface.
+    #
+    # @param self
+    #
+    def __init__(self):
         super().__init__()
+        ## visible content of the display
         self.content = []
+        ##
         self.memory = '0'
+        ##
         self.displayed_content = []
+        ##
         self.result = 0
+        ##
         self.operators = ['+', '-', '*', '/', '**0.5', '.', '**']
+        ##
         self.numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
-        self.setFixedSize(360, 480)
+        ##
         self.rootCounter = 0
+        ##
         self.inRoot = False
+        ##
         self.root_base = []
+        ##
         self.root_content = []
         # TODO: icon
 
-        # Load the font:
+        ## Global font family and size declaration.
         self.font = QFont("Arial", 20)
-
+        ## QtWidgets window init.
         self.window = QtWidgets.QApplication(sys.argv)
+        ## Init of help form with font passed as a parameter.
         self.form = Form(self.font)
 
-        # UI ELEMENTS
+        ## = button init.
         self.pushButton_s_equal = QPushButton(self)
+        ## M button init.
         self.pushButton_mem = QPushButton(self)
+        ## Help button init.
         self.pushButton_help = QPushButton(self)
+        ## Primary display init.
         self.output1 = QtWidgets.QLabel(self)
+        ## Secondary display init.
         self.output2 = QtWidgets.QLabel(self)
+        ## Dark mode button init.
         self.pushButton_color = QPushButton(self)
 
+        ## List of all buttons in the user interface.
         self.list_of_buttons = []
 
-        # visible text, coordinates, size (S = small button, M = medium button, L=large button),
-        # callback function, term, displayed term
+        ## List of button params(coords, size, text and function).
         self.buttons = [["0", [80, 400], "M", self.print, "0", "0"],
                         ["1", [10, 330], "M", self.print, "1", "1"],
                         ["2", [80, 330], "M", self.print, "2", "2"],
@@ -105,14 +123,14 @@ class App(QWidget):
         self.setup_ui()
         self.toggle_light_mode()
 
-    ## This function creates the user interface of the app, connects signals to slots.
-    # @brief In a for loop, all generic buttons are created, triggers setup. Other buttons are created manually.
+    ## User interface set up.
+    # @brief Creation and setting of all button parameters, display parameters, fonts.
     #
-    # @param self(App)
+    # @param self
     #
     def setup_ui(self):
+        self.setFixedSize(360, 480)
         self.setWindowTitle("Imposter Calculator")
-
         for i in range(len(self.buttons)):
             x_coord = self.buttons[i][1][0]
             y_coord = self.buttons[i][1][1]
@@ -173,6 +191,7 @@ class App(QWidget):
         self.pushButton_color.setGeometry(0, 35, 35, 35)
         self.pushButton_color.setCheckable(True)
         self.pushButton_color.setText("D")
+        # TODO: maybe add icon for this button?
         self.pushButton_color.clicked.connect(self.change_color)
         self.list_of_buttons.append(self.pushButton_color)
 
@@ -180,12 +199,22 @@ class App(QWidget):
         for i in range(len(self.list_of_buttons)):
             self.list_of_buttons[i].setFont(self.font)
 
+    ## Dark/light mode helper switch function.
+    # @brief According to the toggle button state changes color mode of calculator.
+    #
+    # @param self
+    #
     def change_color(self):
         if self.pushButton_color.isChecked():
             self.toggle_dark_mode()
         else:
             self.toggle_light_mode()
 
+    ## Function which changes components' color to dark mode.
+    # @brief Changes color of all buttons and background.
+    #
+    # @param self
+    #
     def toggle_dark_mode(self):
         # background
         self.setStyleSheet("background-color: rgb(40,54,55);")
@@ -199,6 +228,11 @@ class App(QWidget):
             self.list_of_buttons[j].setStyleSheet(
                 "background-color: rgb(255, 255, 255); color: rgb(86, 73, 76); border-radius: 15px; border-color: rgb(214, 237, 255)")
 
+    ## Function which changes components' color to light(default) mode.
+    # @brief Changes color of all buttons and background.
+    #
+    # @param self
+    #
     def toggle_light_mode(self):
         # background
         self.setStyleSheet("background-color: white;")
@@ -212,10 +246,10 @@ class App(QWidget):
         for j in range(10, len(self.list_of_buttons)):
             self.list_of_buttons[j].setStyleSheet("color: rgb(0, 151, 136); border-radius: 15px")
 
-    ## This function reimplements the default keyPressEvent function from PyQt5
-    # @brief Rebinds numbers and operators keys as new signals
+    ## This function maps keyboard keys to buttons in the user interface
+    # @brief Rebinds PyQt's default numbers and operators keys as new signals
     #
-    # @param self(App)
+    # @param self
     #
     def keyPressEvent(self, event):
         if event.key() == QtCore.Qt.Key_0:
@@ -266,17 +300,21 @@ class App(QWidget):
             self.move_in_root()
         # TODO: zvysne tlacitka, ktore sa daju zadat z klavesnice
 
-    ## Slot to display the help message for user.
-    # @brief Displays a short form containing instructions for basic use.
+    ## This function evaluates user input.
+    # @brief Sends string input to parser for further evaluation.
     #
-    # @param self(App)
+    # @param self
     #
-
     def evaluate(self):
         # self.result = SplitString(''.join(self.content))
         self.result = SplitString(self.content, self.displayed_content)
         self.output2.setText(str(self.result))
 
+    ## This function evaluates user input.
+    # @brief Sends string input to parser for further evaluation.
+    #
+    # @param self(App)
+    #
     def root(self):
         self.displayed_content.append('[ ]')
         self.displayed_content.append('√')
@@ -284,6 +322,11 @@ class App(QWidget):
         self.output1.setText(''.join(self.displayed_content))
         self.inRoot = True
 
+    ## This function evaluates user input.
+    # @brief Sends string input to parser for further evaluation.
+    #
+    # @param self(App)
+    #
     def move_in_root(self):
         if self.inRoot:
             if self.rootCounter == 0:
@@ -297,6 +340,11 @@ class App(QWidget):
                 self.root_content = []
                 self.root_base = []
 
+    ## This function evaluates user input.
+    # @brief Sends string input to parser for further evaluation.
+    #
+    # @param self(App)
+    #
     def type_in_root(self, term):
         if self.rootCounter == 0:
             self.root_base.append(term)
@@ -307,12 +355,27 @@ class App(QWidget):
             self.displayed_content[-1] = '(' + ''.join(self.root_content) + ')'
             self.output1.setText(''.join(self.displayed_content))
 
+    ## This function evaluates user input.
+    # @brief Sends string input to parser for further evaluation.
+    #
+    # @param self(App)
+    #
     def help_click(self):
         self.form.show()
 
+    ## This function evaluates user input.
+    # @brief Sends string input to parser for further evaluation.
+    #
+    # @param self(App)
+    #
     def change(self, command):
         self.content.append(command)
 
+    ## This function evaluates user input.
+    # @brief Sends string input to parser for further evaluation.
+    #
+    # @param self(App)
+    #
     def print(self, term, displayed_term):
         if not self.inRoot:
             if term != '!':
@@ -351,11 +414,9 @@ class App(QWidget):
         self.memory = "0"
 
     ##
-    # @brief Funkce dělá ...
+    # @brief Function deletes last number or operator from display
     #
-    # @param p1 popis
-    # @param p2 popis
-    # @return popis výsledku
+    # @param self(App)
     #
     def delete(self):
         if len(self.content) != 0:
@@ -383,6 +444,10 @@ class App(QWidget):
                 self.displayed_content.pop()
             self.output1.setText(''.join(self.displayed_content))
 
+    ## This function deletes the entire content of the display.
+    #
+    # @param self(App)
+    #
     def complete_delete(self):
         self.content = []
         self.displayed_content = []
@@ -390,12 +455,21 @@ class App(QWidget):
         self.output2.setText(''.join(self.content))
 
 
-##
-# HELP_FORM class to open after ? button click
+## Help form window class
+# @brief Displays help document to the user describing basic usage of all operators.
+#        Inherits from the QWidget class.
+# @param font is later set as the default font
 class Form(QWidget):
+    ## Init function of the Form class.
+    # @brief Initializes HTML canvas, sets default font(passed as param from the App class instance), displays content
+    # help_form.html
+    #
+    # @param self(App)
+    #
     def __init__(self, font):
         super().__init__()
         self.setWindowTitle("Nápověda")
+        ## Text edit HTML canvas for displaying help
         self.textEdit = QtWidgets.QTextEdit(self)
         self.textEdit.setGeometry(QtCore.QRect(0, 0, 501, 651))
         self.textEdit.setReadOnly(True)

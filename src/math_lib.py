@@ -35,8 +35,8 @@ class DomainError(Exception):
 ## 
 # @brief Function returns the result of addition of two numbers.
 #
-# @param a first summand
-# @param b second summand
+# @param a first addend
+# @param b second addend
 # @return sum of two numbers
 def add(a, b):
     return a+b

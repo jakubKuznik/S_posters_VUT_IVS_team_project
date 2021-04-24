@@ -26,6 +26,7 @@ all: pip run
 #	zip $(PACK_NAME).zip $(ALLDIRS)
 
 doc:
+	cd .. && rm -rf doc
 	cd .. && mkdir doc && cd doc && doxygen ../src/Doxyfile
 
 # This function uses unittest to test our source files
@@ -41,7 +42,7 @@ init: requirements.txt
 run: calc.py
 	${PYTHON} calc.py
 
-installer: calc.py math_lib.py gui.py parser.py requirements.txt help_form.html Quicksand.ttf
+installer: calc.py math_lib.py gui.py calc_parser.py requirements.txt help_form.html
 	bash install_script.sh
 
 clean:
