@@ -78,7 +78,7 @@ def mult(a, b):
 # @return quotient of two numbers
 def div(a, b):
     if b == 0:
-        raise DivByZeroException
+        return "Math Error"
     return a/b
 
 
@@ -90,8 +90,14 @@ def div(a, b):
 # @exception DomainError when b is negative value
 # @return b-th root of a
 def root(a, b):
-    if b < 0:
-        raise DomainErrorException
+    if a == 0 and b == 0:
+        return "Math Error"
+    if a < 0:
+        if b%2==1:
+            a=a*(-1)
+            return -1*a**(1/b)
+        else:
+            return "Math Error"
     return a**(1/b)
 
 
@@ -102,8 +108,8 @@ def root(a, b):
 # @exception DomainError in case factorizedNumber is not integer or is negative
 # @return factorial of number factorizedNumber
 def fact(factorized_number):
-    if factorized_number < 0:
-        raise DomainErrorException
+    if factorized_number < 0 or not factorized_number.is_integer():
+        return "Math Error"
     if factorized_number == 0:
         return 1
     else:
@@ -119,7 +125,7 @@ def fact(factorized_number):
 # @return base raised to the power of exponent
 def exp(base, exponent):
     if exponent == 0 and base == 0:
-        raise DomainErrorException
+        return "Math Error"
     return base ** exponent
 
 
@@ -132,5 +138,7 @@ def exp(base, exponent):
 # @return remainder of a divided by b
 def mod(a, b):
     if b == 0:
-        raise DivByZeroException
+        return "Math Error"
+    if int(a) != a or int(b) != b:
+        return "Math Error"
     return a % b

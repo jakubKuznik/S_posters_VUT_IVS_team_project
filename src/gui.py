@@ -65,7 +65,11 @@ class App(QWidget):
         ##
         self.root_base = []
         ##
+        self.root_base_displayed = []
+        ##
         self.root_content = []
+        ##
+        self.root_content_displayed = []
 
         ## Global font family and size declaration.
         self.font = QFont("Arial", 20)
@@ -305,10 +309,20 @@ class App(QWidget):
     #
     # @param self
     #
-    def evaluate(self):
-        # self.result = SplitString(''.join(self.content))
-        self.result = split_string_fn(self.content, self.displayed_content)
-        self.output2.setText(str(self.result))
+    def evaluate(self,root=None):
+        if root!="Content" and root!="Base":
+            if self.content!=[] and not self.inRoot:
+                self.result = split_string_fn(self.content, self.displayed_content)
+                self.output2.setText(str(self.result))
+        else:
+            if root == "Content":
+                if self.root_content!="[~~]":
+                    return split_string_fn(self.root_content,self.root_content_displayed)
+            else:
+                if self.root_base!="(~~)":
+                    return split_string_fn(self.root_base,self.root_base_displayed)
+                pass
+
 
     ## This function evaluates user input.
     # @brief Sends string input to parser for further evaluation.
@@ -316,11 +330,12 @@ class App(QWidget):
     # @param self
     #
     def root(self):
-        self.displayed_content.append('[ ]')
-        self.displayed_content.append('√')
-        self.displayed_content.append('( )')
-        self.output1.setText(''.join(self.displayed_content))
-        self.inRoot = True
+        if not self.inRoot:
+            self.displayed_content.append('[~~]')
+            self.displayed_content.append('√')
+            self.displayed_content.append('(~~)')
+            self.output1.setText(''.join(self.displayed_content))
+            self.inRoot = True
 
     ## This function evaluates user input.
     # @brief Sends string input to parser for further evaluation.
@@ -332,27 +347,56 @@ class App(QWidget):
             if self.rootCounter == 0:
                 self.rootCounter = 1
             elif self.rootCounter == 1:
-                self.rootCounter = 0
-                self.inRoot = False
-                self.content.append(''.join(self.root_content))
-                self.content.append("$")
-                self.content.append(''.join(self.root_base))
-                self.root_content = []
-                self.root_base = []
+                root_content_result = str(self.evaluate("Content"))
+                if root_content_result!=False:
+                    self.content.append('(')
+                    self.content.append(root_content_result)
+                    self.content.append(')')
+                    self.content.append("$")
+                    self.content.append('(')
+                    root_base_result=str(self.evaluate("Base"))
+                    if root_base_result!="Syntax Error" and root_base_result!="Math Error":
+                        self.content.append(root_base_result)
+                        self.content.append(')')
+                        self.root_content = []
+                        self.root_base = []
+                        self.root_content_displayed = []
+                        self.root_base_displayed = []
+                        self.rootCounter = 0
+                        self.inRoot = False
+                    else:
+                        self.output2.setText(root_base_result)
+                else:
+                    self.output2.setText(root_content_result)
+
 
     ## This function evaluates user input.
     # @brief Sends string input to parser for further evaluation.
     #
     # @param self
     #
-    def type_in_root(self, term):
+    def type_in_root(self, term, displayed_term):
         if self.rootCounter == 0:
-            self.root_base.append(term)
-            self.displayed_content[-3] = '[' + ''.join(self.root_base) + ']'
+            if term != '!':
+                self.root_base.append(term)
+            else:
+                self.root_base.append(term)
+                self.root_base.append('0')
+
+            self.root_base_displayed.append(displayed_term)
+
+            self.displayed_content[-3] = '[' + ''.join(self.root_base_displayed) + ']'
             self.output1.setText(''.join(self.displayed_content))
+
         if self.rootCounter == 1:
-            self.root_content.append(term)
-            self.displayed_content[-1] = '(' + ''.join(self.root_content) + ')'
+            if term != '!':
+                self.root_content.append(term)
+            else:
+                self.root_content.append(term)
+                self.root_content.append('0')
+
+            self.root_content_displayed.append(displayed_term)
+            self.displayed_content[-1] = '(' + ''.join(self.root_content_displayed) + ')'
             self.output1.setText(''.join(self.displayed_content))
 
     ## This function evaluates user input.
@@ -389,10 +433,7 @@ class App(QWidget):
             # print(self.content)
             # print(self.displayed_content)
         else:
-            if term in self.numbers:
-                self.type_in_root(term)
-            else:
-                pass
+            self.type_in_root(term, displayed_term)
 
     ##
     # @brief Funkce dělá ...
@@ -420,7 +461,7 @@ class App(QWidget):
     # @param self
     #
     def delete(self):
-        if len(self.content) != 0:
+        if len(self.content) != 0 or self.inRoot:
             if self.displayed_content[-1] == '!':
                 self.content.pop()
                 self.content.pop()
@@ -428,6 +469,8 @@ class App(QWidget):
             elif self.inRoot:
                 self.root_content = []
                 self.root_base = []
+                self.root_content_displayed = []
+                self.root_base_displayed = []
                 self.displayed_content.pop()
                 self.displayed_content.pop()
                 self.displayed_content.pop()
@@ -437,9 +480,8 @@ class App(QWidget):
                 self.displayed_content.pop()
                 self.displayed_content.pop()
                 self.displayed_content.pop()
-                self.content.pop()
-                self.content.pop()
-                self.content.pop()
+                for i in range(7):
+                    self.content.pop()
             else:
                 self.content.pop()
                 self.displayed_content.pop()

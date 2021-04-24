@@ -26,7 +26,7 @@ import re
 from math_lib import *
 
 ##
-nonNumbers = ['+', '-', '*', '/', '(', ')', '^']
+nonNumbers = ['+', '-', '*', '/', '?', '&', '$']
 ##
 operators = {'(': 0, ')': 0, '+': 1, '-': 1, '*': 2, '/': 2, '?': 2, '&': 3, '$': 3, '!': 3}
 ##
@@ -41,18 +41,25 @@ output = []
 # @param
 #
 def split_string_fn(calc_string, displayed_content):
-    for i in range(1, len(displayed_content)):
+    for i in range(1, len(displayed_content)-1):
         if displayed_content[i] == 'π' or displayed_content[i] == 'M':
-            if is_number(displayed_content[i - 1]):
+            if is_number(displayed_content[i - 1]) or is_number(displayed_content[i + 1]):
+                return "Syntax Error"
+            if displayed_content[i - 1] == 'M' or displayed_content[i + 1] == 'M':
+                return "Syntax Error"
+            if displayed_content[i - 1] == 'π' or displayed_content[i + 1] == 'π':
                 return "Syntax Error"
     calc_string = ''.join(calc_string)
     split_string = re.findall(r'[0-9.]+|[^0-9.]', calc_string)
+
+    if calc_string[-1] in nonNumbers:
+        return "Syntax Error"
 
     if not validate(split_string):
         return "Syntax Error"
 
     for i in range(len(split_string) - 1):
-        if i == 0 and split_string[i] == '-' and is_number(split_string[1]):
+        if i == 0 and split_string[i] == '-' and (is_number(split_string[1]) or split_string[1]=='('):
             split_string[0] = '@'
         elif split_string[i] == '-' and split_string[i - 1] == '(' and is_number(split_string[i + 1]):
             split_string[i] = '@'
@@ -134,7 +141,7 @@ def rpn_eval(rpn_array):
                 value = fact(float(temp[0]))
                 stack.append(value)
             elif i == '?':
-                value = modulo(float(temp[0]), float(temp[1]))
+                value = mod(float(temp[0]), float(temp[1]))
                 stack.append(value)
     result = stack[0]
     return result
@@ -186,8 +193,6 @@ def validate(split_string):
             if split_string[i - 1] in binary_operators:
                 return False
         elif split_string[i] == '-':
-            if i == 0:
-                return False
             if split_string[i - 1] in binary_operators:
                 return False
         elif split_string[i] == '*':
@@ -220,6 +225,8 @@ def validate(split_string):
                 return False
         else:
             if split_string[i][0] == '.':
+                return False
+            if split_string[i][-1]=='.':
                 return False
             if split_string[i].count(".") > 1:
                 return False
