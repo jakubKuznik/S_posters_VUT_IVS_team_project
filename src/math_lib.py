@@ -24,11 +24,11 @@
 # @author Kratochvíl Pavel
 # @author Svobodová Lucie
 
-class DivByZero(Exception):
+class DivByZeroException(Exception):
     pass
 
 
-class DomainError(Exception):
+class DomainErrorException(Exception):
     pass
 
 
@@ -71,7 +71,7 @@ def mult(a, b):
 # @return quotient of two numbers
 def div(a, b):
     if b == 0:
-        raise DivByZero
+        raise DivByZeroException
     return a/b
 
 
@@ -84,7 +84,7 @@ def div(a, b):
 # @return b-th root of a
 def root(a, b):
     if b < 0:
-        raise DomainError
+        raise DomainErrorException
     return a**(1/b)
 
 
@@ -96,7 +96,7 @@ def root(a, b):
 # @return factorial of number factorizedNumber
 def fact(factorized_number):
     if factorized_number < 0:
-        raise DomainError
+        raise DomainErrorException
     if factorized_number == 0:
         return 1
     else:
@@ -112,7 +112,7 @@ def fact(factorized_number):
 # @return base raised to the power of exponent
 def exponentiation(base, exponent):
     if exponent == 0 and base == 0:
-        raise DomainError
+        raise DomainErrorException
     return base ** exponent
 
 
@@ -125,5 +125,5 @@ def exponentiation(base, exponent):
 # @return remainder of a divided by b
 def modulo(a, b):
     if b == 0:
-        raise DivByZero
+        raise DivByZeroException
     return a % b

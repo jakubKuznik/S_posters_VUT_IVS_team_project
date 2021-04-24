@@ -28,7 +28,7 @@ all: pip run
 # This function creates documentation using the Doxyfile configuration
 doc: Doxyfile
 	cd .. && rm -rf doc
-	cd .. && mkdir doc && cd doc && doxygen ../src/$^
+	cd .. && mkdir doc && cd doc && doxygen ../src/$^ && doxygen ../src/$^
 
 # This function uses unittest to test our source files
 test:

@@ -114,7 +114,7 @@ class TestBasicOperations(unittest.TestCase):
         result_neg_zero = math_lib.div(0, -33)
         self.assertEqual(result_neg_zero, 0)
 
-        with self.assertRaises(math_lib.DivByZero):
+        with self.assertRaises(math_lib.DivByZeroException):
             math_lib.div(33, 0)
             math_lib.div(-33, 0)
 
@@ -125,14 +125,14 @@ class TestBasicOperations(unittest.TestCase):
         self.assertEqual(result_fact_5,120)
         result_fact_zero = math_lib.fact(0)
         self.assertEqual(result_fact_zero,1)
-        with self.assertRaises(math_lib.DomainError):
+        with self.assertRaises(math_lib.DomainErrorException):
             result_fact_non_integer = math_lib.fact(2.5)
             math_lib.fact(-4)
 
     ## Set of tests for exponentiation
     #  @param self The object pointer.
     def test_expo(self):
-        with self.assertRaises(math_lib.DomainError):
+        with self.assertRaises(math_lib.DomainErrorException):
             math_lib.exponentiation(0, 0)
             math_lib.exponentiation(4, 2.5)
             math_lib.exponentiation(4, -2)
@@ -145,7 +145,7 @@ class TestBasicOperations(unittest.TestCase):
     ## Set of tests for root
     #  @param self The object pointer.
     def test_root(self):
-        with self.assertRaises(math_lib.DomainError):
+        with self.assertRaises(math_lib.DomainErrorException):
             math_lib.root(2, -4)
             math_lib.root(0, 0)
         self.assertEqual(math_lib.root(4, 2), 2)

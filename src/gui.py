@@ -15,7 +15,7 @@
 
 ## @file gui.py
 #
-#  @brief calculator gui
+#  @brief Calculator user interface
 #
 #  @author Vaňo Michal
 #  @author Kuzník Jakub
@@ -25,7 +25,7 @@
 import sys
 
 from PyQt5 import QtWidgets, QtCore
-from PyQt5.QtGui import QFont
+from PyQt5.QtGui import QFont, QIcon
 from PyQt5.QtWidgets import QWidget, QPushButton
 from calc_parser import *
 
@@ -66,7 +66,9 @@ class App(QWidget):
         self.root_base = []
         ##
         self.root_content = []
-        # TODO: icon
+
+        #self.setWindowIcon(QIcon('./icon.png'))
+        self.setWindowIcon(QIcon("icon.png"))
 
         ## Global font family and size declaration.
         self.font = QFont("Arial", 20)
@@ -313,7 +315,7 @@ class App(QWidget):
     ## This function evaluates user input.
     # @brief Sends string input to parser for further evaluation.
     #
-    # @param self(App)
+    # @param self
     #
     def root(self):
         self.displayed_content.append('[ ]')
@@ -325,7 +327,7 @@ class App(QWidget):
     ## This function evaluates user input.
     # @brief Sends string input to parser for further evaluation.
     #
-    # @param self(App)
+    # @param self
     #
     def move_in_root(self):
         if self.inRoot:
@@ -343,7 +345,7 @@ class App(QWidget):
     ## This function evaluates user input.
     # @brief Sends string input to parser for further evaluation.
     #
-    # @param self(App)
+    # @param self
     #
     def type_in_root(self, term):
         if self.rootCounter == 0:
@@ -358,7 +360,7 @@ class App(QWidget):
     ## This function evaluates user input.
     # @brief Sends string input to parser for further evaluation.
     #
-    # @param self(App)
+    # @param self
     #
     def help_click(self):
         self.form.show()
@@ -366,7 +368,7 @@ class App(QWidget):
     ## This function evaluates user input.
     # @brief Sends string input to parser for further evaluation.
     #
-    # @param self(App)
+    # @param self
     #
     def change(self, command):
         self.content.append(command)
@@ -374,7 +376,8 @@ class App(QWidget):
     ## This function evaluates user input.
     # @brief Sends string input to parser for further evaluation.
     #
-    # @param self(App)
+    # @param term is appended to content for further parsing and evaluation
+    # @param displayed_term is visible on display
     #
     def print(self, term, displayed_term):
         if not self.inRoot:
@@ -416,7 +419,7 @@ class App(QWidget):
     ##
     # @brief Function deletes last number or operator from display
     #
-    # @param self(App)
+    # @param self
     #
     def delete(self):
         if len(self.content) != 0:
@@ -446,7 +449,7 @@ class App(QWidget):
 
     ## This function deletes the entire content of the display.
     #
-    # @param self(App)
+    # @param self
     #
     def complete_delete(self):
         self.content = []
@@ -464,7 +467,7 @@ class Form(QWidget):
     # @brief Initializes HTML canvas, sets default font(passed as param from the App class instance), displays content
     # help_form.html
     #
-    # @param self(App)
+    # @param self
     #
     def __init__(self, font):
         super().__init__()
