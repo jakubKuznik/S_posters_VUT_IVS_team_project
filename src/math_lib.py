@@ -126,6 +126,8 @@ def fact(factorized_number):
 def exp(base, exponent):
     if exponent == 0 and base == 0:
         return "Math Error"
+    if exponent < 0 and base == 0:
+        return "Math Error"
     return base ** exponent
 
 
