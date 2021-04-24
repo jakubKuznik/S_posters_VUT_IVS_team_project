@@ -67,15 +67,13 @@ class App(QWidget):
         ##
         self.root_content = []
 
-        #self.setWindowIcon(QIcon('./icon.png'))
-        self.setWindowIcon(QIcon("icon.png"))
-
         ## Global font family and size declaration.
         self.font = QFont("Arial", 20)
         ## QtWidgets window init.
         self.window = QtWidgets.QApplication(sys.argv)
         ## Init of help form with font passed as a parameter.
         self.form = Form(self.font)
+        self.window.setWindowIcon(QIcon("icon.png"))
 
         ## = button init.
         self.pushButton_s_equal = QPushButton(self)
@@ -162,7 +160,7 @@ class App(QWidget):
                 self.list_of_buttons[i].clicked.connect(lambda checked, fn=callback_fn: fn())
             else:
                 term = self.buttons[i][4]
-                print(term)
+                # print(term)
                 displayed_term = self.buttons[i][5]
                 self.list_of_buttons[i].clicked.connect(
                     lambda checked, t=term, d_t=displayed_term, fn=callback_fn: fn(t, d_t))
@@ -388,8 +386,8 @@ class App(QWidget):
                 self.content.append('0')
             self.displayed_content.append(displayed_term)
             self.output1.setText("".join(self.displayed_content))
-            print(self.content)
-            print(self.displayed_content)
+            #print(self.content)
+            #print(self.displayed_content)
         else:
             if term in self.numbers:
                 self.type_in_root(term)
