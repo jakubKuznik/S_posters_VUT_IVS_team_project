@@ -304,11 +304,17 @@ class TestBasicOperations(unittest.TestCase):
         self.assertNotEqual(result_not_zero, 0)
 
         # testing errors
-        with self.assertRaises(math_lib.DivByZeroException):
-            math_lib.div(33, 0)
-            math_lib.div(-73, 0)
-            math_lib.div(0, 0)
+        result_error = math_lib.div(33, 0)
+        self.assertEqual("Math Error", result_error)
+        
+        result_error = math_lib.div(-73, 0)
+        self.assertEqual("Math Error", result_error)
+        
+        result_error = math_lib.div(2.5, 0)
+        self.assertEqual("Math Error", result_error)
 
+        result_error = math_lib.div(0, 0)
+        self.assertEqual("Math Error", result_error)
 
     ## Set of tests for factorization
     #  @param self The object pointer.
@@ -328,10 +334,14 @@ class TestBasicOperations(unittest.TestCase):
         self.assertEqual(result_fact_zero, 1)
 
         # testing errors
-        with self.assertRaises(math_lib.DomainErrorException):
-            result_fact_non_integer = math_lib.fact(2.5)
-            result_fact_neg = math_lib.fact(-44)
-            result_fact_neg_non_integer = math_lib.fact(-2.35)
+        result_error = math_lib.fact(2.5)
+        self.assertEqual("Math Error", result_error)
+
+        result_error = math_lib.fact(-44)
+        self.assertEqual("Math Error", result_error)
+
+        result_error = math_lib.fact(-2.35)
+        self.assertEqual("Math Error", result_error)
 
 
     ## Set of tests for exponentiation
@@ -396,10 +406,12 @@ class TestBasicOperations(unittest.TestCase):
         result_zero = math_lib.exp(0, 4)
         self.assertEqual(result_zero, 0)
 
-        # testing errors
-        with self.assertRaises(math_lib.DomainErrorException):
-            math_lib.exp(0, 0)
-            math_lib.exp(0, -2)
+        # testing errors      
+        result_error = math_lib.exp(0, 0)
+        self.assertEqual("Math Error", result_error)
+
+        result_error = math_lib.exp(0, -2)
+        self.assertEqual("Math Error", result_error)
 
 
     ## Set of tests for root
@@ -423,28 +435,32 @@ class TestBasicOperations(unittest.TestCase):
         self.assertEqual(result_exp_neg, -0.5)
 
         result_exp_neg = math_lib.root(-1024, -5)
-        self.assertEqual(result_exp_neg, -0.5)
+        self.assertAlmostEqual(result_exp_neg, -0.25)
 
         # testing first operand positive and second one negative
-        result_exp_pos_neg = math_lib.exp(1024, -2)
+        result_exp_pos_neg = math_lib.root(1024, -2)
         self.assertEqual(result_exp_pos_neg, 0.03125)
 
-        result_exp_pos_neg = math_lib.exp(8, -3)
+        result_exp_pos_neg = math_lib.root(8, -3)
         self.assertEqual(result_exp_pos_neg, 0.5)
 
         # testing first operand negative and second operand positive
-        result_exp_neg_pos = math_lib.exp(-64, 3)
-        self.assertEqual(result_exp_neg_pos, -4)        
+        result_exp_neg_pos = math_lib.root(-64, 3)
+        self.assertAlmostEqual(result_exp_neg_pos, -4)        
         
-        result_exp_neg_pos = math_lib.exp(-78125, 7)
-        self.assertEqual(result_exp_neg_pos, -5)        
+        result_exp_neg_pos = math_lib.root(-78125, 7)
+        self.assertAlmostEqual(result_exp_neg_pos, -5)        
         
         # testing operands that returns zero
-        with self.assertRaises(math_lib.DomainErrorException):
-            math_lib.root(2, -4)
-            math_lib.root(0, 0)
-        self.assertEqual(math_lib.root(4, 2), 2)
-        self.assertEqual(math_lib.root(8, 3), 2)
+        result_error = math_lib.root(-4, 2)
+        self.assertEqual("Math Error", result_error)
+
+        result_error = math_lib.root(0, 0)
+        self.assertEqual("Math Error", result_error)
+
+        result_error = math_lib.root(-455, 0)
+        self.assertEqual("Math Error", result_error)
+
 
     ## Test for modulo operation %
     #  @param self The object pointer.
@@ -476,29 +492,29 @@ class TestBasicOperations(unittest.TestCase):
         self.assertEqual(result_neg_operands, -3)
 
         # testing first operand positive and second one negative
-        result_exp_pos_neg = math_lib.exp(4, -3)
+        result_exp_pos_neg = math_lib.mod(4, -3)
         self.assertEqual(result_exp_pos_neg, -2)
 
-        result_exp_pos_neg = math_lib.exp(8, -3)
+        result_exp_pos_neg = math_lib.mod(8, -3)
         self.assertAlmostEqual(result_exp_pos_neg, -1)
 
-        result_exp_pos_neg = math_lib.exp(4, -3)
+        result_exp_pos_neg = math_lib.mod(4, -3)
         self.assertEqual(result_exp_pos_neg, -2)
 
-        result_exp_pos_neg = math_lib.exp(245, -85)
+        result_exp_pos_neg = math_lib.mod(245, -85)
         self.assertEqual(result_exp_pos_neg, -10)
 
         # testing first operand negative and second operand positive
-        result_exp_neg_pos = math_lib.exp(-4, 2)
+        result_exp_neg_pos = math_lib.mod(-4, 2)
         self.assertEqual(result_exp_neg_pos, 0)        
         
-        result_exp_neg_pos = math_lib.exp(-2, 8)
+        result_exp_neg_pos = math_lib.mod(-2, 8)
         self.assertEqual(result_exp_neg_pos, 6)        
         
-        result_exp_neg_pos = math_lib.exp(-42, 13)
-        self.assertEqual(result_exp_neg_pos, -10)        
+        result_exp_neg_pos = math_lib.mod(-42, 13)
+        self.assertEqual(result_exp_neg_pos, 10)        
         
-        result_exp_neg_pos = math_lib.exp(-1, 2)
+        result_exp_neg_pos = math_lib.mod(-1, 2)
         self.assertEqual(result_exp_neg_pos, 1)
 
         # testing operands that returns zero
@@ -507,6 +523,18 @@ class TestBasicOperations(unittest.TestCase):
 
         result_pos_operands = math_lib.mod(20, 5)
         self.assertEqual(result_pos_operands, 0)
+
+        result_error = math_lib.div(33, 0)
+        self.assertEqual("Math Error", result_error)
+        
+        result_error = math_lib.div(-73, 0)
+        self.assertEqual("Math Error", result_error)
+        
+        result_error = math_lib.div(2.5, 0)
+        self.assertEqual("Math Error", result_error)
+
+        result_error = math_lib.div(0, 0)
+        self.assertEqual("Math Error", result_error)
 
 if __name__ == '__main__':
     unittest.main()
