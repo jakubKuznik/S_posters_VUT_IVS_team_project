@@ -139,4 +139,6 @@ def exp(base, exponent):
 def mod(a, b):
     if b == 0:
         return "Math Error"
+    if int(a) != a or int(b) != b:
+        return "Math Error"
     return a % b
