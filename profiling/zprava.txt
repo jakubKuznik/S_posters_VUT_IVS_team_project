@@ -1,0 +1,47 @@
+Napsali jsme program, který nám vygenerujue profiling výstup. 
+
+  Profiling jsme provedli na náš program pro výpočet směrodatné odchylky (standart_deviation.py).
+ Cílem bylo především zjistit jak dobře funguje naše knihovna math_lib.py. Profiling jsme provedli 
+na 10 100 a 1000 číslech, což je dost malý vstup. Z profilingu vyplývá následující:
+
+
+  Knihovna funguje efektivně. Je to zapříčiněno i tím že jsou všechny funkce v knihovně maximálně 
+minimalistické a v podstatě se jedná o funkce na které byl cpu navržen, takže 
+je pochopitelné že běží velmi rychle.
+
+  V programu se parserují argumenty vždy jenom jednou na začátku, takže program moc nebrzdí a funguje to dobře.
+
+Závěr:
+Tento malý program v podstatě nelze moc optimalizovat.
+  Je nutné si však uvědomit, že profiling na tak malých datech je trochu zrádný a je vhodnější 
+spíše pro komplikovanější programy a větší objem dat.
+
+
+PROFILER:
+
+6028 function calls in 0.008 seconds
+
+   Ordered by: call count
+
+   ncalls  tottime  percall  cumtime  percall filename:lineno(function)
+     2000    0.000    0.000    0.000    0.000 /math_lib.py:41(add)
+     1002    0.006    0.000    0.006    0.000 {built-in method builtins.print}
+     1000    0.000    0.000    0.000    0.000 {method 'append' of 'list' objects}
+     1000    0.000    0.000    0.000    0.000 /math_lib.py:51(sub)
+     1000    0.000    0.000    0.000    0.000 /math_lib.py:113(exponentiation)
+        6    0.000    0.000    0.000    0.000 {method 'replace' of 'str' objects}
+        3    0.000    0.000    0.000    0.000 {built-in method builtins.len}
+        2    0.000    0.000    0.000    0.000 {built-in method _codecs.utf_8_decode}
+        2    0.000    0.000    0.000    0.000 /math_lib.py:72(div)
+        2    0.000    0.000    0.000    0.000 /codecs.py:319(decode)
+        1    0.000    0.000    0.000    0.000 {method 'split' of 'str' objects}
+        1    0.000    0.000    0.008    0.008 {built-in method builtins.exec}
+        1    0.000    0.000    0.000    0.000 {method 'readlines' of '_io._IOBase' objects}
+        1    0.000    0.000    0.008    0.008 profilingos.py:4(main)
+        1    0.000    0.000    0.001    0.001 /prog.py:46(separate_numbers)
+        1    0.000    0.000    0.000    0.000 /prog.py:63(mean)
+        1    0.001    0.001    0.002    0.002 /prog.py:72(stdDev)
+        1    0.001    0.001    0.008    0.008 /prog.py:88(main)
+        1    0.000    0.000    0.000    0.000 /math_lib.py:85(root)
+        1    0.000    0.000    0.008    0.008 <string>:1(<module>)
+        1    0.000    0.000    0.000    0.000 {method 'disable' of '_lsprof.Profiler' objects} 
