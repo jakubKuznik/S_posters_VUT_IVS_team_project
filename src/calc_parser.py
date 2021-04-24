@@ -10,7 +10,7 @@
 #           Kratochvíl Pavel
 #           Svobodová Lucie
 #
-# Brief: Parser
+# Brief: Calculator Parser
 ###########################################
 
 ## @file calc_parser.py
@@ -22,32 +22,39 @@
 #  @author Kratochvíl Pavel
 #  @author Svobodová Lucie
 
-## This function will turn the string into the reverse polish notation
-
-from math_lib import *
 import re
+from math_lib import *
 
+##
 nonNumbers = ['+', '-', '*', '/', '(', ')', '^']
+##
 operators = {'(': 0, ')': 0, '+': 1, '-': 1, '*': 2, '/': 2, '?': 2, '&': 3, '$': 3, '!': 3}
+##
 opStack = []
+##
 output = []
 
 
-def SplitString(CalcString, DisplayedContent):
-    for i in range(1, len(DisplayedContent)):
-        if DisplayedContent[i] == 'π' or DisplayedContent[i] == 'M':
-            if isNumber(DisplayedContent[i - 1]):
+##
+# @brief
+#
+# @param
+#
+def split_string_fn(calc_string, displayed_content):
+    for i in range(1, len(displayed_content)):
+        if displayed_content[i] == 'π' or displayed_content[i] == 'M':
+            if is_number(displayed_content[i - 1]):
                 return "Syntax Error"
-    CalcString = ''.join(CalcString)
-    split_string = re.findall(r'[0-9.]+|[^0-9.]', CalcString)
+    calc_string = ''.join(calc_string)
+    split_string = re.findall(r'[0-9.]+|[^0-9.]', calc_string)
 
     if not validate(split_string):
         return "Syntax Error"
 
     for i in range(len(split_string) - 1):
-        if i == 0 and split_string[i] == '-' and isNumber(split_string[1]):
+        if i == 0 and split_string[i] == '-' and is_number(split_string[1]):
             split_string[0] = '@'
-        elif split_string[i] == '-' and split_string[i - 1] == '(' and isNumber(split_string[i + 1]):
+        elif split_string[i] == '-' and split_string[i - 1] == '(' and is_number(split_string[i + 1]):
             split_string[i] = '@'
     minus_list = []
     for i in range(len(split_string)):
@@ -57,40 +64,50 @@ def SplitString(CalcString, DisplayedContent):
             minus_list.append('-1')
             minus_list.append('*')
 
-    return infixToRPN(minus_list)
+    return infix_to_rpn(minus_list)
 
 
-def infixToRPN(Infix_array):
-    RPN_array = []
+## This function will turn the string into the reverse polish notation?
+# @brief
+#
+# @param
+#
+def infix_to_rpn(infix_array):
+    rpn_array = []
     stack = []
-    for i in Infix_array:
-        if isNumber(i):
-            RPN_array.append(i)
+    for i in infix_array:
+        if is_number(i):
+            rpn_array.append(i)
         elif i == '(':
             stack.append(i)
         elif i == ')':
             top = stack.pop()
             while top != '(':
-                RPN_array.append(top)
+                rpn_array.append(top)
                 top = stack.pop()
         else:
             for operator in stack[::-1]:
                 if operator == '(':
                     break
                 if operators[operator] >= operators[i] and operator != '&':
-                    RPN_array.append(stack.pop())
+                    rpn_array.append(stack.pop())
             stack.append(i)
 
     while len(stack) != 0:
-        RPN_array.append(stack.pop())
-    return RPNEval(RPN_array)
+        rpn_array.append(stack.pop())
+    return rpn_eval(rpn_array)
 
 
-def RPNEval(RPN_array):
+##
+# @brief
+#
+# @param
+#
+def rpn_eval(rpn_array):
     stack = []
     temp = [0, 0]
-    for i in RPN_array:
-        if isNumber(i):
+    for i in rpn_array:
+        if is_number(i):
             stack.append(i)
         else:
             temp[1] = stack.pop()
@@ -99,7 +116,7 @@ def RPNEval(RPN_array):
                 value = root(float(temp[0]), float(temp[1]))
                 stack.append(value)
             if i == '&':
-                value = exponentiation(float(temp[0]), float(temp[1]))
+                value = exp(float(temp[0]), float(temp[1]))
                 stack.append(value)
             elif i == '*':
                 value = mult(float(temp[0]), float(temp[1]))
@@ -123,7 +140,12 @@ def RPNEval(RPN_array):
     return result
 
 
-def isNumber(token):
+##
+# @brief
+#
+# @param
+#
+def is_number(token):
     try:
         float(token)
         return True
@@ -131,6 +153,11 @@ def isNumber(token):
         return False
 
 
+##
+# @brief
+#
+# @param
+#
 def validate(split_string):
     # TODO: cislo nemoze koncit bodkou a nemozu byt dve cisla za sebou
     parentheses_counter = 0

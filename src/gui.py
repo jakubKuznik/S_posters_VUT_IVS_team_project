@@ -307,7 +307,7 @@ class App(QWidget):
     #
     def evaluate(self):
         # self.result = SplitString(''.join(self.content))
-        self.result = SplitString(self.content, self.displayed_content)
+        self.result = split_string_fn(self.content, self.displayed_content)
         self.output2.setText(str(self.result))
 
     ## This function evaluates user input.
@@ -386,8 +386,8 @@ class App(QWidget):
                 self.content.append('0')
             self.displayed_content.append(displayed_term)
             self.output1.setText("".join(self.displayed_content))
-            #print(self.content)
-            #print(self.displayed_content)
+            # print(self.content)
+            # print(self.displayed_content)
         else:
             if term in self.numbers:
                 self.type_in_root(term)

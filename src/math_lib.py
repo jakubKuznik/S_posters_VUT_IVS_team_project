@@ -13,7 +13,7 @@
 # Brief: Math library
 ###########################################
 
-## 
+##
 # @package math_lib
 # @file math_lib.py
 #
@@ -24,10 +24,17 @@
 # @author Kratochvíl Pavel
 # @author Svobodová Lucie
 
+## Division by zero exception
+# @brief Raised when the user input implies division by zero.
+#
+#
 class DivByZeroException(Exception):
     pass
 
-
+## Domain error exception
+# @brief Raised when the supplied operand is out of domain of given function(e.g. sqrt(<negative number>)).
+#
+#
 class DomainErrorException(Exception):
     pass
 
@@ -110,7 +117,7 @@ def fact(factorized_number):
 # @param exponent power value
 # @exception DomainError when exponent and base are both equal to zero
 # @return base raised to the power of exponent
-def exponentiation(base, exponent):
+def exp(base, exponent):
     if exponent == 0 and base == 0:
         raise DomainErrorException
     return base ** exponent
