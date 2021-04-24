@@ -135,7 +135,7 @@ def exp(base, exponent):
 # @param b divisor
 # @exception DivByZero when the divisor is equal to zero
 # @return remainder of a divided by b
-def modulo(a, b):
+def mod(a, b):
     if b == 0:
         return "Math Error"
     return a % b

@@ -133,12 +133,12 @@ class TestBasicOperations(unittest.TestCase):
     #  @param self The object pointer.
     def test_expo(self):
         with self.assertRaises(math_lib.DomainErrorException):
-            math_lib.exponentiation(0, 0)
-            math_lib.exponentiation(4, 2.5)
-            math_lib.exponentiation(4, -2)
-        result_expo_2_2 = math_lib.exponentiation(2,2)
+            math_lib.exp(0, 0)
+            math_lib.exp(4, 2.5)
+            math_lib.exp(4, -2)
+        result_expo_2_2 = math_lib.exp(2,2)
         self.assertEqual(result_expo_2_2,4)
-        result_expo_4_3 = math_lib.exponentiation(4, 3)
+        result_expo_4_3 = math_lib.exp(4, 3)
         self.assertEqual(result_expo_4_3, 64)
 
 
@@ -153,17 +153,17 @@ class TestBasicOperations(unittest.TestCase):
 
     ## Test for modulo operation %
     #  @param self The object pointer.
-    def test_modulo(self):
-        result_pos_operands = math_lib.modulo(7, 7)
+    def test_mod(self):
+        result_pos_operands = math_lib.mod(7, 7)
         self.assertEqual(result_pos_operands, 0)
 
-        result_pos_operands = math_lib.modulo(-100, 3)
+        result_pos_operands = math_lib.mod(-100, 3)
         self.assertEqual(result_pos_operands, 2)
 
-        result_pos_operands = math_lib.modulo(7, 7)
+        result_pos_operands = math_lib.mod(7, 7)
         self.assertEqual(result_pos_operands, 0)
 
-        result_pos_operands = math_lib.modulo(20, 5)
+        result_pos_operands = math_lib.mod(20, 5)
         self.assertEqual(result_pos_operands, 0)
 
 if __name__ == '__main__':
