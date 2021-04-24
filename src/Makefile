@@ -25,9 +25,10 @@ all: pip run
 #	tar cvzf $(PACK_NAME).tar.gz $(ALLDIRS)
 #	zip $(PACK_NAME).zip $(ALLDIRS)
 
-doc:
+# This function creates documentation using the Doxyfile configuration
+doc: Doxyfile
 	cd .. && rm -rf doc
-	cd .. && mkdir doc && cd doc && doxygen ../src/Doxyfile
+	cd .. && mkdir doc && cd doc && doxygen ../src/$^
 
 # This function uses unittest to test our source files
 test:
