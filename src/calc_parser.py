@@ -197,7 +197,7 @@ def validate(split_string):
             if i != 0:
                 if split_string[i - 1] == ')':
                     return False
-                elif split_string[i - 1] not in binary_operators:
+                elif split_string[i - 1] not in binary_operators and split_string[i - 1] != '(':
                     return False
                 if is_number(split_string[i - 1]):
                     return False
