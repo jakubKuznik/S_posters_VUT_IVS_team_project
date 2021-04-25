@@ -204,7 +204,7 @@ def validate(split_string):
         elif split_string[i] == '+':
             if i == 0:
                 return False
-            if split_string[i - 1] in binary_operators:
+            if split_string[i - 1] in binary_operators and split_string[i - 1] != '(':
                 return False
         elif split_string[i] == '-':
             if split_string[i - 1] in binary_operators and split_string[i - 1] != '(':
