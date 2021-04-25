@@ -24,9 +24,9 @@
 
 import unittest
 import math_lib
+import calc_parser
 
-## Documentation for a class.
-#
+## 
 #  Unit Test for basic mathematical operation e.g. addition
 #  subtraction, multiplication, division.
 class TestBasicOperations(unittest.TestCase):
@@ -524,17 +524,137 @@ class TestBasicOperations(unittest.TestCase):
         result_pos_operands = math_lib.mod(20, 5)
         self.assertEqual(result_pos_operands, 0)
 
-        result_error = math_lib.div(33, 0)
+        result_error = math_lib.mod(33, 0)
         self.assertEqual("Math Error", result_error)
         
-        result_error = math_lib.div(-73, 0)
+        result_error = math_lib.mod(-73, 0)
         self.assertEqual("Math Error", result_error)
         
-        result_error = math_lib.div(2.5, 0)
+        result_error = math_lib.mod(2.5, 0)
         self.assertEqual("Math Error", result_error)
 
-        result_error = math_lib.div(0, 0)
+        result_error = math_lib.mod(0, 0)
         self.assertEqual("Math Error", result_error)
+
+## 
+#  Unit Test for parsing expresions
+#
+class TestParser(unittest.TestCase):
+
+    ## Set of tests for one operation
+    #  @param self The object pointer.
+    def test_one_operation(self):
+        # add
+        result = calc_parser.split_string_fn(list("2+3"), list("2+3"))
+        self.assertEqual(result, 5)
+
+        result = calc_parser.split_string_fn(list("458+45"), list("458+45"))
+        self.assertEqual(result, 503)
+        
+        # sub
+        result = calc_parser.split_string_fn(list("74-8"), list("74-8"))
+        self.assertEqual(result, 66)
+        
+        result = calc_parser.split_string_fn(list("1-4965"), list("1-4965"))
+        self.assertEqual(result, -4964)
+        
+        # mult
+        result = calc_parser.split_string_fn(list("9*34"), list("9*34"))
+        self.assertEqual(result, 306)
+
+        result = calc_parser.split_string_fn(list("873*0"), list("873*0"))
+        self.assertEqual(result, 0)
+        
+        # div
+        result = calc_parser.split_string_fn(list("7/8"), list("7/8"))
+        self.assertEqual(result, 0.875)
+        
+        result = calc_parser.split_string_fn(list("1/5"), list("1/5"))
+        self.assertEqual(result, 0.2)
+
+        # fact
+        result = calc_parser.split_string_fn(['1', '!', '0'], list("1!"))
+        self.assertEqual(result, 1)
+
+        result = calc_parser.split_string_fn(['5', '!', '0'], list("5!"))
+        self.assertEqual(result, 120)
+
+        result = calc_parser.split_string_fn(['0', '!', '0'], list("0!"))
+        self.assertEqual(result, 1)
+
+        # exp
+        result = calc_parser.split_string_fn(['2', '&', '5'], list("2^5"))
+        self.assertEqual(result, 32)
+
+        result = calc_parser.split_string_fn(['2', '5', '&', '3'], list("25^3"))
+        self.assertEqual(result, 15625)
+
+        result = calc_parser.split_string_fn(['0', '&', '3'], list("0^3"))
+        self.assertEqual(result, 0)
+
+        # root
+        result = calc_parser.split_string_fn(['(', '27', ')', '$', '(', '3', ')'], list("[3]√(27)"))
+        self.assertEqual(result, 3)
+
+        result = calc_parser.split_string_fn(['(', '256', ')', '$', '(', '-2.0', ')'], list("[-2]√(256)"))
+        self.assertEqual(result, 0.0625)
+
+        # mod
+        result = calc_parser.split_string_fn(['4', '5', '?', '6'], list("45mod6"))
+        self.assertEqual(result, 3)
+
+        result = calc_parser.split_string_fn(['1', '2', '3', '?', '6', '5', '8'], list("123mod658"))
+        self.assertEqual(result, 123)
+
+
+    def test_math_errors(self):
+        result = calc_parser.split_string_fn(list("1/0"), list("1/0"))
+        self.assertEqual(result, "Math Error")
+
+        result = calc_parser.split_string_fn(list("0/0"), list("0/0"))
+        self.assertEqual(result, "Math Error")
+
+        result = calc_parser.split_string_fn(['36', '.', '5', '!', '0'], list("36.5!"))
+        self.assertEqual(result, "Math Error")
+        
+        result = calc_parser.split_string_fn(['(', '-', '4', '4', ')', '!', '0'], list("(-44)!"))
+        self.assertEqual(result, "Math Error")
+
+        result = calc_parser.split_string_fn(['(', '-', '4', '.', '4', ')', '!', '0'], list("(-4.4)!"))
+        self.assertEqual(result, "Math Error")
+
+        result = calc_parser.split_string_fn(['0', '&', '0'], list("0^0"))
+        self.assertEqual(result, "Math Error")
+
+        result = calc_parser.split_string_fn(['0', '&', '(', '-', '6', ')'], list("0^(-6)"))
+        self.assertEqual(result, "Math Error")
+        
+        result = calc_parser.split_string_fn(['(', '0', ')', '$', '(', '0', ')'], list("[0]√(0)"))
+        self.assertEqual(result, "Math Error")
+
+        result = calc_parser.split_string_fn(['(', '-64.0', ')', '$', '(', '-8.0', ')'], list("[-8]√(-64)"))
+        self.assertEqual(result, "Math Error")
+
+        result = calc_parser.split_string_fn(['3', '3', '?', '0'], list("33mod0"))
+        self.assertEqual(result, "Math Error")
+
+    def test_parentheses(self):
+        result = calc_parser.split_string_fn(['(', '-', '4', ')', '&', '2'], list("(-4)^2"))
+        self.assertEqual(result, 16)
+
+        result = calc_parser.split_string_fn(['4', '&', '(', '-', '2', ')'], list("4^(-2)"))
+        self.assertEqual(result, 0.0625)
+
+        result = calc_parser.split_string_fn(['(', '-', '1', '2', '3', ')', '?', '6', '5', '8'], list("(-123)mod658"))
+        self.assertEqual(result, 535)
+
+        result = calc_parser.split_string_fn(['(', '-', '4', ')', '?', '2'], list("(-4)mod2"))
+        self.assertEqual(result, 0)
+
+    #def test_multiple_operations(self):
+    #def test_syntax_errors(self):
+    #def test_memory(self):
+
 
 if __name__ == '__main__':
     unittest.main()
