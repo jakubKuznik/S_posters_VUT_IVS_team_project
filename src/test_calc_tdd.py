@@ -537,7 +537,7 @@ class TestBasicOperations(unittest.TestCase):
         self.assertEqual("Math Error", result_error)
 
 ## 
-#  Unit Test for parsing expresions
+#  Unit Test for parsing expressions
 #
 class TestParser(unittest.TestCase):
 
@@ -606,7 +606,8 @@ class TestParser(unittest.TestCase):
         result = calc_parser.split_string_fn(['1', '2', '3', '?', '6', '5', '8'], list("123mod658"))
         self.assertEqual(result, 123)
 
-
+    ## Set of tests for expressions that should return Math Error
+    #  @param self The object pointer.
     def test_math_errors(self):
         result = calc_parser.split_string_fn(list("1/0"), list("1/0"))
         self.assertEqual(result, "Math Error")
@@ -638,6 +639,8 @@ class TestParser(unittest.TestCase):
         result = calc_parser.split_string_fn(['3', '3', '?', '0'], list("33mod0"))
         self.assertEqual(result, "Math Error")
 
+    ## Set of tests for parsing parentheses
+    #  @param self The object pointer.
     def test_parentheses(self):
         result = calc_parser.split_string_fn(['(', '-', '4', ')', '&', '2'], list("(-4)^2"))
         self.assertEqual(result, 16)
@@ -651,10 +654,92 @@ class TestParser(unittest.TestCase):
         result = calc_parser.split_string_fn(['(', '-', '4', ')', '?', '2'], list("(-4)mod2"))
         self.assertEqual(result, 0)
 
-    #def test_multiple_operations(self):
-    #def test_syntax_errors(self):
-    #def test_memory(self):
+    ## Set of tests for expressions that should return Syntax Error
+    #  @param self The object pointer.
+    def test_syntax_errors(self):
+        result = calc_parser.split_string_fn(['2', '+', '&', '2'], list("2+^2"))
+        self.assertEqual(result, "Syntax Error")
 
+        result = calc_parser.split_string_fn(['8', '(', '&', ')'], list("8(^)"))
+        self.assertEqual(result, "Syntax Error")
+
+        result = calc_parser.split_string_fn(['2', '0', '*', '6'], list("2M*6"))
+        self.assertEqual(result, "Syntax Error")
+
+        result = calc_parser.split_string_fn(['(', '7', ')', '0'], list("(7)M"))
+        self.assertEqual(result, "Syntax Error")
+
+        result = calc_parser.split_string_fn(['5', '(', '6', ')'], list("5(6)"))
+        self.assertEqual(result, "Syntax Error")
+
+        result = calc_parser.split_string_fn(['6', '-', '(', '8'], list("6-(8"))
+        self.assertEqual(result, "Syntax Error")
+
+        result = calc_parser.split_string_fn(['2', ')'], list("2)"))
+        self.assertEqual(result, "Syntax Error")
+
+        result = calc_parser.split_string_fn(['(', '5', '-', ')', '+', '6'], list("(5-)+6"))
+        self.assertEqual(result, "Syntax Error")
+
+        result = calc_parser.split_string_fn(['2', '*', '-', '9'], list("2*-9"))
+        self.assertEqual(result, "Syntax Error")
+
+        result = calc_parser.split_string_fn(['5', '8', '6', '*'], list("586*"))
+        self.assertEqual(result, "Syntax Error")
+
+        result = calc_parser.split_string_fn(['1', '0', '0', '/', '-', '6'], list("100/-6"))
+        self.assertEqual(result, "Syntax Error")
+
+        result = calc_parser.split_string_fn(['/', '6'], list("/6"))
+        self.assertEqual(result, "Syntax Error")
+
+        result = calc_parser.split_string_fn(['!', '0'], list("!"))
+        self.assertEqual(result, "Syntax Error")
+
+        result = calc_parser.split_string_fn(['/', '6'], list("/6"))
+        self.assertEqual(result, "Syntax Error")
+
+        result = calc_parser.split_string_fn(['2', '-', '!', '0'], list("2-!"))
+        self.assertEqual(result, "Syntax Error")
+
+        result = calc_parser.split_string_fn(['-'], list("-"))
+        self.assertEqual(result, "Syntax Error")
+
+        result = calc_parser.split_string_fn(['5', '*', '?', '6'], list("5*mod6"))
+        self.assertEqual(result, "Syntax Error")
+
+        result = calc_parser.split_string_fn(['2', 'mod'], list("2mod"))
+        self.assertEqual(result, "Syntax Error")
+
+        result = calc_parser.split_string_fn(['+', '6', '9'], list("+69"))
+        self.assertEqual(result, "Syntax Error")
+
+        result = calc_parser.split_string_fn(['2', '+', '(', '+', '9', ')'], list("2+(+9)"))
+        self.assertEqual(result, "Syntax Error")
+
+        result = calc_parser.split_string_fn(['3.1415926535', '3.1415926535'], list("ππ"))
+        self.assertEqual(result, "Syntax Error")
+
+        result = calc_parser.split_string_fn(['6', '.', '5', '.', '3'], list("6.5.3"))
+        self.assertEqual(result, "Syntax Error")
+
+        result = calc_parser.split_string_fn(['.', '9', '6'], list(".96"))
+        self.assertEqual(result, "Syntax Error")
+
+        result = calc_parser.split_string_fn(['5', '-', '.', '6'], list("5-.6"))
+        self.assertEqual(result, "Syntax Error")
+
+        result = calc_parser.split_string_fn(['(', '256', ')', '$', '(', '2', ')', '9'], list("[2]√(256)9"))
+        self.assertEqual(result, "Syntax Error")
+
+        result = calc_parser.split_string_fn(['4', '5', '(', '27', ')', '$', '(', '3', ')'], list("45[3]√(27)"))
+        self.assertEqual(result, "Syntax Error")
+
+
+    #def test_multiple_operations(self):
+    #def test_memory(self):
+    #def test_delete(self):
+    #def test_ce(self):
 
 if __name__ == '__main__':
     unittest.main()
