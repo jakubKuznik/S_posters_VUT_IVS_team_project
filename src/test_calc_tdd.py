@@ -36,55 +36,55 @@ class TestBasicOperations(unittest.TestCase):
     def test_add(self):
         # testing positive operands
         result_pos_operands = math_lib.add(7, 7)
-        self.assertEqual(result_pos_operands, 14)
+        self.assertEqual(14, result_pos_operands)
         
         result_pos_operands = math_lib.add(2434, 743)
-        self.assertEqual(result_pos_operands, 3177)
+        self.assertEqual(3177, result_pos_operands)
         
         result_pos_operands = math_lib.add(1835.74, 27)
-        self.assertEqual(result_pos_operands, 1862.74)
+        self.assertEqual(1862.74, result_pos_operands)
         
         result_pos_operands = math_lib.add(100, 100)
-        self.assertEqual(result_pos_operands, 200)
+        self.assertEqual(200, result_pos_operands)
 
         # testing negative operands
         result_neg_operands = math_lib.add(-5, -3)
-        self.assertEqual(result_neg_operands, -8)
+        self.assertEqual(-8, result_neg_operands)
 
         result_neg_operands = math_lib.add(-648, -63)
-        self.assertEqual(result_neg_operands, -711)
+        self.assertEqual(-711, result_neg_operands)
 
         result_neg_operands = math_lib.add(-9.15, -157.95)
-        self.assertEqual(result_neg_operands, -167.1)
+        self.assertEqual(-167.1, result_neg_operands)
 
         result_neg_operands = math_lib.add(-100, -1000)
-        self.assertEqual(result_neg_operands, -1100)
+        self.assertEqual(-1100, result_neg_operands)
 
         # testing first operand positive and second one negative
         result_pos_neg_operands = math_lib.add(10, -5)
-        self.assertEqual(result_pos_neg_operands, 5)
+        self.assertEqual(5, result_pos_neg_operands)
 
         result_pos_neg_operands = math_lib.add(0, -485.7)
-        self.assertEqual(result_pos_neg_operands, -485.7)
+        self.assertEqual(-485.7, result_pos_neg_operands)
 
         result_pos_neg_operands = math_lib.add(18, -4)
-        self.assertEqual(result_pos_neg_operands, 14)
+        self.assertEqual(14, result_pos_neg_operands)
 
         result_pos_neg_operands = math_lib.add(66, -666)
-        self.assertEqual(result_pos_neg_operands, -600)
+        self.assertEqual(-600, result_pos_neg_operands)
 
         # testing first operand negative and second operand positive
         result_neg_pos_operands = math_lib.add(-15, 20)
-        self.assertEqual(result_neg_pos_operands, 5)
+        self.assertEqual(5, result_neg_pos_operands)
 
         result_neg_pos_operands = math_lib.add(-35, 2.14)
-        self.assertEqual(result_neg_pos_operands, -32.86)
+        self.assertEqual(-32.86, result_neg_pos_operands)
 
         result_neg_pos_operands = math_lib.add(-23, 845)
-        self.assertEqual(result_neg_pos_operands, 822)
+        self.assertEqual(822, result_neg_pos_operands)
 
         result_neg_pos_operands = math_lib.add(-1057, 207)
-        self.assertEqual(result_neg_pos_operands, -850)
+        self.assertEqual(-850, result_neg_pos_operands)
 
         # testing operands that returns zero
         result_zero = math_lib.add(42, -42)
@@ -97,7 +97,7 @@ class TestBasicOperations(unittest.TestCase):
         self.assertEqual(0, result_zero)
 
         result_not_zero = math_lib.add(-4219, 421)
-        self.assertNotEqual(result_not_zero, 0)
+        self.assertNotEqual(0, result_not_zero)
 
 
     ## Set of tests for subtraction
@@ -105,55 +105,55 @@ class TestBasicOperations(unittest.TestCase):
     def test_sub(self):
         # testing positive operands
         result_pos_operands = math_lib.sub(2, 7)
-        self.assertEqual(result_pos_operands, -5)
+        self.assertEqual(-5, result_pos_operands)
 
         result_pos_operands = math_lib.sub(95, 71.5)
-        self.assertEqual(result_pos_operands, 23.5)
+        self.assertEqual(23.5, result_pos_operands)
 
         result_pos_operands = math_lib.sub(4786, 7)
-        self.assertEqual(result_pos_operands, 4779)
+        self.assertEqual(4779, result_pos_operands)
 
         result_pos_operands = math_lib.sub(25, 778)
-        self.assertEqual(result_pos_operands, -753)
+        self.assertEqual(-753, result_pos_operands)
         
         # testing negative operands
         result_neg_operands = math_lib.sub(-5, -3)
-        self.assertEqual(result_neg_operands, -2)
+        self.assertEqual(-2, result_neg_operands)
 
         result_neg_operands = math_lib.sub(-255.784, -73)
-        self.assertEqual(result_neg_operands, -182.784)
+        self.assertEqual(-182.784, result_neg_operands)
 
         result_neg_operands = math_lib.sub(-5, -83)
-        self.assertEqual(result_neg_operands, 78)
+        self.assertEqual(78, result_neg_operands)
 
         result_neg_operands = math_lib.sub(-5885, -393)
-        self.assertEqual(result_neg_operands, -5492)
+        self.assertEqual(-5492, result_neg_operands)
 
         # testing first operand positive and second one negative
         result_pos_neg_operands = math_lib.sub(10, -841)
-        self.assertEqual(result_pos_neg_operands, 851)
+        self.assertEqual(851, result_pos_neg_operands)
 
         result_pos_neg_operands = math_lib.sub(810, -1.451)
-        self.assertEqual(result_pos_neg_operands, 811.451)
+        self.assertEqual(811.451, result_pos_neg_operands)
 
         result_pos_neg_operands = math_lib.sub(1, -25)
-        self.assertEqual(result_pos_neg_operands, 26)
+        self.assertEqual(26, result_pos_neg_operands)
 
         result_pos_neg_operands = math_lib.sub(774, -5)
-        self.assertEqual(result_pos_neg_operands, 779)
+        self.assertEqual(779, result_pos_neg_operands)
 
         # testing first operand negative and second operand positive
         result_neg_pos_operands = math_lib.sub(-15, 20)
-        self.assertEqual(result_neg_pos_operands, -35)
+        self.assertEqual(-35, result_neg_pos_operands)
 
         result_neg_pos_operands = math_lib.sub(-83.4, 70.6)
-        self.assertEqual(result_neg_pos_operands, -154)
+        self.assertEqual(-154, result_neg_pos_operands)
 
         result_neg_pos_operands = math_lib.sub(-7615, 234)
-        self.assertEqual(result_neg_pos_operands, -7849)
+        self.assertEqual(-7849, result_neg_pos_operands)
 
         result_neg_pos_operands = math_lib.sub(-97, 1)
-        self.assertEqual(result_neg_pos_operands, -98)
+        self.assertEqual(-98, result_neg_pos_operands)
 
         # testing operands that returns zero
         result_zero = math_lib.sub(33, 33)
@@ -174,55 +174,55 @@ class TestBasicOperations(unittest.TestCase):
     def test_mult(self):
         # testing positive operands
         result_pos_operands = math_lib.mult(2, 7)
-        self.assertEqual(result_pos_operands, 14)
+        self.assertEqual(14, result_pos_operands)
 
         result_pos_operands = math_lib.mult(547, 31)
-        self.assertEqual(result_pos_operands, 16957)
+        self.assertEqual(16957, result_pos_operands)
 
         result_pos_operands = math_lib.mult(9, 467)
-        self.assertEqual(result_pos_operands, 4203)
+        self.assertEqual(4203, result_pos_operands)
 
         result_pos_operands = math_lib.mult(964.78, 10)
-        self.assertEqual(result_pos_operands, 9647.8)
+        self.assertEqual(9647.8, result_pos_operands)
 
         # testing negative operands
         result_neg_operands = math_lib.mult(-2, -14)
-        self.assertEqual(result_neg_operands, 28)
+        self.assertEqual(28, result_neg_operands)
 
         result_neg_operands = math_lib.mult(-64, -9)
-        self.assertEqual(result_neg_operands, 576)
+        self.assertEqual(576, result_neg_operands)
 
         result_neg_operands = math_lib.mult(-4, -6728)
-        self.assertEqual(result_neg_operands, 26912)
+        self.assertEqual(26912, result_neg_operands)
 
         result_neg_operands = math_lib.mult(-2148, -548.7)
-        self.assertEqual(result_neg_operands, 1178607.6)
+        self.assertEqual(1178607.6, result_neg_operands)
 
         # testing first operand positive and second one negative
         result_pos_neg_operands = math_lib.mult(10, -5)
-        self.assertEqual(result_pos_neg_operands, -50)
+        self.assertEqual(-50, result_pos_neg_operands)
 
         result_pos_neg_operands = math_lib.mult(61.0, -2)
-        self.assertEqual(result_pos_neg_operands, -122.0)
+        self.assertEqual(-122.0, result_pos_neg_operands)
 
         result_pos_neg_operands = math_lib.mult(1, -548)
-        self.assertEqual(result_pos_neg_operands, -548)
+        self.assertEqual(-548, result_pos_neg_operands)
 
         result_pos_neg_operands = math_lib.mult(100, -41)
-        self.assertEqual(result_pos_neg_operands, -4100)
+        self.assertEqual(-4100, result_pos_neg_operands)
 
         # testing first operand negative and second operand positive
         result_neg_pos_operands = math_lib.mult(-10, 5)
-        self.assertEqual(result_neg_pos_operands, -50)
+        self.assertEqual(-50, result_neg_pos_operands)
 
         result_neg_pos_operands = math_lib.mult(-84, 73.4)
-        self.assertEqual(result_neg_pos_operands, -6165.6)
+        self.assertEqual(-6165.6, result_neg_pos_operands)
 
         result_neg_pos_operands = math_lib.mult(-457, 1)
-        self.assertEqual(result_neg_pos_operands, -457)
+        self.assertEqual(-457, result_neg_pos_operands)
 
         result_neg_pos_operands = math_lib.mult(-111, 111)
-        self.assertEqual(result_neg_pos_operands, -12321)
+        self.assertEqual(-12321, result_neg_pos_operands)
 
         # testing operands that returns zero
         result_zero = math_lib.mult(33, 0)
@@ -243,55 +243,55 @@ class TestBasicOperations(unittest.TestCase):
     def test_div(self):
         # testing positive operands
         result_pos_operands = math_lib.div(6, 3)
-        self.assertEqual(result_pos_operands, 2)
+        self.assertEqual(2, result_pos_operands)
 
         result_pos_operands = math_lib.div(74.8, 25)
-        self.assertEqual(result_pos_operands, 2.992)
+        self.assertEqual(2.992, result_pos_operands)
 
         result_pos_operands = math_lib.div(845, 65)
-        self.assertEqual(result_pos_operands, 13)
+        self.assertEqual(13, result_pos_operands)
 
         result_pos_operands = math_lib.div(12.4, 0.2)
-        self.assertEqual(result_pos_operands, 62)
+        self.assertEqual(62, result_pos_operands)
 
         # testing negative operands
         result_neg_operands = math_lib.div(-14, -2)
-        self.assertEqual(result_neg_operands, 7)
+        self.assertEqual(7, result_neg_operands)
 
         result_neg_operands = math_lib.div(-4, -2)
-        self.assertEqual(result_neg_operands, 2)
+        self.assertEqual(2, result_neg_operands)
 
         result_neg_operands = math_lib.div(-0.5, -2)
-        self.assertEqual(result_neg_operands, 0.25)
+        self.assertEqual(0.25, result_neg_operands)
 
         result_neg_operands = math_lib.div(-64.5, -3)
-        self.assertEqual(result_neg_operands, 21.5)
+        self.assertEqual(21.5, result_neg_operands)
 
         # testing first operand positive and second one negative
         result_pos_neg_operands = math_lib.div(10, -5)
-        self.assertEqual(result_pos_neg_operands, -2)
+        self.assertEqual(-2, result_pos_neg_operands)
 
         result_pos_neg_operands = math_lib.div(14, -0.5)
-        self.assertEqual(result_pos_neg_operands, -28)
+        self.assertEqual(-28, result_pos_neg_operands)
 
         result_pos_neg_operands = math_lib.div(10.5, -6)
-        self.assertEqual(result_pos_neg_operands, -1.75)
+        self.assertEqual(-1.75, result_pos_neg_operands)
 
         result_pos_neg_operands = math_lib.div(10, -200)
-        self.assertEqual(result_pos_neg_operands, -0.05)
+        self.assertEqual(-0.05, result_pos_neg_operands)
 
         # testing first operand negative and second operand positive
         result_neg_pos_operands = math_lib.div(-54, 6)
-        self.assertEqual(result_neg_pos_operands, -9)
+        self.assertEqual(-9, result_neg_pos_operands)
 
         result_neg_pos_operands = math_lib.div(-154.5, 1.2)
-        self.assertEqual(result_neg_pos_operands, -128.75)
+        self.assertEqual(-128.75, result_neg_pos_operands)
 
         result_neg_pos_operands = math_lib.div(-84, 7.5)
-        self.assertEqual(result_neg_pos_operands, -11.2)
+        self.assertEqual(-11.2, result_neg_pos_operands)
 
         result_neg_pos_operands = math_lib.div(-15, 3)
-        self.assertEqual(result_neg_pos_operands, -5)
+        self.assertEqual(-5, result_neg_pos_operands)
 
         # testing operands that returns zero
         result_pos_zero = math_lib.div(0, 33)
@@ -321,17 +321,17 @@ class TestBasicOperations(unittest.TestCase):
     def test_fact(self):
         # testing positive operands
         result_fact_pos = math_lib.fact(1)
-        self.assertEqual(result_fact_pos, 1)
+        self.assertEqual(1, result_fact_pos)
         
         result_fact_pos = math_lib.fact(5)
-        self.assertEqual(result_fact_pos ,120)
+        self.assertEqual(120, result_fact_pos)
         
         result_fact_pos = math_lib.fact(9)
-        self.assertEqual(result_fact_pos , 362880)
+        self.assertEqual(362880, result_fact_pos)
         
         # testing zero
         result_fact_zero = math_lib.fact(0)
-        self.assertEqual(result_fact_zero, 1)
+        self.assertEqual(1, result_fact_zero)
 
         # testing errors
         result_error = math_lib.fact(2.5)
@@ -349,55 +349,55 @@ class TestBasicOperations(unittest.TestCase):
     def test_exp(self):
         # testing positive operands
         result_exp_pos = math_lib.exp(2, 2)
-        self.assertEqual(result_exp_pos, 4)
+        self.assertEqual(4, result_exp_pos)
 
         result_exp_pos = math_lib.exp(25, 3)
-        self.assertEqual(result_exp_pos, 15625)
+        self.assertEqual(15625, result_exp_pos)
 
         result_exp_pos = math_lib.exp(2, 8)
-        self.assertEqual(result_exp_pos, 256)
+        self.assertEqual(256, result_exp_pos)
 
         result_exp_pos = math_lib.exp(6, 0)
-        self.assertEqual(result_exp_pos, 1)
+        self.assertEqual(1, result_exp_pos)
 
         # testing negative operands
         result_exp_neg = math_lib.exp(-4, -3)
-        self.assertEqual(result_exp_neg, -0.015625)
+        self.assertEqual(-0.015625, result_exp_neg)
 
         result_exp_neg = math_lib.exp(-5, -1)
-        self.assertEqual(result_exp_neg, -0.2)
+        self.assertEqual(-0.2, result_exp_neg)
 
         result_exp_neg = math_lib.exp(-0.5, -2)
-        self.assertEqual(result_exp_neg, 4)
+        self.assertEqual(4, result_exp_neg)
 
         result_exp_neg = math_lib.exp(-1, -30)
-        self.assertEqual(result_exp_neg, 1)
+        self.assertEqual(1, result_exp_neg)
 
         # testing first operand positive and second one negative
         result_exp_pos_neg = math_lib.exp(4, -2)
-        self.assertEqual(result_exp_pos_neg, 0.0625)
+        self.assertEqual(0.0625, result_exp_pos_neg)
 
         result_exp_pos_neg = math_lib.exp(2, -1)
-        self.assertEqual(result_exp_pos_neg, 0.5)
+        self.assertEqual(0.5, result_exp_pos_neg)
 
         result_exp_pos_neg = math_lib.exp(2, -3)
-        self.assertEqual(result_exp_pos_neg, 0.125)
+        self.assertEqual(0.125, result_exp_pos_neg)
 
         result_exp_pos_neg = math_lib.exp(1, -2)
-        self.assertEqual(result_exp_pos_neg, 1)
+        self.assertEqual(1, result_exp_pos_neg)
 
         # testing first operand negative and second operand positive
         result_exp_neg_pos = math_lib.exp(-4, 2)
-        self.assertEqual(result_exp_neg_pos, 16)        
+        self.assertEqual(16, result_exp_neg_pos)
         
         result_exp_neg_pos = math_lib.exp(-2, 8)
-        self.assertEqual(result_exp_neg_pos, 256)        
+        self.assertEqual(256, result_exp_neg_pos)
         
         result_exp_neg_pos = math_lib.exp(-42, 1)
-        self.assertEqual(result_exp_neg_pos, -42)        
+        self.assertEqual(-42, result_exp_neg_pos)
         
         result_exp_neg_pos = math_lib.exp(-1, 2)
-        self.assertEqual(result_exp_neg_pos, 1)
+        self.assertEqual(1, result_exp_neg_pos)
 
         # testing operands that returns zero
         result_zero = math_lib.exp(0, 2)
@@ -419,37 +419,37 @@ class TestBasicOperations(unittest.TestCase):
     def test_root(self):
         # testing positive operands
         result_exp_pos = math_lib.root(27, 3)
-        self.assertEqual(result_exp_pos, 3)
+        self.assertEqual(3, result_exp_pos)
 
         result_exp_pos = math_lib.root(100, 2)
-        self.assertEqual(result_exp_pos, 10)
+        self.assertEqual(10, result_exp_pos)
 
         result_exp_pos = math_lib.root(144, 2)
-        self.assertEqual(result_exp_pos, 12)
+        self.assertEqual(12, result_exp_pos)
 
         result_exp_pos = math_lib.root(0, 3)
-        self.assertEqual(result_exp_pos, 0)
+        self.assertEqual(0, result_exp_pos)
 
         # testing negative operands
         result_exp_neg = math_lib.root(-8, -3)
-        self.assertEqual(result_exp_neg, -0.5)
+        self.assertEqual(-0.5, result_exp_neg)
 
         result_exp_neg = math_lib.root(-1024, -5)
-        self.assertAlmostEqual(result_exp_neg, -0.25)
+        self.assertAlmostEqual(-0.25, result_exp_neg)
 
         # testing first operand positive and second one negative
         result_exp_pos_neg = math_lib.root(1024, -2)
-        self.assertEqual(result_exp_pos_neg, 0.03125)
+        self.assertEqual(0.03125, result_exp_pos_neg)
 
         result_exp_pos_neg = math_lib.root(8, -3)
-        self.assertEqual(result_exp_pos_neg, 0.5)
+        self.assertEqual(0.5, result_exp_pos_neg)
 
         # testing first operand negative and second operand positive
         result_exp_neg_pos = math_lib.root(-64, 3)
-        self.assertAlmostEqual(result_exp_neg_pos, -4)        
+        self.assertAlmostEqual(-4, result_exp_neg_pos)        
         
         result_exp_neg_pos = math_lib.root(-78125, 7)
-        self.assertAlmostEqual(result_exp_neg_pos, -5)        
+        self.assertAlmostEqual(-5, result_exp_neg_pos)        
         
         # testing operands that returns zero
         result_error = math_lib.root(-4, 2)
@@ -467,55 +467,55 @@ class TestBasicOperations(unittest.TestCase):
     def test_mod(self):
         # testing positive operands
         result_pos_operands = math_lib.mod(7, 7)
-        self.assertEqual(result_pos_operands, 0)
+        self.assertEqual(0, result_pos_operands)
         
         result_pos_operands = math_lib.mod(13, 5)
-        self.assertEqual(result_pos_operands, 3)
+        self.assertEqual(3, result_pos_operands)
         
         result_pos_operands = math_lib.mod(1, 3)
-        self.assertEqual(result_pos_operands, 1)
+        self.assertEqual(1, result_pos_operands)
         
         result_pos_operands = math_lib.mod(158, 8)
-        self.assertEqual(result_pos_operands, 6)
+        self.assertEqual(6, result_pos_operands)
         
         # testing negative operands
         result_neg_operands = math_lib.mod(-100, -3)
-        self.assertEqual(result_neg_operands, -1)
+        self.assertEqual(-1, result_neg_operands)
 
         result_neg_operands = math_lib.mod(-1, -8)
-        self.assertEqual(result_neg_operands, -1)
+        self.assertEqual(-1, result_neg_operands)
 
         result_neg_operands = math_lib.mod(-8, -3)
-        self.assertEqual(result_neg_operands, -2)
+        self.assertEqual(-2, result_neg_operands)
 
         result_neg_operands = math_lib.mod(-57, -6)
-        self.assertEqual(result_neg_operands, -3)
+        self.assertEqual(-3, result_neg_operands)
 
         # testing first operand positive and second one negative
         result_exp_pos_neg = math_lib.mod(4, -3)
-        self.assertEqual(result_exp_pos_neg, -2)
+        self.assertEqual(-2, result_exp_pos_neg)
 
         result_exp_pos_neg = math_lib.mod(8, -3)
-        self.assertAlmostEqual(result_exp_pos_neg, -1)
+        self.assertAlmostEqual(-1, result_exp_pos_neg)
 
         result_exp_pos_neg = math_lib.mod(4, -3)
-        self.assertEqual(result_exp_pos_neg, -2)
+        self.assertEqual(-2, result_exp_pos_neg)
 
         result_exp_pos_neg = math_lib.mod(245, -85)
-        self.assertEqual(result_exp_pos_neg, -10)
+        self.assertEqual(-10, result_exp_pos_neg)
 
         # testing first operand negative and second operand positive
         result_exp_neg_pos = math_lib.mod(-4, 2)
-        self.assertEqual(result_exp_neg_pos, 0)        
+        self.assertEqual(0, result_exp_neg_pos)        
         
         result_exp_neg_pos = math_lib.mod(-2, 8)
-        self.assertEqual(result_exp_neg_pos, 6)        
+        self.assertEqual(6, result_exp_neg_pos)
         
         result_exp_neg_pos = math_lib.mod(-42, 13)
-        self.assertEqual(result_exp_neg_pos, 10)        
+        self.assertEqual(10, result_exp_neg_pos)
         
         result_exp_neg_pos = math_lib.mod(-1, 2)
-        self.assertEqual(result_exp_neg_pos, 1)
+        self.assertEqual(1, result_exp_neg_pos)
 
         # testing operands that returns zero
         result_pos_operands = math_lib.mod(7, 7)
