@@ -41,13 +41,18 @@ output = []
 # @param
 #
 def split_string_fn(calc_string, displayed_content):
+    print(calc_string)
+    print(displayed_content)
     for i in range(1, len(displayed_content)-1):
         if displayed_content[i] == 'π' or displayed_content[i] == 'M':
             if is_number(displayed_content[i - 1]) or is_number(displayed_content[i + 1]):
                 return "Syntax Error"
-            if displayed_content[i - 1] == 'M' or displayed_content[i + 1] == 'M':
+    for i in range(1, len(displayed_content)):
+            if displayed_content[i - 1] == 'M':
                 return "Syntax Error"
-            if displayed_content[i - 1] == 'π' or displayed_content[i + 1] == 'π':
+            if displayed_content[i - 1] == 'π':
+                return "Syntax Error"
+            if displayed_content[i - 1] == ')':
                 return "Syntax Error"
     calc_string = ''.join(calc_string)
     split_string = re.findall(r'[0-9.]+|[^0-9.]', calc_string)
@@ -175,6 +180,8 @@ def validate(split_string):
             parentheses_counter -= 1
         if parentheses_counter < 0:
             return False
+    if parentheses_counter!=0:
+        return False
 
     binary_operators = ['+', '-', '*', '/', '&', '$', '?']
     for i in range(len(split_string)):
