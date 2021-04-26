@@ -187,7 +187,7 @@ class App(QWidget):
         self.output2.setGeometry(QtCore.QRect(0, 105, 550, 105))
         self.output2.setFont(QFont("Arial", 35))
 
-        self.pushButton_help.setGeometry(QtCore.QRect(18, 60, 30, 30))
+        self.pushButton_help.setGeometry(QtCore.QRect(12, 60, 30, 30))
         self.pushButton_help.clicked.connect(self.help_click)
         self.pushButton_help.setIconSize(QSize(30, 30))
         self.list_of_buttons.append(self.pushButton_help)
