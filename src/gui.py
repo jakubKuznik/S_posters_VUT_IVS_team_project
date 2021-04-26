@@ -185,13 +185,13 @@ class App(QWidget):
         self.output2.setGeometry(QtCore.QRect(0, 105, 550, 105))
         self.output2.setFont(QFont("Arial", 35))
 
-        self.pushButton_help.setGeometry(QtCore.QRect(10, 35, 35, 35))
+        self.pushButton_help.setGeometry(QtCore.QRect(100, 100, 35, 35))
         self.pushButton_help.clicked.connect(self.help_click)
         self.pushButton_help.setIcon(self.question_mark)
         self.pushButton_help.setIconSize(QSize(30, 30))
         self.list_of_buttons.append(self.pushButton_help)
 
-        self.pushButton_color.setGeometry(10, 10, 35, 35)
+        self.pushButton_color.setGeometry(20, 20, 50, 50)
         self.pushButton_color.setCheckable(True)
         self.pushButton_color.clicked.connect(self.change_color)
         self.list_of_buttons.append(self.pushButton_color)
@@ -258,7 +258,7 @@ class App(QWidget):
     #
     def toggle_light_mode(self):
         self.pushButton_color.setIcon(self.color_light)
-        self.pushButton_color.setIconSize(QSize(40, 40))
+        self.pushButton_color.setIconSize(QSize(50, 50))
 
         # background
         self.setStyleSheet("background-color: rgb(248, 248, 248);")
