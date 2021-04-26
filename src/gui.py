@@ -110,7 +110,7 @@ class App(QWidget):
                         ["CE", [15, 775], "M", self.complete_delete],
                         ["+", [345, 665], "M", self.print, "+", "+"],
                         ["-", [345, 555], "M", self.print, "-", "-"],
-                        ["*", [345, 445], "M", self.print, "*", "*"],
+                        ["✕", [345, 445], "M", self.print, "*", "*"],
                         ["(", [15, 335], "S", self.print, "(", "("],
                         [")", [125, 335], "S", self.print, ")", ")"],
                         ["/", [345, 335], "S", self.print, "/", "/"],
@@ -170,13 +170,13 @@ class App(QWidget):
         self.pushButton_mem.clicked.connect(lambda: self.print(self.memory, "M"))
         self.list_of_buttons.append(self.pushButton_mem)
 
-        self.output1.setGeometry(QtCore.QRect(0, 10, 320, 40))
+        self.output1.setGeometry(QtCore.QRect(0, 0, 550, 105))
         self.output1.setFont(self.font)
         self.output1.setAlignment(QtCore.Qt.AlignRight | QtCore.Qt.AlignVCenter)
         self.output1.setText(''.join(self.displayed_content))
 
-        self.output2.setGeometry(QtCore.QRect(0, 40, 320, 50))
-        self.output2.setFont(self.font)
+        self.output2.setGeometry(QtCore.QRect(0, 105, 550, 105))
+        self.output2.setFont(QFont("Arial", 35))
 
         self.pushButton_help.setGeometry(QtCore.QRect(0, 0, 35, 35))
         self.pushButton_help.setText("?")
