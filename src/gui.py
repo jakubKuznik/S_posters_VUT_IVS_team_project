@@ -189,7 +189,6 @@ class App(QWidget):
 
         self.pushButton_help.setGeometry(QtCore.QRect(17, 80, 50, 50))
         self.pushButton_help.clicked.connect(self.help_click)
-        self.pushButton_help.setIcon(self.question_on)
         self.pushButton_help.setIconSize(QSize(35, 35))
         self.list_of_buttons.append(self.pushButton_help)
 
@@ -262,6 +261,7 @@ class App(QWidget):
     def toggle_light_mode(self):
         self.pushButton_color.setIcon(self.color_light)
         self.pushButton_color.setIconSize(QSize(50, 50))
+        self.pushButton_help.setIcon(self.question_on)
 
         # background
         self.setStyleSheet("background-color: rgb(248, 248, 248);")
