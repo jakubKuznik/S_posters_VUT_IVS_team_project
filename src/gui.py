@@ -72,7 +72,7 @@ class App(QWidget):
         self.root_content_displayed = []
 
         ## Global font family and size declaration.
-        self.font = QFont("Arial", 20)
+        self.font = QFont("Arial", 16)
         ## QtWidgets window init.
         self.window = QtWidgets.QApplication(sys.argv)
         ## Init of help form with font passed as a parameter.
@@ -174,6 +174,7 @@ class App(QWidget):
         self.output1.setFont(self.font)
         self.output1.setAlignment(QtCore.Qt.AlignRight | QtCore.Qt.AlignVCenter)
         self.output1.setText(''.join(self.displayed_content))
+        self.output1.setFont(QFont("Arial", 20))
 
         self.output2.setGeometry(QtCore.QRect(0, 105, 550, 105))
         self.output2.setFont(QFont("Arial", 35))
