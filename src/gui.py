@@ -96,7 +96,9 @@ class App(QWidget):
         ## Color modes icons
         self.color_light = QIcon('bulb_on.png')
         self.color_dark = QIcon('bulb_off.png')
-        self.question_mark = QIcon('question_mark.png')
+        self.question_on = QIcon('question_on.png')
+        self.question_off = QIcon('question_off.png')
+
 
         ## List of all buttons in the user interface.
         self.list_of_buttons = []
@@ -185,13 +187,13 @@ class App(QWidget):
         self.output2.setGeometry(QtCore.QRect(0, 105, 550, 105))
         self.output2.setFont(QFont("Arial", 35))
 
-        self.pushButton_help.setGeometry(QtCore.QRect(100, 100, 35, 35))
+        self.pushButton_help.setGeometry(QtCore.QRect(17, 80, 50, 50))
         self.pushButton_help.clicked.connect(self.help_click)
-        self.pushButton_help.setIcon(self.question_mark)
-        self.pushButton_help.setIconSize(QSize(30, 30))
+        self.pushButton_help.setIcon(self.question_on)
+        self.pushButton_help.setIconSize(QSize(35, 35))
         self.list_of_buttons.append(self.pushButton_help)
 
-        self.pushButton_color.setGeometry(20, 20, 50, 50)
+        self.pushButton_color.setGeometry(15, 20, 50, 50)
         self.pushButton_color.setCheckable(True)
         self.pushButton_color.clicked.connect(self.change_color)
         self.list_of_buttons.append(self.pushButton_color)
@@ -218,6 +220,7 @@ class App(QWidget):
     #
     def toggle_dark_mode(self):
         self.pushButton_color.setIcon(self.color_dark)
+        self.pushButton_help.setIcon(self.question_off)
 
         # background
         self.setStyleSheet("background-color: rgb(68, 68, 68);")
@@ -246,8 +249,8 @@ class App(QWidget):
         shadow.setColor(QColor(58, 58, 58))
         self.pushButton_s_equal.setStyleSheet("QPushButton{background-color: rgb(255, 100, 100); border-radius: 30%;color: white;} QPushButton:pressed { border: 5px solid; border-color:rgb(117, 117, 117); color: white;}")
         self.pushButton_s_equal.setGraphicsEffect(shadow)
-        self.pushButton_help.setStyleSheet("background-color: rgb(48, 48, 48); color: rgb();border: 0px;")
-        self.pushButton_color.setStyleSheet("background-color: rgb(48, 48, 48); color: rgb();border: 0px;")
+        self.pushButton_help.setStyleSheet("background-color: rgb(48, 48, 48);border: 0px;")
+        self.pushButton_color.setStyleSheet("background-color: rgb(48, 48, 48);border: 0px;")
         self.output1.setStyleSheet("color: rgb(148, 148, 148); background-color: rgb(48, 48, 48); padding-left:35px;padding-right:15px;")
         self.output2.setStyleSheet("color: rgb(255, 100, 100); background-color: rgb(48, 48, 48); padding-left:35px;")
 
@@ -344,7 +347,7 @@ class App(QWidget):
             self.complete_delete()
         elif event.key() == QtCore.Qt.Key_Return:
             self.move_in_root()
-        # TODO: zvysne tlacitka, ktore sa daju zadat z klavesnice
+
 
     ## This function evaluates user input.
     # @brief Sends string input to parser for further evaluation.
