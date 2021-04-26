@@ -767,8 +767,10 @@ class TestParser(unittest.TestCase):
         result = calc_parser.split_string_fn(['1', '4', '&', '(', '6', '*', '0', '.', '5', ')'], list("14^(6*0.5)"))
         self.assertEqual(2744, result)
 
+        result = calc_parser.split_string_fn(['(', '7', '*', '(', '5', '8', '/', '2', ')', '-', '9', ')', '+', '(', '7', '-', '(', '-', '6', ')', ')'], list("(7*(58/2)-9)+(7-(-6))"))
+        self.assertEqual(207, result)
 
-
+       
     #def test_memory(self):
     #def test_delete(self):
     #def test_ce(self):

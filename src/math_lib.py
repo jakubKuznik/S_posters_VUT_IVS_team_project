@@ -92,6 +92,8 @@ def div(a, b):
 def root(a, b):
     if a == 0 and b == 0:
         return "Math Error"
+    if b == 0:
+        return "Math Error"
     if a < 0:
         if b%2==1:
             a=a*(-1)
