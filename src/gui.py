@@ -25,7 +25,8 @@
 import sys
 
 from PyQt5 import QtWidgets, QtCore
-from PyQt5.QtGui import QFont, QIcon, QColor
+from PyQt5.QtCore import QSize
+from PyQt5.QtGui import QFont, QIcon, QColor, QPixmap
 from PyQt5.QtWidgets import QWidget, QPushButton, QGraphicsDropShadowEffect
 from calc_parser import *
 
@@ -91,6 +92,11 @@ class App(QWidget):
         self.pushButton_help = QPushButton(self)
         ## Dark mode button init.
         self.pushButton_color = QPushButton(self)
+
+        ## Color modes icons
+        self.color_light = QIcon('bulb_on.png')
+        self.color_dark = QIcon('bulb_off.png')
+        self.question_mark = QIcon('question_mark.png')
 
         ## List of all buttons in the user interface.
         self.list_of_buttons = []
@@ -179,15 +185,14 @@ class App(QWidget):
         self.output2.setGeometry(QtCore.QRect(0, 105, 550, 105))
         self.output2.setFont(QFont("Arial", 35))
 
-        self.pushButton_help.setGeometry(QtCore.QRect(0, 0, 35, 35))
-        self.pushButton_help.setText("?")
+        self.pushButton_help.setGeometry(QtCore.QRect(15, 0, 35, 35))
         self.pushButton_help.clicked.connect(self.help_click)
+        self.pushButton_help.setIcon(self.question_mark)
+        self.pushButton_help.setIconSize(QSize(30, 30))
         self.list_of_buttons.append(self.pushButton_help)
 
-        self.pushButton_color.setGeometry(0, 35, 35, 35)
+        self.pushButton_color.setGeometry(10, 35, 35, 35)
         self.pushButton_color.setCheckable(True)
-        self.pushButton_color.setText("D")
-        # TODO: maybe add icon for this button?
         self.pushButton_color.clicked.connect(self.change_color)
         self.list_of_buttons.append(self.pushButton_color)
 
@@ -212,6 +217,8 @@ class App(QWidget):
     # @param self
     #
     def toggle_dark_mode(self):
+        self.pushButton_color.setIcon(self.color_dark)
+
         # background
         self.setStyleSheet("background-color: rgb(68, 68, 68);")
 
@@ -250,6 +257,9 @@ class App(QWidget):
     # @param self
     #
     def toggle_light_mode(self):
+        self.pushButton_color.setIcon(self.color_light)
+        self.pushButton_color.setIconSize(QSize(30, 30))
+
         # background
         self.setStyleSheet("background-color: rgb(248, 248, 248);")
 
