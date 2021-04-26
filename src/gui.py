@@ -25,8 +25,8 @@
 import sys
 
 from PyQt5 import QtWidgets, QtCore
-from PyQt5.QtGui import QFont, QIcon
-from PyQt5.QtWidgets import QWidget, QPushButton
+from PyQt5.QtGui import QFont, QIcon, QColor
+from PyQt5.QtWidgets import QWidget, QPushButton, QGraphicsDropShadowEffect
 from calc_parser import *
 
 
@@ -83,12 +83,12 @@ class App(QWidget):
         self.pushButton_s_equal = QPushButton(self)
         ## M button init.
         self.pushButton_mem = QPushButton(self)
-        ## Help button init.
-        self.pushButton_help = QPushButton(self)
         ## Primary display init.
         self.output1 = QtWidgets.QLabel(self)
         ## Secondary display init.
         self.output2 = QtWidgets.QLabel(self)
+        ## Help button init.
+        self.pushButton_help = QPushButton(self)
         ## Dark mode button init.
         self.pushButton_color = QPushButton(self)
 
@@ -96,34 +96,36 @@ class App(QWidget):
         self.list_of_buttons = []
 
         ## List of button params(coords, size, text and function).
-        self.buttons = [["0", [80, 400], "M", self.print, "0", "0"],
-                        ["1", [10, 330], "M", self.print, "1", "1"],
-                        ["2", [80, 330], "M", self.print, "2", "2"],
-                        ["3", [150, 330], "M", self.print, "3", "3"],
-                        ["4", [10, 260], "M", self.print, "4", "4"],
-                        ["5", [80, 260], "M", self.print, "5", "5"],
-                        ["6", [150, 260], "M", self.print, "6", "6"],
-                        ["7", [10, 190], "M", self.print, "7", "7"],
-                        ["8", [80, 190], "M", self.print, "8", "8"],
-                        ["9", [150, 190], "M", self.print, "9", "9"],
-                        ["+", [220, 330], "M", self.print, "+", "+"],
-                        ["-", [220, 260], "M", self.print, "-", "-"],
-                        ["*", [220, 190], "M", self.print, "*", "*"],
-                        ["(", [10, 140], "S", self.print, "(", "("],
-                        [")", [80, 140], "S", self.print, ")", ")"],
-                        [".", [150, 400], "M", self.print, ".", "."],
-                        ["/", [220, 140], "S", self.print, "/", "/"],
-                        ["→", [290, 140], "S", self.move_in_root],
-                        ["n!", [290, 190], "M", self.print, "!", "!"],
-                        ["mod", [290, 260], "M", self.print, "?", "mod"],
-                        ["π", [290, 330], "M", self.print, "3.1415926535", "π"],
-                        ["CE", [10, 400], "M", self.complete_delete],
-                        ["←", [150, 140], "S", self.delete],
-                        ["√", [80, 90], "S", self.root],
-                        ["^", [10, 90], "S", self.print, "&", "^"],
-                        ["M+", [220, 90], "S", self.add_to_memory],
-                        ["M-", [290, 90], "S", self.remove_from_memory],
+        self.buttons = [["0", [125, 775], "M", self.print, "0", "0"],  #
+                        ["1", [15, 665], "M", self.print, "1", "1"],
+                        ["2", [125, 665], "M", self.print, "2", "2"],
+                        ["3", [235, 665], "M", self.print, "3", "3"],
+                        ["4", [15, 555], "M", self.print, "4", "4"],
+                        ["5", [125, 555], "M", self.print, "5", "5"],
+                        ["6", [235, 555], "M", self.print, "6", "6"],
+                        ["7", [15, 445], "M", self.print, "7", "7"],
+                        ["8", [125, 445], "M", self.print, "8", "8"],
+                        ["9", [235, 445], "M", self.print, "9", "9"],
+                        [".", [235, 775], "M", self.print, ".", "."],
+                        ["CE", [15, 775], "M", self.complete_delete],
+                        ["+", [345, 665], "M", self.print, "+", "+"],
+                        ["-", [345, 555], "M", self.print, "-", "-"],
+                        ["*", [345, 445], "M", self.print, "*", "*"],
+                        ["(", [15, 335], "S", self.print, "(", "("],
+                        [")", [125, 335], "S", self.print, ")", ")"],
+                        ["/", [345, 335], "S", self.print, "/", "/"],
+                        ["→", [455, 335], "S", self.move_in_root],
+                        ["n!", [455, 445], "M", self.print, "!", "!"],
+                        ["mod", [455, 555], "M", self.print, "?", "mod"],
+                        ["π", [455, 665], "M", self.print, "3.1415926535", "π"],
+                        ["←", [235, 335], "S", self.delete],
+
+                        ["√", [125, 225], "S", self.root],
+                        ["^", [15, 225], "S", self.print, "&", "^"],  #
+                        ["M+", [345, 225], "S", self.add_to_memory],
+                        ["M-", [455, 225], "S", self.remove_from_memory],
                         ]
+
         self.setup_ui()
         self.toggle_light_mode()
 
@@ -133,8 +135,8 @@ class App(QWidget):
     # @param self
     #
     def setup_ui(self):
-        self.setFixedSize(360, 480)
-        self.setWindowTitle("Imposter Calculator")
+        self.setFixedSize(550, 870)
+        self.setWindowTitle("Sloth Calculator")
         for i in range(len(self.buttons)):
             x_coord = self.buttons[i][1][0]
             y_coord = self.buttons[i][1][1]
@@ -145,19 +147,8 @@ class App(QWidget):
             # function to bind to key press
             callback_fn = self.buttons[i][3]
 
-            # constant for every button except "="
-            size_x = 60
-
-            # assigning correct size according to the letter
-            if self.buttons[i][2] == "S":
-                size_y = 45
-            elif self.buttons[i][2] == "M":
-                size_y = 65
-            else:
-                size_y = 3
-
             self.list_of_buttons.append(QPushButton(text, self))
-            self.list_of_buttons[i].setGeometry(QtCore.QRect(x_coord, y_coord, size_x, size_y))
+            self.list_of_buttons[i].setGeometry(QtCore.QRect(x_coord, y_coord, 80, 80))
 
             # if for buttons with less arguments, e.g. "←", "M", "M+", "M-",
             if len(self.buttons[i]) == 4:
@@ -169,28 +160,28 @@ class App(QWidget):
                 self.list_of_buttons[i].clicked.connect(
                     lambda checked, t=term, d_t=displayed_term, fn=callback_fn: fn(t, d_t))
 
-        self.pushButton_s_equal.setGeometry(QtCore.QRect(220, 400, 130, 65))
+        self.pushButton_s_equal.setGeometry(QtCore.QRect(345, 775, 190, 80))
         self.pushButton_s_equal.setText("=")
         self.pushButton_s_equal.clicked.connect(lambda: self.evaluate())
         self.list_of_buttons.append(self.pushButton_s_equal)
 
-        self.pushButton_mem.setGeometry(QtCore.QRect(150, 90, 60, 45))
+        self.pushButton_mem.setGeometry(QtCore.QRect(235, 225, 80, 80))
         self.pushButton_mem.setText("M")
         self.pushButton_mem.clicked.connect(lambda: self.print(self.memory, "M"))
         self.list_of_buttons.append(self.pushButton_mem)
+
+        self.output1.setGeometry(QtCore.QRect(0, 10, 320, 40))
+        self.output1.setFont(self.font)
+        self.output1.setAlignment(QtCore.Qt.AlignRight | QtCore.Qt.AlignVCenter)
+        self.output1.setText(''.join(self.displayed_content))
+
+        self.output2.setGeometry(QtCore.QRect(0, 40, 320, 50))
+        self.output2.setFont(self.font)
 
         self.pushButton_help.setGeometry(QtCore.QRect(0, 0, 35, 35))
         self.pushButton_help.setText("?")
         self.pushButton_help.clicked.connect(self.help_click)
         self.list_of_buttons.append(self.pushButton_help)
-
-        self.output1.setGeometry(QtCore.QRect(35, 10, 320, 40))
-        self.output1.setFont(self.font)
-        self.output1.setAlignment(QtCore.Qt.AlignRight | QtCore.Qt.AlignVCenter)
-        self.output1.setText(''.join(self.displayed_content))
-
-        self.output2.setGeometry(QtCore.QRect(35, 40, 320, 50))
-        self.output2.setFont(self.font)
 
         self.pushButton_color.setGeometry(0, 35, 35, 35)
         self.pushButton_color.setCheckable(True)
@@ -221,16 +212,32 @@ class App(QWidget):
     #
     def toggle_dark_mode(self):
         # background
-        self.setStyleSheet("background-color: rgb(40,54,55);")
+        self.setStyleSheet("background-color: rgb(68, 68, 68);")
 
         # numpad
-        for j in range(len(self.list_of_buttons)):
-            self.list_of_buttons[j].setStyleSheet("color: rgb(0, 151, 136); border-radius: 100%")
+        for j in range(12):
+            self.list_of_buttons[j].setStyleSheet("background-color: rgb(68, 68, 68); color: rgb(206, 206, 206); border-radius: 50; border-color: rgb(214, 237, 255)")
 
-        # all other buttons
-        for j in range(10, len(self.list_of_buttons)):
-            self.list_of_buttons[j].setStyleSheet(
-                "background-color: rgb(255, 255, 255); color: rgb(86, 73, 76); border-radius: 15px; border-color: rgb(214, 237, 255)")
+        # round buttons
+        for j in range(12, len(self.list_of_buttons) - 8):
+            # shadow = QGraphicsDropShadowEffect()
+            # setting blur radius
+            # shadow.setBlurRadius(10)
+            # shadow.setColor(QColor(248, 226, 228))
+
+            self.list_of_buttons[j].setStyleSheet("color: rgb(255, 100, 100); border-radius: 40; background-color: rgb(96, 96, 96);")
+            # self.list_of_buttons[j].setGraphicsEffect(shadow)
+
+        # upper
+        for j in range(len(self.list_of_buttons) - 8, len(self.list_of_buttons)):
+            self.list_of_buttons[j].setStyleSheet("color: rgb(206, 206, 206); background-color: rgb(68, 68, 68);border: 0px;")
+
+        self.pushButton_s_equal.setStyleSheet(
+            "QPushButton{background-color: rgb(255, 100, 100); border-radius: 30%;} QPushButton:pressed { border: 5px solid; border-color:rgb(117, 117, 117);}")
+        self.pushButton_help.setStyleSheet("background-color: rgb(48, 48, 48); color: rgb();border: 0px;")
+        self.pushButton_color.setStyleSheet("background-color: rgb(48, 48, 48); color: rgb();border: 0px;")
+        self.output1.setStyleSheet("color: rgb(148, 148, 148); background-color: rgb(48, 48, 48); padding-left:35px;")
+        self.output2.setStyleSheet("color: rgb(255, 100, 100); background-color: rgb(48, 48, 48); padding-left:35px;")
 
     ## Function which changes components' color to light(default) mode.
     # @brief Changes color of all buttons and background.
@@ -239,16 +246,31 @@ class App(QWidget):
     #
     def toggle_light_mode(self):
         # background
-        self.setStyleSheet("background-color: white;")
+        self.setStyleSheet("background-color: rgb(248, 248, 248);")
 
         # numpad
-        for j in range(len(self.list_of_buttons)):
+        for j in range(12):
             self.list_of_buttons[j].setStyleSheet(
-                "background-color: rgb(255, 255, 255); color: rgb(86, 73, 76); border-radius: 15px; border-color: rgb(214, 237, 255)")
+                "background-color: rgb(248, 248, 248); color: rgb(117, 117, 117); border-radius: 50; border-color: rgb(214, 237, 255)")
 
         # all other buttons
-        for j in range(10, len(self.list_of_buttons)):
-            self.list_of_buttons[j].setStyleSheet("color: rgb(0, 151, 136); border-radius: 15px")
+        for j in range(12, len(self.list_of_buttons)-8):
+            # shadow = QGraphicsDropShadowEffect()
+            # setting blur radius
+            # shadow.setBlurRadius(10)
+            # shadow.setColor(QColor(248, 226, 228))
+
+            self.list_of_buttons[j].setStyleSheet("color: rgb(255, 100, 100); border-radius: 40; background-color: rgb(248, 226, 228);")
+            # self.list_of_buttons[j].setGraphicsEffect(shadow)
+
+        for j in range(len(self.list_of_buttons) - 8, len(self.list_of_buttons)):
+            self.list_of_buttons[j].setStyleSheet("color: rgb(117, 117, 117); background-color: rgb(248, 248, 248);border: 0px;")
+
+        self.pushButton_s_equal.setStyleSheet("QPushButton{background-color: rgb(255, 100, 100); border-radius: 30%;} QPushButton:pressed { border: 5px solid; border-color:rgb(117, 117, 117);}")
+        self.pushButton_help.setStyleSheet("background-color:white; border: 0px;")
+        self.pushButton_color.setStyleSheet("background-color:white; border: 0px;")
+        self.output1.setStyleSheet("color: rgb(170, 170, 170); background-color: white; padding-left:35px;")
+        self.output2.setStyleSheet("color: rgb(255, 100, 100); background-color: white; padding-left:35px;")
 
     ## This function maps keyboard keys to buttons in the user interface
     # @brief Rebinds PyQt's default numbers and operators keys as new signals
@@ -309,20 +331,19 @@ class App(QWidget):
     #
     # @param self
     #
-    def evaluate(self,root=None):
-        if root!="Content" and root!="Base":
-            if self.content!=[] and not self.inRoot:
+    def evaluate(self, root=None):
+        if root != "Content" and root != "Base":
+            if self.content != [] and not self.inRoot:
                 self.result = split_string_fn(self.content, self.displayed_content)
                 self.output2.setText(str(self.result))
         else:
             if root == "Content":
-                if self.root_content!="[~~]":
-                    return split_string_fn(self.root_content,self.root_content_displayed)
+                if self.root_content != "[~~]":
+                    return split_string_fn(self.root_content, self.root_content_displayed)
             else:
-                if self.root_base!="(~~)":
-                    return split_string_fn(self.root_base,self.root_base_displayed)
+                if self.root_base != "(~~)":
+                    return split_string_fn(self.root_base, self.root_base_displayed)
                 pass
-
 
     ## This function evaluates user input.
     # @brief Sends string input to parser for further evaluation.
@@ -348,14 +369,14 @@ class App(QWidget):
                 self.rootCounter = 1
             elif self.rootCounter == 1:
                 root_content_result = str(self.evaluate("Content"))
-                if root_content_result!=False:
+                if root_content_result != False:
                     self.content.append('(')
                     self.content.append(root_content_result)
                     self.content.append(')')
                     self.content.append("$")
                     self.content.append('(')
-                    root_base_result=str(self.evaluate("Base"))
-                    if root_base_result!="Syntax Error" and root_base_result!="Math Error":
+                    root_base_result = str(self.evaluate("Base"))
+                    if root_base_result != "Syntax Error" and root_base_result != "Math Error":
                         self.content.append(root_base_result)
                         self.content.append(')')
                         self.root_content = []
@@ -368,7 +389,6 @@ class App(QWidget):
                         self.output2.setText(root_base_result)
                 else:
                     self.output2.setText(root_content_result)
-
 
     ## This function evaluates user input.
     # @brief Sends string input to parser for further evaluation.

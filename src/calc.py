@@ -34,3 +34,4 @@ calc = QtWidgets.QApplication(sys.argv)
 app = App()
 app.show()
 sys.exit(calc.exec_())
+

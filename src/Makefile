@@ -53,3 +53,4 @@ clean:
 	rm -rf ../installer/tmp
 	rm -rf ../installer/usr
 	rm -rf ../installer/*.deb
+	cd .. && rm -rf doc
