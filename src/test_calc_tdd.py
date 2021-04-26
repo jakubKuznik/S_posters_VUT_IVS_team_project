@@ -666,7 +666,7 @@ class TestParser(unittest.TestCase):
         result = calc_parser.split_string_fn(['2', '0', '*', '6'], list("2M*6"))
         self.assertEqual("Syntax Error", result)
 
-        result = calc_parser.split_string_fn(['(', '7', ')', '0'], list("(7)M"))
+        result = calc_parser.split_string_fn(['7', '(', '0', ')'], list("(7)M"))
         self.assertEqual("Syntax Error", result)
 
         result = calc_parser.split_string_fn(['5', '(', '6', ')'], list("5(6)"))
@@ -734,6 +734,9 @@ class TestParser(unittest.TestCase):
 
         result = calc_parser.split_string_fn(['4', '5', '(', '27', ')', '$', '(', '3', ')'], list("45[3]√(27)"))
         self.assertEqual("Syntax Error", result)
+        
+        result = calc_parser.split_string_fn(['1', '4', '&', '(', '(', '4', ')', '$', '(', '2', ')', ')'], list("14^[2]√(4)"))
+        self.assertEqual("Syntax Error", result)
 
 
     def test_multiple_operations(self):
@@ -752,11 +755,22 @@ class TestParser(unittest.TestCase):
         result = calc_parser.split_string_fn(['5', '-', '(', '(', '8', '*', '9', ')', '/', '5', ')', '+', '(', '1', '/', '3.1415926535', ')', '*', '3.1415926535'], list("5-((8*9)/5)+(1/π)*π"))
         self.assertEqual(-8.4, result)
 
+        result = calc_parser.split_string_fn(['5', '-', '(', '81', ')', '$', '(', '4', ')', '!', '0', '+', '(', '-', '6', ')', '&', '2', '-', '(', '1', '0', '0', '/', '5', '0', ')'], list("5-[4]√(81)!+(-6)^2-(100/50)"))
+        self.assertEqual(33, result)
+
+        result = calc_parser.split_string_fn(['3', '.', '2', '5', '8', '*', '4', '.', '2', '5', '+', '(', '8', 'mod', '6', '9', ')'], list("3.258*4.25+(8mod69)"))
+        self.assertEqual(21.8465, result)
+
+        result = calc_parser.split_string_fn(['8', '-', '(', '8', ')', '$', '(', '3', ')', '?', '2'], list("8-[3]√(8)mod2"))
+        self.assertEqual(8, result)
+
+        result = calc_parser.split_string_fn(['1', '4', '&', '(', '6', '*', '0', '.', '5', ')'], list("14^(6*0.5)"))
+        self.assertEqual(2744, result)
+
         result = calc_parser.split_string_fn(['(', '7', '*', '(', '5', '8', '/', '2', ')', '-', '9', ')', '+', '(', '7', '-', '(', '-', '6', ')', ')'], list("(7*(58/2)-9)+(7-(-6))"))
         self.assertEqual(207, result)
 
-        
-
+       
     #def test_memory(self):
     #def test_delete(self):
     #def test_ce(self):
