@@ -134,7 +134,7 @@ class App(QWidget):
     #
     def setup_ui(self):
         self.setFixedSize(360, 480)
-        self.setWindowTitle("Imposter Calculator")
+        self.setWindowTitle("Sloth Calculator")
         for i in range(len(self.buttons)):
             x_coord = self.buttons[i][1][0]
             y_coord = self.buttons[i][1][1]
@@ -496,6 +496,11 @@ class App(QWidget):
         self.displayed_content = []
         self.output1.setText(''.join(self.displayed_content))
         self.output2.setText(''.join(self.content))
+        self.root_content = []
+        self.root_base = []
+        self.root_content_displayed = []
+        self.root_base_displayed = []
+        self.inRoot=False
 
 
 ## Help form window class
