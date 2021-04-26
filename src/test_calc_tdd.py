@@ -735,9 +735,6 @@ class TestParser(unittest.TestCase):
         result = calc_parser.split_string_fn(['4', '5', '(', '27', ')', '$', '(', '3', ')'], list("45[3]√(27)"))
         self.assertEqual("Syntax Error", result)
         
-        result = calc_parser.split_string_fn(['1', '4', '&', '(', '(', '4', ')', '$', '(', '2', ')', ')'], list("14^[2]√(4)"))
-        self.assertEqual("Syntax Error", result)
-
 
     def test_multiple_operations(self):
         result = calc_parser.split_string_fn(['5', '*', '(', '8', '-', '6', ')', '&', '(', '4', '/', '2', ')', '+', '(', '6', '?', '2', ')'], list("5*(8-6)^(4/2)+(6mod2)"))
@@ -758,7 +755,7 @@ class TestParser(unittest.TestCase):
         result = calc_parser.split_string_fn(['5', '-', '(', '81', ')', '$', '(', '4', ')', '!', '0', '+', '(', '-', '6', ')', '&', '2', '-', '(', '1', '0', '0', '/', '5', '0', ')'], list("5-[4]√(81)!+(-6)^2-(100/50)"))
         self.assertEqual(33, result)
 
-        result = calc_parser.split_string_fn(['3', '.', '2', '5', '8', '*', '4', '.', '2', '5', '+', '(', '8', 'mod', '6', '9', ')'], list("3.258*4.25+(8mod69)"))
+        result = calc_parser.split_string_fn(['3', '.', '2', '5', '8', '*', '4', '.', '2', '5', '+', '(', '8', '?', '6', '9', ')'], list("3.258*4.25+(8mod69)"))
         self.assertEqual(21.8465, result)
 
         result = calc_parser.split_string_fn(['8', '-', '(', '8', ')', '$', '(', '3', ')', '?', '2'], list("8-[3]√(8)mod2"))
@@ -770,10 +767,9 @@ class TestParser(unittest.TestCase):
         result = calc_parser.split_string_fn(['(', '7', '*', '(', '5', '8', '/', '2', ')', '-', '9', ')', '+', '(', '7', '-', '(', '-', '6', ')', ')'], list("(7*(58/2)-9)+(7-(-6))"))
         self.assertEqual(207, result)
 
-       
-    #def test_memory(self):
-    #def test_delete(self):
-    #def test_ce(self):
+        result = calc_parser.split_string_fn(['1', '4', '&', '(', '(', '4', ')', '$', '(', '2', ')', ')'], list("14^[2]√(4)"))
+        self.assertEqual(196, result)
+
 
 if __name__ == '__main__':
     unittest.main()
