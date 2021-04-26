@@ -187,12 +187,12 @@ class App(QWidget):
         self.output2.setGeometry(QtCore.QRect(0, 105, 550, 105))
         self.output2.setFont(QFont("Arial", 35))
 
-        self.pushButton_help.setGeometry(QtCore.QRect(17, 80, 50, 50))
+        self.pushButton_help.setGeometry(QtCore.QRect(15, 60, 30, 30))
         self.pushButton_help.clicked.connect(self.help_click)
-        self.pushButton_help.setIconSize(QSize(35, 35))
+        self.pushButton_help.setIconSize(QSize(30, 30))
         self.list_of_buttons.append(self.pushButton_help)
 
-        self.pushButton_color.setGeometry(15, 20, 30, 30)
+        self.pushButton_color.setGeometry(14, 15, 35, 35)
         self.pushButton_color.setCheckable(True)
         self.pushButton_color.clicked.connect(self.change_color)
         self.list_of_buttons.append(self.pushButton_color)
@@ -260,7 +260,7 @@ class App(QWidget):
     #
     def toggle_light_mode(self):
         self.pushButton_color.setIcon(self.color_light)
-        self.pushButton_color.setIconSize(QSize(30,30))
+        self.pushButton_color.setIconSize(QSize(35, 35))
         self.pushButton_help.setIcon(self.question_on)
 
         # background
@@ -274,8 +274,8 @@ class App(QWidget):
         # all other buttons
         for j in range(12, len(self.list_of_buttons)-6):
             shadow = QGraphicsDropShadowEffect()
-            shadow.setBlurRadius(40)
-            shadow.setOffset(-3, 10)
+            shadow.setBlurRadius(30)
+            shadow.setOffset(-3, 5)
             shadow.setColor(QColor(224, 200, 203))
 
             self.list_of_buttons[j].setStyleSheet("color: rgb(255, 100, 100); border-radius: 40; background-color: rgb(248, 226, 228);")
@@ -285,8 +285,8 @@ class App(QWidget):
             self.list_of_buttons[j].setStyleSheet("color: rgb(117, 117, 117); background-color: rgb(248, 248, 248);border: 0px;")
 
         shadow = QGraphicsDropShadowEffect()
-        shadow.setBlurRadius(40)
-        shadow.setOffset(-3, 10)
+        shadow.setBlurRadius(30)
+        shadow.setOffset(-3, 5)
         shadow.setColor(QColor(236, 159, 166))
         self.pushButton_s_equal.setStyleSheet("QPushButton{background-color: rgb(255, 100, 100); border-radius: 30%;color:white;} QPushButton:pressed { border: 5px solid; border-color:rgb(117, 117, 117);color:white;}")
         self.pushButton_s_equal.setGraphicsEffect(shadow)
