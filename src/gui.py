@@ -187,7 +187,7 @@ class App(QWidget):
         self.output2.setGeometry(QtCore.QRect(0, 105, 550, 105))
         self.output2.setFont(QFont("Arial", 35))
 
-        self.pushButton_help.setGeometry(QtCore.QRect(15, 60, 30, 30))
+        self.pushButton_help.setGeometry(QtCore.QRect(18, 60, 30, 30))
         self.pushButton_help.clicked.connect(self.help_click)
         self.pushButton_help.setIconSize(QSize(30, 30))
         self.list_of_buttons.append(self.pushButton_help)
@@ -251,7 +251,7 @@ class App(QWidget):
         self.pushButton_help.setStyleSheet("background-color: rgb(48, 48, 48);border: 0px;")
         self.pushButton_color.setStyleSheet("background-color: rgb(48, 48, 48);border: 0px;")
         self.output1.setStyleSheet("color: rgb(148, 148, 148); background-color: rgb(48, 48, 48); padding-left:35px;padding-right:15px;")
-        self.output2.setStyleSheet("color: rgb(255, 100, 100); background-color: rgb(48, 48, 48); padding-left:35px;")
+        self.output2.setStyleSheet("color: rgb(255, 100, 100); background-color: rgb(48, 48, 48); padding-left:20px;")
 
     ## Function which changes components' color to light(default) mode.
     # @brief Changes color of all buttons and background.
@@ -293,7 +293,7 @@ class App(QWidget):
         self.pushButton_help.setStyleSheet("background-color:white; border: 0px;")
         self.pushButton_color.setStyleSheet("background-color:white; border: 0px;")
         self.output1.setStyleSheet("color: rgb(170, 170, 170); background-color: white; padding-left:35px;padding-right:15px;")
-        self.output2.setStyleSheet("color: rgb(255, 100, 100); background-color: white; padding-left:35px;")
+        self.output2.setStyleSheet("color: rgb(255, 100, 100); background-color: white; padding-left:20px;")
 
     ## This function maps keyboard keys to buttons in the user interface
     # @brief Rebinds PyQt's default numbers and operators keys as new signals
