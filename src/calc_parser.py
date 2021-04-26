@@ -41,8 +41,6 @@ output = []
 # @param
 #
 def split_string_fn(calc_string, displayed_content):
-    print(calc_string)
-    print(displayed_content)
     for i in range(1, len(displayed_content)-1):
         if displayed_content[i] == 'π' or displayed_content[i] == 'M':
             if is_number(displayed_content[i - 1]) or is_number(displayed_content[i + 1]):
@@ -77,7 +75,7 @@ def split_string_fn(calc_string, displayed_content):
         else:
             minus_list.append('-1')
             minus_list.append('*')
-
+    print(minus_list)
     return infix_to_rpn(minus_list)
 
 
@@ -103,12 +101,17 @@ def infix_to_rpn(infix_array):
             for operator in stack[::-1]:
                 if operator == '(':
                     break
-                if operators[operator] >= operators[i] and operator != '&':
-                    rpn_array.append(stack.pop())
+                if i!='&':
+                    if operators[operator] >= operators[i]:
+                        rpn_array.append(stack.pop())
+                else:
+                    if operators[operator] >= operators[i] and operator!='&':
+                        rpn_array.append(stack.pop())
             stack.append(i)
 
     while len(stack) != 0:
         rpn_array.append(stack.pop())
+    print(rpn_array)
     return rpn_eval(rpn_array)
 
 
