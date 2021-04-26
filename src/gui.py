@@ -26,7 +26,7 @@ import sys
 
 from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtGui import QFont, QIcon, QColor
-from PyQt5.QtWidgets import QWidget, QPushButton, QGraphicsDropShadowEffect
+from PyQt5.QtWidgets import QWidget, QPushButton#, #QGraphicsDropShadowEffect
 from calc_parser import *
 
 
@@ -270,7 +270,7 @@ class App(QWidget):
         self.pushButton_s_equal.setStyleSheet("QPushButton{background-color: rgb(255, 100, 100); border-radius: 30%;} QPushButton:pressed { border: 5px solid; border-color:rgb(117, 117, 117);}")
         self.pushButton_help.setStyleSheet("background-color:white; border: 0px;")
         self.pushButton_color.setStyleSheet("background-color:white; border: 0px;")
-        self.output1.setStyleSheet("color: rgb(170, 170, 170); background-color: white; padding-left:35px;")
+        self.output1.setStyleSheet("color: rgb(170, 170, 170); background-color: white; padding-left:35px;padding-right:15px;")
         self.output2.setStyleSheet("color: rgb(255, 100, 100); background-color: white; padding-left:35px;")
 
     ## This function maps keyboard keys to buttons in the user interface
