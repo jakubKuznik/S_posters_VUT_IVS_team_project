@@ -26,7 +26,7 @@ import sys
 
 from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtGui import QFont, QIcon, QColor
-from PyQt5.QtWidgets import QWidget, QPushButton#, #QGraphicsDropShadowEffect
+from PyQt5.QtWidgets import QWidget, QPushButton, QGraphicsDropShadowEffect
 from calc_parser import *
 
 
@@ -233,8 +233,7 @@ class App(QWidget):
         for j in range(len(self.list_of_buttons) - 6, len(self.list_of_buttons)):
             self.list_of_buttons[j].setStyleSheet("color: rgb(206, 206, 206); background-color: rgb(68, 68, 68);border: 0px;")
 
-        self.pushButton_s_equal.setStyleSheet(
-            "QPushButton{background-color: rgb(255, 100, 100); border-radius: 30%;} QPushButton:pressed { border: 5px solid; border-color:rgb(117, 117, 117);}")
+        self.pushButton_s_equal.setStyleSheet("QPushButton{background-color: rgb(255, 100, 100); border-radius: 30%;color: white;} QPushButton:pressed { border: 5px solid; border-color:rgb(117, 117, 117); color: white;}")
         self.pushButton_help.setStyleSheet("background-color: rgb(48, 48, 48); color: rgb();border: 0px;")
         self.pushButton_color.setStyleSheet("background-color: rgb(48, 48, 48); color: rgb();border: 0px;")
         self.output1.setStyleSheet("color: rgb(148, 148, 148); background-color: rgb(48, 48, 48); padding-left:35px;padding-right:15px;")
@@ -256,18 +255,18 @@ class App(QWidget):
 
         # all other buttons
         for j in range(12, len(self.list_of_buttons)-6):
-            # shadow = QGraphicsDropShadowEffect()
-            # setting blur radius
-            # shadow.setBlurRadius(10)
-            # shadow.setColor(QColor(248, 226, 228))
+            shadow = QGraphicsDropShadowEffect()
+            shadow.setBlurRadius(30)
+            shadow.setOffset(0, 5)
+            shadow.setColor(QColor(236, 211, 214))
 
             self.list_of_buttons[j].setStyleSheet("color: rgb(255, 100, 100); border-radius: 40; background-color: rgb(248, 226, 228);")
-            # self.list_of_buttons[j].setGraphicsEffect(shadow)
+            self.list_of_buttons[j].setGraphicsEffect(shadow)
 
         for j in range(len(self.list_of_buttons) - 6, len(self.list_of_buttons)):
             self.list_of_buttons[j].setStyleSheet("color: rgb(117, 117, 117); background-color: rgb(248, 248, 248);border: 0px;")
 
-        self.pushButton_s_equal.setStyleSheet("QPushButton{background-color: rgb(255, 100, 100); border-radius: 30%;} QPushButton:pressed { border: 5px solid; border-color:rgb(117, 117, 117);}")
+        self.pushButton_s_equal.setStyleSheet("QPushButton{background-color: rgb(255, 100, 100); border-radius: 30%;color:white;} QPushButton:pressed { border: 5px solid; border-color:rgb(117, 117, 117);color:white;}")
         self.pushButton_help.setStyleSheet("background-color:white; border: 0px;")
         self.pushButton_color.setStyleSheet("background-color:white; border: 0px;")
         self.output1.setStyleSheet("color: rgb(170, 170, 170); background-color: white; padding-left:35px;padding-right:15px;")
