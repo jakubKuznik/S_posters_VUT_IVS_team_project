@@ -220,7 +220,7 @@ class App(QWidget):
             self.list_of_buttons[j].setStyleSheet("background-color: rgb(68, 68, 68); color: rgb(206, 206, 206); border-radius: 50; border-color: rgb(214, 237, 255)")
 
         # round buttons
-        for j in range(12, len(self.list_of_buttons) - 8):
+        for j in range(12, len(self.list_of_buttons) - 6):
             # shadow = QGraphicsDropShadowEffect()
             # setting blur radius
             # shadow.setBlurRadius(10)
@@ -230,7 +230,7 @@ class App(QWidget):
             # self.list_of_buttons[j].setGraphicsEffect(shadow)
 
         # upper
-        for j in range(len(self.list_of_buttons) - 8, len(self.list_of_buttons)):
+        for j in range(len(self.list_of_buttons) - 6, len(self.list_of_buttons)):
             self.list_of_buttons[j].setStyleSheet("color: rgb(206, 206, 206); background-color: rgb(68, 68, 68);border: 0px;")
 
         self.pushButton_s_equal.setStyleSheet(
@@ -255,7 +255,7 @@ class App(QWidget):
                 "background-color: rgb(248, 248, 248); color: rgb(117, 117, 117); border-radius: 50; border-color: rgb(214, 237, 255)")
 
         # all other buttons
-        for j in range(12, len(self.list_of_buttons)-8):
+        for j in range(12, len(self.list_of_buttons)-6):
             # shadow = QGraphicsDropShadowEffect()
             # setting blur radius
             # shadow.setBlurRadius(10)
@@ -264,7 +264,7 @@ class App(QWidget):
             self.list_of_buttons[j].setStyleSheet("color: rgb(255, 100, 100); border-radius: 40; background-color: rgb(248, 226, 228);")
             # self.list_of_buttons[j].setGraphicsEffect(shadow)
 
-        for j in range(len(self.list_of_buttons) - 8, len(self.list_of_buttons)):
+        for j in range(len(self.list_of_buttons) - 6, len(self.list_of_buttons)):
             self.list_of_buttons[j].setStyleSheet("color: rgb(117, 117, 117); background-color: rgb(248, 248, 248);border: 0px;")
 
         self.pushButton_s_equal.setStyleSheet("QPushButton{background-color: rgb(255, 100, 100); border-radius: 30%;} QPushButton:pressed { border: 5px solid; border-color:rgb(117, 117, 117);}")
