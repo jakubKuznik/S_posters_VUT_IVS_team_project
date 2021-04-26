@@ -237,7 +237,7 @@ class App(QWidget):
             "QPushButton{background-color: rgb(255, 100, 100); border-radius: 30%;} QPushButton:pressed { border: 5px solid; border-color:rgb(117, 117, 117);}")
         self.pushButton_help.setStyleSheet("background-color: rgb(48, 48, 48); color: rgb();border: 0px;")
         self.pushButton_color.setStyleSheet("background-color: rgb(48, 48, 48); color: rgb();border: 0px;")
-        self.output1.setStyleSheet("color: rgb(148, 148, 148); background-color: rgb(48, 48, 48); padding-left:35px;")
+        self.output1.setStyleSheet("color: rgb(148, 148, 148); background-color: rgb(48, 48, 48); padding-left:35px;padding-right:15px;")
         self.output2.setStyleSheet("color: rgb(255, 100, 100); background-color: rgb(48, 48, 48); padding-left:35px;")
 
     ## Function which changes components' color to light(default) mode.
