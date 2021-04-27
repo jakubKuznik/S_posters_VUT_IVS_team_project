@@ -346,7 +346,8 @@ class App(QWidget):
             self.complete_delete()
         elif event.key() == QtCore.Qt.Key_Return:
             self.evaluate("Pressed")
-
+        elif event.key() == QtCore.Qt.Key_R:
+            self.root()
     ## This function evaluates user input.
     # @brief Sends string input to parser for further evaluation.
     #
