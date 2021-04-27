@@ -163,7 +163,6 @@ class App(QWidget):
                 self.list_of_buttons[i].clicked.connect(lambda checked, fn=callback_fn: fn())
             else:
                 term = self.buttons[i][4]
-                # print(term)
                 displayed_term = self.buttons[i][5]
                 self.list_of_buttons[i].clicked.connect(
                     lambda checked, t=term, d_t=displayed_term, fn=callback_fn: fn(t, d_t))

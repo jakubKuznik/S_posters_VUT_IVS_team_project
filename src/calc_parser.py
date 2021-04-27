@@ -67,7 +67,6 @@ def split_string_fn(content, displayed_content):
         else:
             minus_list.append('-1')
             minus_list.append('*')
-    print(minus_list)
     return infix_to_rpn(minus_list)
 
 
@@ -103,7 +102,6 @@ def infix_to_rpn(infix_array):
 
     while len(stack) != 0:
         rpn_array.append(stack.pop())
-    print(rpn_array)
     return rpn_eval(rpn_array)
 
 
