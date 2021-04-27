@@ -6,7 +6,7 @@
     </p>
 </div>
 
-## IVS Projekt 2
+## IVS Projekt 2 S_posters
 
 ## About 
 Simple calculator with gui. 
@@ -18,10 +18,6 @@ Autori
 - xkrato61 Pavel Kratochvíl 
 - xvanom00 Michal Vaňo
 - xsvobo1x Lucie Svobodova
-
-Název teamu
----------
-S_posters
 
 
 todo ----
