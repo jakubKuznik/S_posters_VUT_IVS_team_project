@@ -346,7 +346,7 @@ class App(QWidget):
             self.complete_delete()
         elif event.key() == QtCore.Qt.Key_Return:
             self.evaluate()
-        elif event.key() == QtCore.Qt.Key_Right:
+        elif event.key() == QtCore.Qt.Shift_R:
             self.move_in_root()
 
     ## This function evaluates user input.
