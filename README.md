@@ -8,6 +8,9 @@
 
 ## IVS Projekt 2
 
+## About 
+Simple calculator with gui. 
+Calculator uses our own math library and has documentation and installer. 
 
 Autori
 ------
@@ -19,6 +22,19 @@ Autori
 Název teamu
 ---------
 S_posters
+
+
+todo ----
+## Instalace
+...
+
+## Odinstalace
+------
+
+## Built With
+
+* [Python](https://www.python.org/) - The programming language used
+* [PyQt](https://wiki.python.org/moin/PyQt) - Used for the GUI
 
 Prostredie
 ---------
