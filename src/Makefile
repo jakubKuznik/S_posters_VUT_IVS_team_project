@@ -47,17 +47,16 @@ run: calc.py
 	${PYTHON} calc.py
 
 dist/slothcalc/slothcalc: calc.py help_form.html bulb_on.png bulb_off.png question_off.png question_on.png icon.png
-	pyi-makespec calc.py --add-data help_form.html:help_form.html --add-data bulb_on.png:bulb_on.png --add-data bulb_off.png:bulb_off.png --add-data question_on.png:question_on.png --add-data question_off.png:question_off.png --add-data icon.png:icon.png --hidden-import sip
-	pyinstaller calc.spec --onefile
+	pyi-makespec calc.py --onefile --add-data help_form.html:help_form.html --add-data bulb_on.png:bulb_on.png --add-data bulb_off.png:bulb_off.png --add-data question_on.png:question_on.png --add-data question_off.png:question_off.png --add-data icon.png:icon.png --hidden-import sip
+	pyinstaller calc.spec
 
 install: dist/slothcalc/slothcalc
-	cd dist; find calc -type f -exec install -D $(INSFLAGS) "{}" "$(DESTDIR)/bin/{}" \;
+	cp ./dist/
 
 profile:
 	${PYTHON} profiling.py
 
 clean:
-	rm -rf ../installer/*.deb
 	rm -f ../installer/usr/bin/*
 	rm -rf build
 	rm -rf dist
