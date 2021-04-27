@@ -1,4 +1,4 @@
-###########################################
+# ##########################################
 # Project name: IVS - projekt
 # File: calc_parser.py
 # Date: 14. 03. 2021
@@ -9,13 +9,13 @@
 #           Kuzník Jakub
 #           Kratochvíl Pavel
 #           Svobodová Lucie
-#
-# Brief: Calculator Parser
-###########################################
+# ##########################################
 
-## @file calc_parser.py
+## Calculator Parser
 #
-#  @brief parser
+#  @package calc_parser
+#  @file calc_parser.py
+#  @brief Calculator Parser
 #
 #  @author Vaňo Michal
 #  @author Kuzník Jakub
@@ -25,36 +25,28 @@
 import re
 from math_lib import *
 
-##
+## A list used in validation of a token
 nonNumbers = ['+', '-', '*', '/', '?', '&', '$']
-##
+## A dictionary used for evaluating the precedence of the operators
 operators = {'(': 0, ')': 0, '+': 1, '-': 1, '*': 2, '/': 2, '?': 2, '&': 3, '$': 3, '!': 3}
-##
-opStack = []
-##
-output = []
-
 
 ##
-# @brief
+# @brief This function checks the user input for some special characters (memory and pi) and splits the input into tokens.
 #
-# @param
-#
-def split_string_fn(calc_string, displayed_content):
-    for i in range(1, len(displayed_content)-1):
-        if displayed_content[i] == 'π' or displayed_content[i] == 'M':
-            if is_number(displayed_content[i - 1]) or is_number(displayed_content[i + 1]):
-                return "Syntax Error"
+# @param content Content hidden inside of the calculator
+# @param displayed_content Content shown on the first display of the calculator
+# @return "Syntax error" if special characters violate their rules, or if any other item violates its rules. Otherwise sends the split tokenized list into the next one that changes the infix notation to postfix notation
+def split_string_fn(content, displayed_content):
     for i in range(1, len(displayed_content)):
         if displayed_content[i] == 'π' or displayed_content[i] == 'M':
-            if displayed_content[i - 1] == 'M':
+            if displayed_content[i - 1] == 'M' or displayed_content[i - 1] == 'π' or displayed_content[i - 1] == ')' or is_number(displayed_content[i - 1]):
                 return "Syntax Error"
-            if displayed_content[i - 1] == 'π':
-                return "Syntax Error"
-            if displayed_content[i - 1] == ')':
+    for i in range(0, len(displayed_content)-1):
+        if displayed_content[i] == 'π' or displayed_content[i] == 'M':
+            if displayed_content[i + 1] == 'M' or displayed_content[i + 1] == 'π' or displayed_content[i + 1] == ')' or is_number(displayed_content[i + 1]):
                 return "Syntax Error"
 
-    calc_string = ''.join(calc_string)
+    calc_string = ''.join(content)
     split_string = re.findall(r'[0-9.]+|[^0-9.]', calc_string)
 
     if calc_string[-1] in nonNumbers:
@@ -75,15 +67,14 @@ def split_string_fn(calc_string, displayed_content):
         else:
             minus_list.append('-1')
             minus_list.append('*')
-    print(minus_list)
     return infix_to_rpn(minus_list)
 
 
-## This function will turn the string into the reverse polish notation?
-# @brief
+##
+# @brief This function uses the tokenized string and changes the notation from infix to prefix, then sends to further evaluation
 #
-# @param
-#
+# @param infix_array Array that will change its notation.
+# @return Sends the postfix list for evaluation.
 def infix_to_rpn(infix_array):
     rpn_array = []
     stack = []
@@ -111,15 +102,14 @@ def infix_to_rpn(infix_array):
 
     while len(stack) != 0:
         rpn_array.append(stack.pop())
-    print(rpn_array)
     return rpn_eval(rpn_array)
 
 
 ##
-# @brief
+# @brief This function evaluates the reverse notated list and returns the final value.
 #
-# @param
-#
+# @param rpn_array An array in postfix notation that will be evaluated
+# @return The final value of the postfix array, or "Math Error" if the math libraries find an error.
 def rpn_eval(rpn_array):
     stack = []
     temp = [0, 0]
@@ -158,10 +148,10 @@ def rpn_eval(rpn_array):
 
 
 ##
-# @brief
+# @brief This function checks whether a token is number.
 #
-# @param
-#
+# @param token Token to be evaluated as a number.
+# @return True if the token is a number, False if the token is not a number.
 def is_number(token):
     try:
         float(token)
@@ -171,10 +161,10 @@ def is_number(token):
 
 
 ##
-# @brief
+# @brief This function checks whether there is not a syntax error in the input. E.g two operators next to each other.
 #
-# @param
-#
+# @param split_string A list of the input that will be validated.
+# @return False if characters violate their rules, otherwise True
 def validate(split_string):
     # TODO: cislo nemoze koncit bodkou a nemozu byt dve cisla za sebou
     parentheses_counter = 0

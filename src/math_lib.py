@@ -1,4 +1,4 @@
-###########################################
+# ##########################################
 # Project name: IVS - projekt
 # File: math_lib.py
 # Date: 13. 03. 2021
@@ -9,35 +9,18 @@
 #           Kuzník Jakub
 #           Kratochvíl Pavel
 #           Svobodová Lucie
-#
-# Brief: Math library
-###########################################
+# ##########################################
 
-##
-# @package math_lib
-# @file math_lib.py
+## Math library
 #
-# @brief math library
+#  @package math_lib
+#  @file math_lib.py
+#  @brief Math library
 #
-# @author Vaňo Michal
-# @author Kuzník Jakub
-# @author Kratochvíl Pavel
-# @author Svobodová Lucie
-
-## Division by zero exception
-# @brief Raised when the user input implies division by zero.
-#
-#
-class DivByZeroException(Exception):
-    pass
-
-
-## Domain error exception
-# @brief Raised when the supplied operand is out of domain of given function(e.g. sqrt(<negative number>)).
-#
-#
-class DomainErrorException(Exception):
-    pass
+#  @author Vaňo Michal
+#  @author Kuzník Jakub
+#  @author Kratochvíl Pavel
+#  @author Svobodová Lucie
 
 
 ## 
@@ -107,7 +90,7 @@ def root(a, b):
 ## 
 # @brief This function will return the factorial of a given positive integer.
 #
-# @param factorizedNumber factorial of this number will be calculated
+# @param factorized_number factorial of this number will be calculated
 # @exception DomainError in case factorizedNumber is not integer or is negative
 # @return factorial of number factorizedNumber
 def fact(factorized_number):
