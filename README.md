@@ -1,19 +1,30 @@
-Prostredie
----------
-sss
-Ubuntu 64bit
-Windows 64bit
+<div align="center">
+    <h1>Meriones Calculator</h1>
+    <p>BUT FIT - IVS Project 2</p>
+    <p>
+    <img src="screenshot.png" width="300" height="auto">
+    <br>
+    </p>
+</div>
+
+## IVS Projekt 2
+
 
 Autori
 ------
-
-Názov tímu
 - xkuzni04 Jakub Kuzník 
 - xkrato61 Pavel Kratochvíl 
 - xvanom00 Michal Vaňo
 - xsvobo1x Lucie Svobodova
 
+Název teamu
+---------
+S_posters
+
+Prostredie
+---------
+Ubuntu 64bit
+
 Licencia
 -------
-
-Tento program je poskytovaný...
+Tento projekt je poskytovaný licencí GNU GPL v.3 License.
