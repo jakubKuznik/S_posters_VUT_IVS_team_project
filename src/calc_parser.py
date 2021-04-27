@@ -9,14 +9,13 @@
 #           Kuzník Jakub
 #           Kratochvíl Pavel
 #           Svobodová Lucie
-#
-# Brief: Calculator Parser
 # ##########################################
 
 ## Calculator Parser
 #
 #  @package calc_parser
 #  @file calc_parser.py
+#  @brief Calculator Parser
 #
 #  @author Vaňo Michal
 #  @author Kuzník Jakub

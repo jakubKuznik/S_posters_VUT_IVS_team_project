@@ -9,19 +9,19 @@
 #           Kuzník Jakub
 #           Kratochvíl Pavel
 #           Svobodová Lucie
-#
-# Brief: tests
 # ##########################################
 
 ## Tests for math_lib and calc_parser
 #
 #  @package test_calc_tdd
 #  @file test_calc_tdd.py
+#  @brief Tests for math_lib and calc_parser
 #
 #  @author Vaňo Michal
 #  @author Kuzník Jakub
 #  @author Kratochvíl Pavel
 #  @author Svobodová Lucie
+
 
 import unittest
 import math_lib

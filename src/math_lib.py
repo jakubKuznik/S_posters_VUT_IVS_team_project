@@ -9,14 +9,13 @@
 #           Kuzník Jakub
 #           Kratochvíl Pavel
 #           Svobodová Lucie
-#
-# Brief: Math library
 # ##########################################
 
 ## Math library
 #
 #  @package math_lib
 #  @file math_lib.py
+#  @brief Math library
 #
 #  @author Vaňo Michal
 #  @author Kuzník Jakub
@@ -105,7 +104,7 @@ def root(a, b):
 ## 
 # @brief This function will return the factorial of a given positive integer.
 #
-# @param factorizedNumber factorial of this number will be calculated
+# @param factorized_number factorial of this number will be calculated
 # @exception DomainError in case factorizedNumber is not integer or is negative
 # @return factorial of number factorizedNumber
 def fact(factorized_number):
