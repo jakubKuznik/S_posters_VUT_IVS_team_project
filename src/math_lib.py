@@ -22,20 +22,6 @@
 #  @author Kratochvíl Pavel
 #  @author Svobodová Lucie
 
-## Division by zero exception
-# @brief Raised when the user input implies division by zero.
-#
-#
-class DivByZeroException(Exception):
-    pass
-
-## Domain error exception
-# @brief Raised when the supplied operand is out of domain of given function(e.g. sqrt(<negative number>)).
-#
-#
-class DomainErrorException(Exception):
-    pass
-
 
 ## 
 # @brief Function returns the result of addition of two numbers.
