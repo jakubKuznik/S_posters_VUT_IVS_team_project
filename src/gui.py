@@ -268,8 +268,7 @@ class App(QWidget):
 
         # numpad
         for j in range(12):
-            self.list_of_buttons[j].setStyleSheet(
-                "background-color: rgb(248, 248, 248); color: rgb(117, 117, 117); border-radius: 50; border-color: rgb(214, 237, 255)")
+            self.list_of_buttons[j].setStyleSheet("QPushButton{background-color: rgb(248, 248, 248); color: rgb(117, 117, 117); border-radius: 50; border-color: rgb(214, 237, 255)} QPushButton:pressed{border: 3px solid; border-color:green;}")
 
         # all other buttons
         for j in range(12, len(self.list_of_buttons)-6):
@@ -278,7 +277,7 @@ class App(QWidget):
             shadow.setOffset(-3, 5)
             shadow.setColor(QColor(224, 200, 203))
 
-            self.list_of_buttons[j].setStyleSheet("color: rgb(255, 100, 100); border-radius: 40; background-color: rgb(248, 226, 228);")
+            self.list_of_buttons[j].setStyleSheet("QPushButton{color: rgb(255, 100, 100); border-radius: 40; background-color: rgb(248, 226, 228);} QPushButton:pressed{border: 3px solid; border-color:green;}")
             self.list_of_buttons[j].setGraphicsEffect(shadow)
 
         for j in range(len(self.list_of_buttons) - 6, len(self.list_of_buttons)):
