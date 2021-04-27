@@ -1,7 +1,8 @@
 Package: slothcalc
 Section: graphics
 Priority: optional
+Maintainer: Tvoj tatko
 Architecture: all
 Version: 1.0
 Depends:
-Description: S_POSTERS test decription dude
+Description: S_POSTERS test description dude

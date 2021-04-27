@@ -60,7 +60,7 @@ profile:
 
 clean:
 	rm -rf ../installer/usr/bin/
-	rm -rf build
-	rm -rf dist
+	rm -rf ./build
+	rm -rf ./dist
 	rm -rf ./*.spec
 	cd .. && rm -rf doc

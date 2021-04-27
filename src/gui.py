@@ -27,7 +27,7 @@ import sys
 from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtCore import QSize
 from PyQt5.QtGui import QFont, QIcon, QColor
-from PyQt5.QtWidgets import QWidget, QPushButton, QGraphicsDropShadowEffect
+from PyQt5.QtWidgets import QWidget, QPushButton, QGraphicsDropShadowEffect, QApplication
 from calc_parser import *
 
 
