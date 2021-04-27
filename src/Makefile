@@ -51,7 +51,8 @@ dist/slothcalc/slothcalc: calc.py help_form.html bulb_on.png bulb_off.png questi
 	pyinstaller calc.spec
 
 install: dist/slothcalc/slothcalc
-	cp ./dist/
+	cp ./dist/calc ../installer/usr/bin
+	cd .. && dpkg-deb build installer
 
 profile:
 	${PYTHON} profiling.py
