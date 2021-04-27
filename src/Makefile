@@ -52,7 +52,7 @@ dist/slothcalc/slothcalc: calc.py help_form.html bulb_on.png bulb_off.png questi
 
 install: dist/slothcalc/slothcalc
 	cp ./dist/calc ../installer/usr/bin
-	cd .. && dpkg-deb build installer
+	cd .. && dpkg-deb --build installer
 
 profile:
 	${PYTHON} profiling.py
