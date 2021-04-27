@@ -338,17 +338,16 @@ class App(QWidget):
             self.delete()
         elif event.key() == QtCore.Qt.Key_Asterisk:
             self.print("*", "*")
-        elif event.key() == QtCore.Qt.Key_BracketLeft:
+        elif event.key() == QtCore.Qt.Key_ParenLeft:
             self.print("(", "(")
-        elif event.key() == QtCore.Qt.Key_BracketRight:
+        elif event.key() == QtCore.Qt.Key_ParenRight:
             self.print(")", ")")
         elif event.key() == QtCore.Qt.Key_Delete:
             self.complete_delete()
         elif event.key() == QtCore.Qt.Key_Return:
             self.evaluate()
-        elif event.key() == QtCore.Qt.RightArrow:
+        elif event.key() == QtCore.Qt.Key_Right:
             self.move_in_root()
-
 
 
     ## This function evaluates user input.
