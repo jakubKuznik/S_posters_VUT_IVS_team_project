@@ -538,6 +538,11 @@ class App(QWidget):
         self.displayed_content = []
         self.output1.setText(''.join(self.displayed_content))
         self.output2.setText(''.join(self.content))
+        self.root_content = []
+        self.root_base = []
+        self.root_content_displayed = []
+        self.root_base_displayed = []
+        self.inRoot=False
 
 
 ## Help form window class
