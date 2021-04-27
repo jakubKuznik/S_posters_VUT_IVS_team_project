@@ -9,16 +9,13 @@
 #           Kuzník Jakub
 #           Kratochvíl Pavel
 #           Svobodová Lucie
-#
-# Brief: Program calculates the standard deviation.
 # ##########################################
 
-## Program calculates the standard deviation.
+## Program calculates the standard deviation using functions from math_lib.
 #
 #  @package standard_deviation
 #  @file standard_deviation.py
-#
-#  @brief Program counts the standard deviation using math_lib
+#  @brief Program calculates the standard deviation.
 #
 #  @author Vaňo Michal
 #  @author Kuzník Jakub
@@ -54,7 +51,7 @@ def separate_numbers(input_str):
 ##
 # @brief Function calculates the mean.
 # 
-# @param array of floats that are used to calculate the mean
+# @param input_array of floats that are used to calculate the mean
 # @return mean
 #
 def mean(input_array):
@@ -69,7 +66,7 @@ def mean(input_array):
 ##
 # @brief Function calculates the standard deviation.
 # 
-# @param array of floats that are used to calculate the standard deviation
+# @param input_array of floats that are used to calculate the standard deviation
 # @return standard deviation
 #
 def std_dev(input_array):
