@@ -1,6 +1,5 @@
 <div align="center">
-    <h1>Meriones Calculator</h1>
-    <p>BUT FIT - IVS Project 2</p>
+    <h1>Sloth Calculator</h1>
     <p>
     <img src="screenshot.png" width="300" height="auto">
     <br>
