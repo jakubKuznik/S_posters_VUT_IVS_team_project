@@ -32,5 +32,3 @@ calc = QtWidgets.QApplication(sys.argv)
 app = App()
 app.show()
 sys.exit(calc.exec_())
-del calc,app
-

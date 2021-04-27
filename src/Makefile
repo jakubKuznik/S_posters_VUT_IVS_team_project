@@ -43,9 +43,6 @@ init: requirements.txt
 run: calc.py
 	${PYTHON} calc.py
 
-installer: calc.py math_lib.py gui.py calc_parser.py requirements.txt help_form.html
-	bash install_script.sh
-
 profile:
 	${PYTHON} profiling.py
 
