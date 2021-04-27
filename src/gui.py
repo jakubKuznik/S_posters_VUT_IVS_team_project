@@ -268,7 +268,7 @@ class App(QWidget):
 
         # numpad
         for j in range(12):
-            self.list_of_buttons[j].setStyleSheet("QPushButton{background-color: rgb(248, 248, 248); color: rgb(117, 117, 117); border-radius: 50; border-color: rgb(214, 237, 255)} QPushButton:pressed{background-color: rgb(206, 206, 206);color: rgb(96, 96, 96)}")
+            self.list_of_buttons[j].setStyleSheet("QPushButton{background-color: rgb(248, 248, 248); color: rgb(117, 117, 117); border-radius: 50; border-color: rgb(214, 237, 255)} QPushButton:pressed{border-radius:40; background-color: rgb(206, 206, 206);color: rgb(96, 96, 96)}")
 
         # all other buttons
         for j in range(12, len(self.list_of_buttons)-6):
