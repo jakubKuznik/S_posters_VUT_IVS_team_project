@@ -345,9 +345,7 @@ class App(QWidget):
         elif event.key() == QtCore.Qt.Key_Delete:
             self.complete_delete()
         elif event.key() == QtCore.Qt.Key_Return:
-            self.evaluate()
-        elif event.key() == QtCore.Qt.Shift_R:
-            self.move_in_root()
+            self.evaluate("Pressed")
 
     ## This function evaluates user input.
     # @brief Sends string input to parser for further evaluation.
@@ -355,18 +353,21 @@ class App(QWidget):
     # @param self
     #
     def evaluate(self, root=None):
-        if root != "Content" and root != "Base":
-            if self.content != [] and not self.inRoot:
-                self.result = split_string_fn(self.content, self.displayed_content)
-                self.output2.setText(str(self.result))
+        if self.inRoot==True and root=="Pressed":
+            self.move_in_root()
         else:
-            if root == "Content":
-                if self.root_content != "[~~]":
-                    return split_string_fn(self.root_content, self.root_content_displayed)
+            if root != "Content" and root != "Base":
+                if self.content != [] and not self.inRoot:
+                    self.result = split_string_fn(self.content, self.displayed_content)
+                    self.output2.setText(str(self.result))
             else:
-                if self.root_base != "(~~)":
-                    return split_string_fn(self.root_base, self.root_base_displayed)
-                pass
+                if root == "Content":
+                    if self.root_content != "[~~]":
+                        return split_string_fn(self.root_content, self.root_content_displayed)
+                else:
+                    if self.root_base != "(~~)":
+                        return split_string_fn(self.root_base, self.root_base_displayed)
+                    pass
 
     ## This function evaluates user input.
     # @brief Sends string input to parser for further evaluation.
