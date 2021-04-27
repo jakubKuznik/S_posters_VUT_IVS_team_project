@@ -37,17 +37,13 @@ operators = {'(': 0, ')': 0, '+': 1, '-': 1, '*': 2, '/': 2, '?': 2, '&': 3, '$'
 # @param displayed_content Content shown on the first display of the calculator
 # @return "Syntax error" if special characters violate their rules, or if any other item violates its rules. Otherwise sends the split tokenized list into the next one that changes the infix notation to postfix notation
 def split_string_fn(content, displayed_content):
-    for i in range(1, len(displayed_content)-1):
-        if displayed_content[i] == 'π' or displayed_content[i] == 'M':
-            if is_number(displayed_content[i - 1]) or is_number(displayed_content[i + 1]):
-                return "Syntax Error"
     for i in range(1, len(displayed_content)):
         if displayed_content[i] == 'π' or displayed_content[i] == 'M':
-            if displayed_content[i - 1] == 'M':
+            if displayed_content[i - 1] == 'M' or displayed_content[i - 1] == 'π' or displayed_content[i - 1] == ')' or is_number(displayed_content[i - 1]):
                 return "Syntax Error"
-            if displayed_content[i - 1] == 'π':
-                return "Syntax Error"
-            if displayed_content[i - 1] == ')':
+    for i in range(0, len(displayed_content)-1):
+        if displayed_content[i] == 'π' or displayed_content[i] == 'M':
+            if displayed_content[i + 1] == 'M' or displayed_content[i + 1] == 'π' or displayed_content[i + 1] == ')' or is_number(displayed_content[i + 1]):
                 return "Syntax Error"
 
     calc_string = ''.join(content)

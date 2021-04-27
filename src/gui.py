@@ -342,12 +342,28 @@ class App(QWidget):
             self.print("(", "(")
         elif event.key() == QtCore.Qt.Key_ParenRight:
             self.print(")", ")")
+        elif event.key() == QtCore.Qt.Key_P:
+            self.print("3.1415926535", "π")
+        elif event.key() == QtCore.Qt.Key_M:
+            self.print(self.memory, "M")
         elif event.key() == QtCore.Qt.Key_Delete:
             self.complete_delete()
         elif event.key() == QtCore.Qt.Key_Return:
             self.evaluate("Pressed")
         elif event.key() == QtCore.Qt.Key_R:
             self.root()
+        elif event.key() == QtCore.Qt.Key_Exclam:
+            self.print("!", "!")
+        elif event.key() == QtCore.Qt.Key_Percent:
+            self.print("?","mod")
+        elif event.key() == QtCore.Qt.Key_B:
+            self.add_to_memory()
+        elif event.key() == QtCore.Qt.Key_N:
+            self.remove_from_memory()
+        elif event.key() == QtCore.Qt.Key_C:
+            self.complete_delete()
+        else:
+            pass
     ## This function evaluates user input.
     # @brief Sends string input to parser for further evaluation.
     #
@@ -462,8 +478,6 @@ class App(QWidget):
                 self.content.append('0')
             self.displayed_content.append(displayed_term)
             self.output1.setText("".join(self.displayed_content))
-            # print(self.content)
-            # print(self.displayed_content)
         else:
             self.type_in_root(term, displayed_term)
 
