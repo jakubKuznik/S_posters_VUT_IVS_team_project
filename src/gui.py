@@ -298,7 +298,7 @@ class App(QWidget):
     # @brief Rebinds PyQt's default numbers and operators keys as new signals
     #
     # @param self
-    #
+    # @param event An argument that is passed on pressing a button.
     def keyPressEvent(self, event):
         if event.key() == QtCore.Qt.Key_0:
             self.print('0', '0')
@@ -351,7 +351,7 @@ class App(QWidget):
     # @brief Sends string input to parser for further evaluation.
     #
     # @param self
-    #
+    # @param root Optional parameter that tells the evaluate function who called it and in which context, as evaluate has two functions: Move inside of the root, Evaluate the entire expression.
     def evaluate(self, root=None):
         if self.inRoot==True and root=="Pressed":
             self.move_in_root()
@@ -368,9 +368,8 @@ class App(QWidget):
                     if self.root_base != "(~~)":
                         return split_string_fn(self.root_base, self.root_base_displayed)
                     pass
-
-    ## This function evaluates user input.
-    # @brief Sends string input to parser for further evaluation.
+    ##
+    # @brief Prepares the environment for root typesetting
     #
     # @param self
     #
@@ -382,8 +381,7 @@ class App(QWidget):
             self.output1.setText(''.join(self.displayed_content))
             self.inRoot = True
 
-    ## This function evaluates user input.
-    # @brief Sends string input to parser for further evaluation.
+    # @brief Moves inside of the root and evaluates the expressions inside of root brackets.
     #
     # @param self
     #
@@ -414,11 +412,10 @@ class App(QWidget):
                 else:
                     self.output2.setText(root_content_result)
 
-    ## This function evaluates user input.
-    # @brief Sends string input to parser for further evaluation.
+    # @brief Types inside of the root brackets.
     #
-    # @param self
-    #
+    # @param term Allows different behavior based on whether the user pressed a binary or a unary operation.
+    # @param displayed_term Allows different behavior based on whether the user pressed a binary or a unary operation.
     def type_in_root(self, term, displayed_term):
         if self.rootCounter == 0:
             if term != '!':
@@ -443,27 +440,17 @@ class App(QWidget):
             self.displayed_content[-1] = '(' + ''.join(self.root_content_displayed) + ')'
             self.output1.setText(''.join(self.displayed_content))
 
-    ## This function evaluates user input.
-    # @brief Sends string input to parser for further evaluation.
+    # @brief Shows the help window.
     #
     # @param self
     #
     def help_click(self):
         self.form.show()
 
-    ## This function evaluates user input.
-    # @brief Sends string input to parser for further evaluation.
+    # @brief Prints the pressed or clicked token if it is possible.
     #
-    # @param self
-    #
-    def change(self, command):
-        self.content.append(command)
-
-    ## This function evaluates user input.
-    # @brief Sends string input to parser for further evaluation.
-    #
-    # @param term is appended to content for further parsing and evaluation
-    # @param displayed_term is visible on display
+    # @param term Allows different behavior based on whether the user pressed a binary or a unary operation.
+    # @param displayed_term Allows different behavior based on whether the user pressed a binary or a unary operation.
     #
     def print(self, term, displayed_term):
         if not self.inRoot:
@@ -480,30 +467,23 @@ class App(QWidget):
             self.type_in_root(term, displayed_term)
 
     ##
-    # @brief Funkce dělá ...
+    # @brief Overwrites the current memory by the current result.
     #
-    # @param p1 popis
-    # @param p2 popis
-    # @return popis výsledku
-    #
+    # @param self
     def add_to_memory(self):
         self.memory = str(self.result)
 
     ##
-    # @brief Funkce dělá ...
+    # @brief Deletes the current memory, setting it to zero.
     #
-    # @param p1 popis
-    # @param p2 popis
-    # @return popis výsledku
-    #
+    # @param self
     def remove_from_memory(self):
         self.memory = "0"
 
     ##
-    # @brief Function deletes last number or operator from display
+    # @brief Deletes the last item in the displayed content with special rules regarding root.
     #
     # @param self
-    #
     def delete(self):
         if len(self.content) != 0 or self.inRoot:
             if self.displayed_content[-1] == '!':
@@ -557,7 +537,7 @@ class Form(QWidget):
     # help_form.html
     #
     # @param self
-    #
+    # @param font Sets the font of the text
     def __init__(self, font):
         super().__init__()
         self.setWindowTitle("Nápověda")
