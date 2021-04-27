@@ -1,6 +1,7 @@
-Package: impcalc
-Version: 0.1
-Maintainer: author
+Package: slothcalc
+Section: graphics
+Priority: optional
 Architecture: all
-Description: imposter calc
-Depends: python3
+Version: 1.0
+Depends:
+Description: S_POSTERS test decription dude

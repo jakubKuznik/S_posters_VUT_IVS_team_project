@@ -1,4 +1,7 @@
 PYTHON = python3
+DESTDIR = ../installer/DEBIAN
+SHELL = /bin/bash
+INSFLAGS = -m 0755
 
 PACK_NAME = xvanom00_xkuzni04_xkrato61_xsvobo1x
 #ALL_DIRS = ./doc ./install ./repo	# directories in a pack
@@ -43,11 +46,20 @@ init: requirements.txt
 run: calc.py
 	${PYTHON} calc.py
 
+dist/slothcalc/slothcalc: calc.py help_form.html bulb_on.png bulb_off.png question_off.png question_on.png icon.png
+	pyi-makespec calc.py --add-data help_form.html:help_form.html --add-data bulb_on.png:bulb_on.png --add-data bulb_off.png:bulb_off.png --add-data question_on.png:question_on.png --add-data question_off.png:question_off.png --add-data icon.png:icon.png --hidden-import sip
+	pyinstaller calc.spec
+
+install: dist/slothcalc/slothcalc
+	cd dist; find calc -type f -exec install -D $(INSFLAGS) "{}" "$(DESTDIR)/bin/{}" \;
+
 profile:
 	${PYTHON} profiling.py
 
 clean:
-	rm -rf ../installer/tmp
-	rm -rf ../installer/usr
 	rm -rf ../installer/*.deb
+	rm -f ../installer/usr/bin/*
+	rm -rf build
+	rm -rf dist
+	rm -rf ./*.spec
 	cd .. && rm -rf doc

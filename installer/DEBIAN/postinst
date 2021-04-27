@@ -1,4 +1,0 @@
-#!/bin/sh
-apt install python3
-apt install pip3
-pip3 install -r /tmp/requirements.txt
