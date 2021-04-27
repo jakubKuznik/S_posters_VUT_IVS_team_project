@@ -31,6 +31,7 @@
 class DivByZeroException(Exception):
     pass
 
+
 ## Domain error exception
 # @brief Raised when the supplied operand is out of domain of given function(e.g. sqrt(<negative number>)).
 #

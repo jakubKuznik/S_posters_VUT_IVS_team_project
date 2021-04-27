@@ -23,7 +23,6 @@
 #  @author Kratochvíl Pavel
 #  @author Svobodová Lucie
 
-import sys
 from gui import *
 
 
