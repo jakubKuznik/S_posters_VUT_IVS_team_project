@@ -1,4 +1,4 @@
-###########################################
+# ##########################################
 # Project name: IVS - projekt
 # File: calc_parser.py
 # Date: 14. 03. 2021
@@ -11,11 +11,12 @@
 #           Svobodová Lucie
 #
 # Brief: Calculator Parser
-###########################################
+# ##########################################
 
-## @file calc_parser.py
+## Calculator Parser
 #
-#  @brief parser
+#  @package calc_parser
+#  @file calc_parser.py
 #
 #  @author Vaňo Michal
 #  @author Kuzník Jakub

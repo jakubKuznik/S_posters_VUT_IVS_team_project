@@ -1,4 +1,4 @@
-###########################################
+# ##########################################
 # Project name: IVS - projekt
 # File: math_lib.py
 # Date: 13. 03. 2021
@@ -11,18 +11,17 @@
 #           Svobodová Lucie
 #
 # Brief: Math library
-###########################################
+# ##########################################
 
-##
-# @package math_lib
-# @file math_lib.py
+## Math library
 #
-# @brief math library
+#  @package math_lib
+#  @file math_lib.py
 #
-# @author Vaňo Michal
-# @author Kuzník Jakub
-# @author Kratochvíl Pavel
-# @author Svobodová Lucie
+#  @author Vaňo Michal
+#  @author Kuzník Jakub
+#  @author Kratochvíl Pavel
+#  @author Svobodová Lucie
 
 ## Division by zero exception
 # @brief Raised when the user input implies division by zero.
