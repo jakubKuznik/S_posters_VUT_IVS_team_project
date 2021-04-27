@@ -1,4 +1,4 @@
-###########################################
+# ##########################################
 # Project name: IVS - projekt
 # File: test_calc_tdd.py
 # Date: 13. 03. 2021
@@ -11,11 +11,12 @@
 #           Svobodová Lucie
 #
 # Brief: tests
-###########################################
+# ##########################################
 
-## @file test_calc_tdd.py
+## Tests for math_lib and calc_parser
 #
-#  @brief tests
+#  @package test_calc_tdd
+#  @file test_calc_tdd.py
 #
 #  @author Vaňo Michal
 #  @author Kuzník Jakub

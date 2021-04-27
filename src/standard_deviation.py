@@ -1,4 +1,4 @@
-###########################################
+# ##########################################
 # Project name: IVS - projekt
 # File: standard_deviation.py
 # Date: 24. 04. 2021
@@ -10,10 +10,13 @@
 #           Kratochvíl Pavel
 #           Svobodová Lucie
 #
-# Brief: Program counts the standard deviation.
-###########################################
+# Brief: Program calculates the standard deviation.
+# ##########################################
 
-## @file standard_deviation.py
+## Program calculates the standard deviation.
+#
+#  @package standard_deviation
+#  @file standard_deviation.py
 #
 #  @brief Program counts the standard deviation using math_lib
 #
