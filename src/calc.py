@@ -28,7 +28,11 @@ from gui import *
 ## This function initializes the app window.
 # @brief The main function which launches the calculator app itself.
 #
+
 calc = QApplication(sys.argv)
 app = App()
 app.show()
-sys.exit(calc.exec_())
+try:
+    sys.exit( calc.exec_())
+except:
+    pass
