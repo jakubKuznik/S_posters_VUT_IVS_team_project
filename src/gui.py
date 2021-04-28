@@ -23,13 +23,18 @@
 #  @author Svobodová Lucie
 
 import sys
-
+import os
 from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtCore import QSize
 from PyQt5.QtGui import QFont, QIcon, QColor
 from PyQt5.QtWidgets import QWidget, QPushButton, QGraphicsDropShadowEffect, QApplication
 from calc_parser import *
 
+def get_path(path):
+    if hasattr(sys, 'frozen'):
+        return os.path.join(getattr(sys, '_MEIPASS'), path)
+    else:
+        return path
 
 ## Main window class
 # @brief Class of the entire PyQt GUI of the calculator. Connects user interaction with backend evaluation
@@ -78,7 +83,7 @@ class App(QWidget):
         self.window = QtWidgets.QApplication(sys.argv)
         ## Init of help form with font passed as a parameter.
         self.form = Form(self.font)
-        self.window.setWindowIcon(QIcon("icon.png"))
+        self.window.setWindowIcon(QIcon(get_path("icon.png")))
 
         ## = button init.
         self.pushButton_s_equal = QPushButton(self)
@@ -94,10 +99,10 @@ class App(QWidget):
         self.pushButton_color = QPushButton(self)
 
         ## Color modes icons
-        self.color_light = QIcon('bulb_on.png')
-        self.color_dark = QIcon('bulb_off.png')
-        self.question_on = QIcon('question_on.png')
-        self.question_off = QIcon('question_off.png')
+        self.color_light = QIcon(get_path('bulb_on.png'))
+        self.color_dark = QIcon(get_path('bulb_off.png'))
+        self.question_on = QIcon(get_path('question_on.png'))
+        self.question_off = QIcon(get_path('question_off.png'))
 
 
         ## List of all buttons in the user interface.
@@ -378,10 +383,12 @@ class App(QWidget):
                     self.output2.setText(str(self.result))
             else:
                 if root == "Content":
-                    if self.root_content != "[~~]":
+                    if self.root_content != []:
                         return split_string_fn(self.root_content, self.root_content_displayed)
+                    else:
+                        return
                 else:
-                    if self.root_base != "(~~)":
+                    if self.root_base != ():
                         return split_string_fn(self.root_base, self.root_base_displayed)
                     pass
     ##
@@ -407,26 +414,20 @@ class App(QWidget):
                 self.rootCounter = 1
             elif self.rootCounter == 1:
                 root_content_result = str(self.evaluate("Content"))
-                if root_content_result != False:
-                    self.content.append('(')
-                    self.content.append(root_content_result)
-                    self.content.append(')')
-                    self.content.append("$")
-                    self.content.append('(')
-                    root_base_result = str(self.evaluate("Base"))
-                    if root_base_result != "Syntax Error" and root_base_result != "Math Error":
-                        self.content.append(root_base_result)
-                        self.content.append(')')
-                        self.root_content = []
-                        self.root_base = []
-                        self.root_content_displayed = []
-                        self.root_base_displayed = []
-                        self.rootCounter = 0
-                        self.inRoot = False
-                    else:
-                        self.output2.setText(root_base_result)
-                else:
-                    self.output2.setText(root_content_result)
+                self.content.append('(')
+                self.content.append(root_content_result)
+                self.content.append(')')
+                self.content.append("$")
+                self.content.append('(')
+                root_base_result = str(self.evaluate("Base"))
+                self.content.append(root_base_result)
+                self.content.append(')')
+                self.root_content = []
+                self.root_base = []
+                self.root_content_displayed = []
+                self.root_base_displayed = []
+                self.rootCounter = 0
+                self.inRoot = False
 
     # @brief Types inside of the root brackets.
     #
@@ -560,5 +561,5 @@ class Form(QWidget):
         self.textEdit.setGeometry(QtCore.QRect(0, 0, 501, 651))
         self.textEdit.setReadOnly(True)
         self.textEdit.setFont(font)
-        with open("help_form.html", encoding='utf-8') as f:
+        with open(get_path('help_form.html'), encoding='utf-8') as f:
             self.textEdit.setHtml(''.join(f.readlines()))
