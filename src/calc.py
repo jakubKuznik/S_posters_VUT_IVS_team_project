@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-###########################################
+# ##########################################
 # Project name: IVS - projekt
 # File: calc.py
 # Date: 13. 03. 2021
@@ -10,13 +10,14 @@
 #           Kuzník Jakub
 #           Kratochvíl Pavel
 #           Svobodová Lucie
-#
-# Brief: Calculator
-###########################################
+# ##########################################
 
-## @file calc.py
+## The two scripts calc and gui form the front-end of the calculator.
+# 
+#  @package calc
+#  @file calc.py
 #
-#  @brief calculator
+#  @brief Main script that creates an instance of the PyQt app and performs the main loop.
 #
 #  @author Vaňo Michal
 #  @author Kuzník Jakub

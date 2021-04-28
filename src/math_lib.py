@@ -11,31 +11,18 @@
 #           Svobodová Lucie
 # ##########################################
 
-## Math library
+## The math library and parser form the back-end of the calculator.
 #
 #  @package math_lib
 #  @file math_lib.py
-#  @brief Math library
+#  @brief A secondary script that encompasses all of the mathematical operations 
+#         and returns the values of atomic formulas back to the parser. In the event
+#         of an invalid mathematical expression, a Math Error is returned.
 #
 #  @author Vaňo Michal
 #  @author Kuzník Jakub
 #  @author Kratochvíl Pavel
 #  @author Svobodová Lucie
-
-## Division by zero exception
-# @brief Raised when the user input implies division by zero.
-#
-#
-class DivByZeroException(Exception):
-    pass
-
-## Domain error exception
-# @brief Raised when the supplied operand is out of domain of given function(e.g. sqrt(<negative number>)).
-#
-#
-class DomainErrorException(Exception):
-    pass
-
 
 ## 
 # @brief Function returns the result of addition of two numbers.

@@ -2,7 +2,7 @@
 # Project name: IVS - projekt
 # File: test_calc_tdd.py
 # Date: 13. 03. 2021
-# Last change: 13. 03. 2021
+# Last change: 29. 04. 2021
 # Team: S_POSTERS
 # Supervisor: ...
 # Authors:  Vaňo Michal
@@ -11,11 +11,11 @@
 #           Svobodová Lucie
 # ##########################################
 
-## Tests for math_lib and calc_parser
+## A set of tests that test out the functionality of calc_parser.py and math_lib.py.
 #
 #  @package test_calc_tdd
 #  @file test_calc_tdd.py
-#  @brief Tests for math_lib and calc_parser
+#  @brief A set of tests that test out the functionality of calc_parser.py and math_lib.py.
 #
 #  @author Vaňo Michal
 #  @author Kuzník Jakub
@@ -28,8 +28,7 @@ import math_lib
 import calc_parser
 
 ## 
-#  Unit Test for basic mathematical operation e.g. addition
-#  subtraction, multiplication, division.
+#  Unit Test for basic mathematical operations.
 class TestBasicOperations(unittest.TestCase):
 
     ## Set of tests for addition
@@ -539,7 +538,6 @@ class TestBasicOperations(unittest.TestCase):
 
 ## 
 #  Unit Test for parsing expressions
-#
 class TestParser(unittest.TestCase):
 
     ## Set of tests for one operation
@@ -735,8 +733,10 @@ class TestParser(unittest.TestCase):
 
         result = calc_parser.split_string_fn(['4', '5', '(', '27', ')', '$', '(', '3', ')'], list("45[3]√(27)"))
         self.assertEqual("Syntax Error", result)
-        
 
+
+    ## Set of tests that test compound expressions.
+    #  @param self The object pointer.
     def test_multiple_operations(self):
         result = calc_parser.split_string_fn(['5', '*', '(', '8', '-', '6', ')', '&', '(', '4', '/', '2', ')', '+', '(', '6', '?', '2', ')'], list("5*(8-6)^(4/2)+(6mod2)"))
         self.assertEqual(20, result)
