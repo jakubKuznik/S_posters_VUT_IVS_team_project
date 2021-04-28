@@ -385,7 +385,14 @@ class App(QWidget):
             if root != "Content" and root != "Base":
                 if self.content != [] and not self.inRoot:
                     self.result = split_string_fn(self.content, self.displayed_content)
-                    self.output2.setText(str(self.result))
+                    print(self.result)
+                    if self.result!="Syntax Error" and self.result!="Math Error":
+                        if len(str(self.result))>17:
+                            self.output2.setText('{0:g}'.format(float(self.result)))
+                        else:
+                            self.output2.setText(str(self.result))
+                    else:
+                        self.output2.setText(self.result)
             else:
                 if root == "Content":
                     return split_string_fn(self.root_content, self.root_content_displayed)
@@ -486,7 +493,10 @@ class App(QWidget):
     #
     # @param self
     def add_to_memory(self):
-        self.memory = str(self.result)
+        if 'e' in str(self.result):
+            pass
+        else:
+            self.memory=str(self.result)
 
     ##
     # @brief Deletes the current memory, setting it to zero.
