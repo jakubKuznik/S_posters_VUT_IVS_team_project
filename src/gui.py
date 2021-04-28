@@ -366,6 +366,8 @@ class App(QWidget):
             self.remove_from_memory()
         elif event.key() == QtCore.Qt.Key_C:
             self.complete_delete()
+        elif event.key() == QtCore.Qt.Key_D:
+            self.change_color()
         else:
             pass
     ## This function evaluates user input.
@@ -383,14 +385,9 @@ class App(QWidget):
                     self.output2.setText(str(self.result))
             else:
                 if root == "Content":
-                    if self.root_content != []:
-                        return split_string_fn(self.root_content, self.root_content_displayed)
-                    else:
-                        return
+                    return split_string_fn(self.root_content, self.root_content_displayed)
                 else:
-                    if self.root_base != ():
-                        return split_string_fn(self.root_base, self.root_base_displayed)
-                    pass
+                    return split_string_fn(self.root_base, self.root_base_displayed)
     ##
     # @brief Prepares the environment for root typesetting
     #
