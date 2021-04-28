@@ -82,10 +82,10 @@ class App(QWidget):
         ## Global font family and size declaration.
         self.font = QFont("Arial", 16)
         ## QtWidgets window init.
-        self.window = QtWidgets.QApplication(sys.argv)
+        #self.window = QtWidgets.QApplication(sys.argv)
         ## Init of help form with font passed as a parameter.
         self.form = Form(self.font)
-        self.window.setWindowIcon(QIcon(get_path("icon.png")))
+        self.setWindowIcon(QIcon(get_path("icon.png")))
 
         ## = button init.
         self.pushButton_s_equal = QPushButton(self)
