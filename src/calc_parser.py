@@ -2,7 +2,7 @@
 # Project name: IVS - projekt
 # File: calc_parser.py
 # Date: 14. 03. 2021
-# Last change: 15. 04. 2021
+# Last change: 28. 04. 2021
 # Team: S_POSTERS
 # Supervisor: ...
 # Authors:  Vaňo Michal

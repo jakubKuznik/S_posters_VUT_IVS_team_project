@@ -2,7 +2,7 @@
 # Project name: IVS - projekt
 # File: math_lib.py
 # Date: 13. 03. 2021
-# Last change: 20. 04. 2021
+# Last change: 28. 04. 2021
 # Team: S_POSTERS
 # Supervisor: ...
 # Authors:  Vaňo Michal

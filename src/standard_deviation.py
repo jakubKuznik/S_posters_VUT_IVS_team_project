@@ -2,7 +2,7 @@
 # Project name: IVS - projekt
 # File: standard_deviation.py
 # Date: 24. 04. 2021
-# Last change: 24. 04. 2021
+# Last change: 28. 04. 2021
 # Team: S_POSTERS
 # Supervisor: ...
 # Authors:  Vaňo Michal
