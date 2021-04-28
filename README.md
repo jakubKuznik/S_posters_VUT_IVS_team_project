@@ -1,7 +1,7 @@
-<div align="center">
+<div style="text-align:center;">
     <h1>Sloth Calculator</h1>
     <p>
-    <img src="screenshot.png" width="300" height="auto">
+    <img src="./src/icon.png" alt="sloth icon">
     <br>
     </p>
 </div>
@@ -12,15 +12,6 @@
 Simple calculator with gui. 
 Calculator uses our own math library and has documentation and installer. 
 
-Autori
-------
-- xkuzni04 Jakub Kuzník 
-- xkrato61 Pavel Kratochvíl 
-- xvanom00 Michal Vaňo
-- xsvobo1x Lucie Svobodova
-
-
-todo ----
 ## Instalace
 ...
 
@@ -32,9 +23,19 @@ todo ----
 * [Python](https://www.python.org/) - The programming language used
 * [PyQt](https://wiki.python.org/moin/PyQt) - Used for the GUI
 
-Prostredie
+Prostředí
 ---------
 Ubuntu 64bit
+
+
+Autori
+------
+- xkuzni04 Jakub Kuzník 
+- xkrato61 Pavel Kratochvíl 
+- xvanom00 Michal Vaňo
+- xsvobo1x Lucie Svobodova
+
+
 
 Licencia
 -------
