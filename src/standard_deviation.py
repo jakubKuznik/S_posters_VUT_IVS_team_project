@@ -84,6 +84,7 @@ def std_dev(input_array):
 
 def main():
     # read input
+    print("Enter numbers: \n")
     input_str = ""
     input_str = sys.stdin.readlines()
 
