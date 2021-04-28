@@ -211,23 +211,13 @@ class App(QWidget):
     # @brief According to the toggle button state changes color mode of calculator.
     #
     # @param self
-    #
-    def change_color(self,pressed=None):
-        if pressed!="Yes":
-            if self.color_mode:
-                self.toggle_light_mode()
-                self.color_mode = False
-            else:
-                self.toggle_dark_mode()
-                self.color_mode = True
+    def change_color(self):
+        if self.color_mode:
+            self.toggle_light_mode()
+            self.color_mode = False
         else:
-            if self.color_mode:
-                self.toggle_light_mode()
-                self.color_mode = False
-            else:
-                self.toggle_dark_mode()
-                self.color_mode = True
-
+            self.toggle_dark_mode()
+            self.color_mode = True
 
 
     ## Function which changes components' color to dark mode.
@@ -381,7 +371,7 @@ class App(QWidget):
         elif event.key() == QtCore.Qt.Key_C:
             self.complete_delete()
         elif event.key() == QtCore.Qt.Key_D:
-            self.change_color("Yes")
+            self.change_color()
         else:
             pass
     ## This function evaluates user input.
