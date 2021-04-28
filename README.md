@@ -20,12 +20,19 @@ Autori
 - xsvobo1x Lucie Svobodova
 
 
-todo ----
 ## Instalace
-...
+Download from: #TODO
+```
+unzip sloth_calc_instaler.zip
+```
+```
+sudo dpkg -i sloth_calc.deb
+```
 
 ## Odinstalace
-------
+```
+sudo dpkg -P slothcalc
+```
 
 ## Built With
 
