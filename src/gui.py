@@ -76,6 +76,8 @@ class App(QWidget):
         self.root_content = []
         ##
         self.root_content_displayed = []
+        ##
+        self.color_mode = False
 
         ## Global font family and size declaration.
         self.font = QFont("Arial", 16)
@@ -210,11 +212,23 @@ class App(QWidget):
     #
     # @param self
     #
-    def change_color(self):
-        if self.pushButton_color.isChecked():
-            self.toggle_dark_mode()
+    def change_color(self,pressed=None):
+        if pressed!="Yes":
+            if self.color_mode:
+                self.toggle_light_mode()
+                self.color_mode = False
+            else:
+                self.toggle_dark_mode()
+                self.color_mode = True
         else:
-            self.toggle_light_mode()
+            if self.color_mode:
+                self.toggle_light_mode()
+                self.color_mode = False
+            else:
+                self.toggle_dark_mode()
+                self.color_mode = True
+
+
 
     ## Function which changes components' color to dark mode.
     # @brief Changes color of all buttons and background.
@@ -367,7 +381,7 @@ class App(QWidget):
         elif event.key() == QtCore.Qt.Key_C:
             self.complete_delete()
         elif event.key() == QtCore.Qt.Key_D:
-            self.change_color()
+            self.change_color("Yes")
         else:
             pass
     ## This function evaluates user input.
