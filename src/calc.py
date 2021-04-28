@@ -33,7 +33,4 @@ import traceback
 calc = QApplication(sys.argv)
 app = App()
 app.show()
-try:
-    sys.exit( calc.exec_())
-except:
-    pass #I have no idea why this works but it does.
+sys.exit( calc.exec_())
