@@ -1,5 +1,5 @@
 PYTHON = python3
-DESTDIR = ../installer/DEBIAN
+DESTDIR = ../slothcalc/DEBIAN
 SHELL = /bin/bash
 INSFLAGS = -m 0755
 
@@ -51,15 +51,15 @@ dist/slothcalc/slothcalc: calc.py help_form.html bulb_on.png bulb_off.png questi
 	pyinstaller calc.spec
 
 install: dist/slothcalc/slothcalc
-	mkdir ../installer/usr/bin
-	cp ./dist/calc ../installer/usr/bin/slothcalc
-	cd .. && dpkg-deb --build installer
+	mkdir ../slothcalc/usr/bin
+	cp ./dist/calc ../slothcalc/usr/bin/slothcalc
+	cd .. && dpkg-deb --build slothcalc
 
 profile:
 	${PYTHON} profiling.py
 
 clean:
-	rm -rf ../installer/usr/bin/
+	rm -rf ../slothcalc/usr/bin/
 	rm -rf ./build/
 	rm -rf ./dist/
 	rm -rf ./*.spec
