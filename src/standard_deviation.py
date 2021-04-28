@@ -11,11 +11,11 @@
 #           Svobodová Lucie
 # ##########################################
 
-## Program calculates the standard deviation using functions from math_lib.
+## A ternary script used for profiling. Calculates the standard deviation of a set of inputs.
 #
 #  @package standard_deviation
 #  @file standard_deviation.py
-#  @brief Program calculates the standard deviation.
+#  @brief A ternary script used for profiling. Calculates the standard deviation of a set of inputs.
 #
 #  @author Vaňo Michal
 #  @author Kuzník Jakub
@@ -31,7 +31,6 @@ import select
 # 
 # @param input_str string in that the stdin is stored
 # @return arr array of floats
-#
 def separate_numbers(input_str):
     # input string contains characters that are replaced with whitespace and than splitted in an array
     input_str = str(input_str).replace("[", ' ').replace("]", ' ').replace("\\n", ' ').replace("\\t", ' ').replace("\'", ' ').replace(",", ' ').split()

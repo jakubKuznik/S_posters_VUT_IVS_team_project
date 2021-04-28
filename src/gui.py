@@ -1,4 +1,4 @@
-##########################################
+# #########################################
 # Project name: IVS - projekt
 # File: gui.py
 # Date: 25. 03. 2021
@@ -9,13 +9,15 @@
 #           Kuzník Jakub
 #           Kratochvíl Pavel
 #           Svobodová Lucie
-#
-# Brief: GUI for our calculator
-###########################################
+# ##########################################
 
-## @file gui.py
+## The two scripts calc and gui form the front-end of the calculator.
 #
-#  @brief Calculator user interface
+#  @package gui
+#  @file gui.py
+#
+#  @brief A secondary script that sets up the user interface, determines sizes, 
+#         fonts, assigns functions to buttons, and assigns key bindings.
 #
 #  @author Vaňo Michal
 #  @author Kuzník Jakub

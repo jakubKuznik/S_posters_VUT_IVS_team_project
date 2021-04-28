@@ -11,11 +11,13 @@
 #           Svobodová Lucie
 # ##########################################
 
-## Calculator Parser
+## The math library and parser form the back-end of the calculator.
 #
 #  @package calc_parser
 #  @file calc_parser.py
-#  @brief Calculator Parser
+#  @brief A secondary script that parses a given mathematical expression and determines 
+#         whether it is mathematically correct. If the expression is invalid, an error 
+#         message is returned. Otherwise it evaluates the expression and returns the final value.
 #
 #  @author Vaňo Michal
 #  @author Kuzník Jakub

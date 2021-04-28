@@ -11,19 +11,20 @@
 #           Svobodová Lucie
 # ##########################################
 
-## Math library
+## The math library and parser form the back-end of the calculator.
 #
 #  @package math_lib
 #  @file math_lib.py
-#  @brief Math library
+#  @brief A secondary script that encompasses all of the mathematical operations 
+#         and returns the values of atomic formulas back to the parser. In the event
+#         of an invalid mathematical expression, a Math Error is returned.
 #
 #  @author Vaňo Michal
 #  @author Kuzník Jakub
 #  @author Kratochvíl Pavel
 #  @author Svobodová Lucie
 
-
-## 
+##
 # @brief Function returns the result of addition of two numbers.
 #
 # @param a first addend
