@@ -24,6 +24,7 @@
 #  @author Svobodová Lucie
 
 from gui import *
+import traceback
 
 ## This function initializes the app window.
 # @brief The main function which launches the calculator app itself.
@@ -35,4 +36,4 @@ app.show()
 try:
     sys.exit( calc.exec_())
 except:
-    pass
+    pass #I have no idea why this works but it does.
