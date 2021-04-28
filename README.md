@@ -1,9 +1,9 @@
+<p style="display: block;margin-left: auto;margin-right: auto;">
+    <img src="src/icon.png" alt="sloth icon">
+</p>
+
 <div style="text-align:center;">
     <h1>Sloth Calculator</h1>
-    <p>
-    <img src="./src/icon.png" alt="sloth icon">
-    <br>
-    </p>
 </div>
 
 ## IVS Projekt 2 S_posters
@@ -16,7 +16,7 @@ Calculator uses our own math library and has documentation and installer.
 ...
 
 ## Odinstalace
-------
+
 
 ## Built With
 

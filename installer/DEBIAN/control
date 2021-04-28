@@ -1,7 +1,8 @@
 Package: slothcalc
-Section: graphics
+Section: math
 Priority: optional
-Maintainer: Tvoj tatko
+Maintainer: S_Posters team
+Priority: optional
 Architecture: all
 Version: 1.0
 Depends: libxcb-xinerama0
