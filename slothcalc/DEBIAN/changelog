@@ -1,7 +1,5 @@
-slothcalc (1.0) distribution(s); urgency=urgency
+slothcalc (1.0) unstable; urgency=low
 
-  * Initial package version 1.0
+  * Initial release
 
-  * Sloth calc for the win.
-
--- maintainer name jakubkuznik@gmail.com  Wed, 20 Apr 2000 04:20:00 +0200
+ -- S_POSTERS_team sposters@sposters.com  Tue, 19 Apr 2021 11:06:00 +0100
