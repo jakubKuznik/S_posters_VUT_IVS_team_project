@@ -1,8 +1,0 @@
-Package: slothcalc
-Section: graphics
-Priority: optional
-Maintainer: Tvoj tatko
-Architecture: all
-Version: 1.0
-Depends: libxcb-xinerama0
-Description: S_POSTERS test description dude

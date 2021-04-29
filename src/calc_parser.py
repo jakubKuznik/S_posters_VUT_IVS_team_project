@@ -51,7 +51,7 @@ def split_string_fn(content, displayed_content):
                 return "Syntax Error"
     for i in range(0, len(displayed_content)-1):
         if displayed_content[i] == 'π' or displayed_content[i] == 'M':
-            if displayed_content[i + 1] == 'M' or displayed_content[i + 1] == 'π' or displayed_content[i + 1] == ')' or is_number(displayed_content[i + 1]):
+            if displayed_content[i + 1] == 'M' or displayed_content[i + 1] == 'π' or displayed_content[i + 1] == '(' or is_number(displayed_content[i + 1]):
                 return "Syntax Error"
 
     calc_string = ''.join(content)

@@ -31,7 +31,10 @@
 # @param b second addend
 # @return sum of two numbers
 def add(a, b):
-    return a+b
+    try:
+        return a+b
+    except:
+        return "Math Error"
 
 
 ## 
@@ -41,7 +44,10 @@ def add(a, b):
 # @param b second operand
 # @return difference of two numbers
 def sub(a, b):
-    return a-b
+    try:
+        return a-b
+    except:
+        return "Math Error"
 
 
 ## 
@@ -51,7 +57,10 @@ def sub(a, b):
 # @param b second factor
 # @return product of two numbers
 def mult(a, b):
-    return a*b
+    try:
+        return a*b
+    except:
+        return "Math Error"
 
 
 ## 
@@ -64,7 +73,10 @@ def mult(a, b):
 def div(a, b):
     if b == 0:
         return "Math Error"
-    return a/b
+    try:
+        return a/b
+    except:
+        return "Math Error"
 
 
 ## 
@@ -100,7 +112,10 @@ def fact(factorized_number):
     if factorized_number == 0:
         return 1
     else:
-        return factorized_number * fact(factorized_number - 1)
+        try:
+            return factorized_number * fact(factorized_number - 1)
+        except:
+            return "Math Error"
 
 
 ## 
@@ -115,7 +130,10 @@ def exp(base, exponent):
         return "Math Error"
     if exponent < 0 and base == 0:
         return "Math Error"
-    return base ** exponent
+    try:
+        return base ** exponent
+    except:
+        return "Math Error"
 
 
 ## 
@@ -130,4 +148,7 @@ def mod(a, b):
         return "Math Error"
     if int(a) != a or int(b) != b:
         return "Math Error"
-    return a % b
+    try:
+        return a % b
+    except:
+        return "Math Error"
