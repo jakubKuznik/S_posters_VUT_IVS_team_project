@@ -30,6 +30,12 @@ from PyQt5.QtGui import QFont, QIcon, QColor
 from PyQt5.QtWidgets import QWidget, QPushButton, QGraphicsDropShadowEffect, QApplication
 from calc_parser import *
 
+
+##
+# @brief This function assigns the correct path in order for pyinstaller to work.
+#
+# @param path
+#
 def get_path(path):
     if hasattr(sys, 'frozen'):
         return os.path.join(getattr(sys, '_MEIPASS'), path)
@@ -387,10 +393,14 @@ class App(QWidget):
                     self.result = split_string_fn(self.content, self.displayed_content)
                     print(self.result)
                     if self.result!="Syntax Error" and self.result!="Math Error":
-                        if len(str(self.result))>17:
-                            self.output2.setText('{0:g}'.format(float(self.result)))
+                        if len(str(self.result))>16:
+                            self.output2.setText()
                         else:
-                            self.output2.setText(str(self.result))
+                            if int(self.result) == self.result:
+                                self.output2.setText(str(int(self.result)))
+
+                            else:
+                                self.output2.setText(str(self.result))
                     else:
                         self.output2.setText(self.result)
             else:
