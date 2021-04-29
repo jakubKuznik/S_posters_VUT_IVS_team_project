@@ -413,6 +413,9 @@ class TestBasicOperations(unittest.TestCase):
         result_error = math_lib.exp(0, -2)
         self.assertEqual("Math Error", result_error)
 
+        result_error = math_lib.exp(0, 1000000)
+        self.assertEqual("Math Error", result_error)
+
 
     ## Set of tests for root
     #  @param self The object pointer.
