@@ -56,7 +56,7 @@ class App(QWidget):
     ## Init function of the App class.
     # @brief Initializes all configuration parameters as well as global parameters for user interface.
     #
-    # @param self
+    # @param self The object pointer.
     #
     def __init__(self):
         super().__init__()
@@ -150,7 +150,7 @@ class App(QWidget):
     ## User interface set up.
     # @brief Creation and setting of all button parameters, display parameters, fonts.
     #
-    # @param self
+    # @param self The object pointer.
     #
     def setup_ui(self):
         self.setFixedSize(550, 870)
@@ -213,7 +213,7 @@ class App(QWidget):
     ## Dark/light mode helper switch function.
     # @brief According to the toggle button state changes color mode of calculator.
     #
-    # @param self
+    # @param self The object pointer.
     def change_color(self):
         if self.color_mode:
             self.toggle_light_mode()
@@ -222,11 +222,11 @@ class App(QWidget):
             self.toggle_dark_mode()
             self.color_mode = True
 
-        ## Function which changes components' color to dark mode.
-        # @brief Changes color of all buttons and background.
-        #
-        # @param self
-        #
+    ## Function which changes components' color to dark mode.
+    # @brief Changes color of all buttons and background.
+    #
+    # @param self The object pointer.
+    #
     def toggle_dark_mode(self):
         self.pushButton_color.setIcon(self.color_dark)
         self.pushButton_help.setIcon(self.question_off)
@@ -266,7 +266,7 @@ class App(QWidget):
     ## Function which changes components' color to light(default) mode.
     # @brief Changes color of all buttons and background.
     #
-    # @param self
+    # @param self The object pointer.
     #
     def toggle_light_mode(self):
         self.pushButton_color.setIcon(self.color_light)
@@ -307,7 +307,7 @@ class App(QWidget):
     ## This function maps keyboard keys to buttons in the user interface
     # @brief Rebinds PyQt's default numbers and operators keys as new signals
     #
-    # @param self
+    # @param self The object pointer.
     # @param event An argument that is passed on pressing a button.
     def keyPressEvent(self, event):
         if event.key() == QtCore.Qt.Key_0:
@@ -379,7 +379,7 @@ class App(QWidget):
     ##
     # @brief Sends string input to parser for further evaluation.
     #
-    # @param self
+    # @param self The object pointer.
     # @param root Optional parameter that tells the evaluate function who called it and in which context, as evaluate has two functions: Move inside of the root, Evaluate the entire expression.
     def evaluate(self, root=None):
         if self.inRoot==True and root=="Pressed":
@@ -407,7 +407,7 @@ class App(QWidget):
     ##
     # @brief Prepares the environment for root typesetting
     #
-    # @param self
+    # @param self The object pointer.
     #
     def root(self):
         if not self.inRoot:
@@ -419,7 +419,7 @@ class App(QWidget):
     ##
     # @brief Moves inside of the root and evaluates the expressions inside of root brackets.
     #
-    # @param self
+    # @param self The object pointer.
     #
     def move_in_root(self):
         if self.inRoot:
@@ -441,11 +441,12 @@ class App(QWidget):
                 self.root_base_displayed = []
                 self.rootCounter = 0
                 self.inRoot = False
-
+    ##
     # @brief Types inside of the root brackets.
     #
     # @param term Allows different behavior based on whether the user pressed a binary or a unary operation.
     # @param displayed_term Allows different behavior based on whether the user pressed a binary or a unary operation.
+    # @param self The object pointer.
     def type_in_root(self, term, displayed_term):
         if self.rootCounter == 0:
             if term != '!':
@@ -472,7 +473,7 @@ class App(QWidget):
     ##
     # @brief Shows the help window.
     #
-    # @param self
+    # @param self The object pointer.
     #
     def help_click(self):
         self.form.show()
@@ -482,7 +483,7 @@ class App(QWidget):
     #
     # @param term Allows different behavior based on whether the user pressed a binary or a unary operation.
     # @param displayed_term Allows different behavior based on whether the user pressed a binary or a unary operation.
-    #
+    # @param self The object pointer.
     def print(self, term, displayed_term):
         if not self.inRoot:
             if term != '!':
@@ -498,7 +499,7 @@ class App(QWidget):
     ##
     # @brief Overwrites the current memory by the current result.
     #
-    # @param self
+    # @param self The object pointer.
     def add_to_memory(self):
         if 'e' in str(self.result):
             pass
@@ -508,14 +509,14 @@ class App(QWidget):
     ##
     # @brief Deletes the current memory, setting it to zero.
     #
-    # @param self
+    # @param self The object pointer.
     def remove_from_memory(self):
         self.memory = "0"
 
     ##
     # @brief Deletes the last item in the displayed content with special rules regarding root.
     #
-    # @param self
+    # @param self The object pointer.
     def delete(self):
         if len(self.content) != 0 or self.inRoot:
             if self.displayed_content[-1] == '!':
@@ -545,7 +546,7 @@ class App(QWidget):
 
     ## This function deletes the entire content of the display.
     #
-    # @param self
+    # @param self The object pointer.
     #
     def complete_delete(self):
         self.content = []
@@ -568,7 +569,7 @@ class Form(QWidget):
     # @brief Initializes HTML canvas, sets default font(passed as param from the App class instance), displays content
     # help_form.html
     #
-    # @param self
+    # @param self The object pointer.
     # @param font Sets the font of the text
     def __init__(self, font):
         super().__init__()
