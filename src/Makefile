@@ -58,6 +58,22 @@ install: dist/slothcalc/slothcalc
 profile:
 	${PYTHON} profiling.py
 
+
+pack: doc packfolder xkrato61_xsvobo1x_xkuzni04_xvanom00.zip
+xkrato61_xsvobo1x_xkuzni04_xvanom00.zip:
+	rm -rf ../../xkrato61_xsvobo1x_xkuzni04_xvanom00/repo/install
+	rm -rf ../../xkrato61_xsvobo1x_xkuzni04_xvanom00/repo/doc	
+	cd ../.. && zip -r $@ xkrato61_xsvobo1x_xkuzni04_xvanom00
+
+packfolder:
+	mkdir -p ../../xkrato61_xsvobo1x_xkuzni04_xvanom00/repo
+	mkdir ../../xkrato61_xsvobo1x_xkuzni04_xvanom00/install
+	mkdir ../../xkrato61_xsvobo1x_xkuzni04_xvanom00/doc
+	cp -a ../../S_posters_VUT_IVS_team_project/. ../../xkrato61_xsvobo1x_xkuzni04_xvanom00/repo/
+	cp -a ../doc/. ../../xkrato61_xsvobo1x_xkuzni04_xvanom00/doc/
+	cp -a ../slothcalc/. ../../xkrato61_xsvobo1x_xkuzni04_xvanom00/install/
+
+
 clean:
 	rm -rf ../slothcalc/usr/bin/
 	rm -rf ./build/
