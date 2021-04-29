@@ -1,23 +1,23 @@
-Napsali jsme program, který nám vygenerujue profiling výstup. 
+Profiling jsme provedli na našem programu pro výpočet směrodatné odchylky (standard_deviation.py).
+Cílem bylo zjistit, jak dobře funguje naše knihovna math_lib.py a zda by se některé části programu
+daly optimalizovat. Profiling jsme provedli na 10, 100 a 1000 číslech. Vyzkoušeli jsme dva profilovací 
+nástroje, z nichž jeden jsme použili pro tvorbu grafů (viz přiložené obrázky) a druhý nám vygeneroval 
+pouze textový výstup. 
 
-  Profiling jsme provedli na našem programu pro výpočet směrodatné odchylky (standard_deviation.py).
- Cílem bylo především zjistit, jak dobře funguje naše knihovna math_lib.py. Profiling jsme provedli 
-na 10 100 a 1000 číslech, což je dost malý vstup. Z profilingu vyplývá následující:
-
-
-  Knihovna funguje efektivně. Je to zapříčiněno i tím, že jsou všechny funkce v knihovně maximálně 
-minimalistické a v podstatě se jedná o funkce, na které byl cpu navržen, takže 
-je pochopitelné, že běží velmi rychle.
-
-  V programu se parsují argumenty vždy jenom jednou na začátku, takže parser program moc nebrzdí.
+Z profilingu vyplývá následující:
+Knihovna funguje efektivně, a to především díky tomu, že jsou všechny funkce v knihovně maximálně 
+minimalistické a v podstatě se jedná o funkce, na které byl cpu navržen, takže je pochopitelné, 
+že běží velmi rychle. V matematické knihovně jsme tedy nenalezli žádné místo, které by bylo vhodné 
+zoptimalizovat.
+Argumenty se parsují pouze na začátku, takže parsovací funkci se také nevyplatí optimalizovat.
 
 Závěr:
 Tento malý program v podstatě nelze moc optimalizovat.
-  Je nutné si však uvědomit, že profiling na tak malých datech je trochu zrádný a je vhodnější 
-spíše pro komplikovanější programy a větší objem dat.
+Je nutné si však uvědomit, že profiling na tak malých datech je trochu zrádný a je vhodnější 
+jej provádět spíše na větších programech a větším objemu dat.
 
 
-PROFILER:
+Výstup profileru pro 1000 čísel (cProfiler):
 
 6028 function calls in 0.008 seconds
 
