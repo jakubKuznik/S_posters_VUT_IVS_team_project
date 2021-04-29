@@ -11,7 +11,7 @@
 
 ## About 
 Simple calculator with pleasing graphical user interface.
-Calculator uses handmade mathematical library and high performace expression parser to bring you the most accurate results.
+Calculator uses handmade mathematical library and high performace expression parser to bring you the most accurate results. Combined with an awesome design and sleek darkmode, Slothcalc makes the best companion for nights spent learning mathematical analysis.
 
 Authors
 ------
