@@ -1,6 +1,6 @@
 Napsali jsme program, který nám vygenerujue profiling výstup. 
 
-  Profiling jsme provedli na náš program pro výpočet směrodatné odchylky (standart_deviation.py).
+  Profiling jsme provedli na našem programu pro výpočet směrodatné odchylky (standard_deviation.py).
  Cílem bylo především zjistit, jak dobře funguje naše knihovna math_lib.py. Profiling jsme provedli 
 na 10 100 a 1000 číslech, což je dost malý vstup. Z profilingu vyplývá následující:
 
