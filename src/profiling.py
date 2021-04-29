@@ -14,8 +14,9 @@
 
 ## A script used for profiling. Runs the program standard_deviation.py.
 #
-#  @package standard_deviation
-#  @file standard_deviation.py
+#  @package profiling
+#  @file profiling.py
+#
 #  @brief A script used for profiling. Runs the program standard_deviation.py.
 #
 #  @author Vaňo Michal
@@ -23,8 +24,8 @@
 #  @author Kratochvíl Pavel
 #  @author Svobodová Lucie
 
-import standard_deviation
-import cProfile
+import standard_deviation   # program that is profiled
+import cProfile             # profiler
 
 def main():
     standard_deviation.main()
