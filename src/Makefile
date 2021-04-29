@@ -54,7 +54,8 @@ pack_folder:
 	mkdir ../../xvanom00_xkuzni04_xkrato61_xsvobo1x/doc
 	cp -a ../../S_posters_VUT_IVS_team_project/. ../../xvanom00_xkuzni04_xkrato61_xsvobo1x/repo/
 	cp -a ../doc/. ../../xvanom00_xkuzni04_xkrato61_xsvobo1x/doc/
-	cp -a ../slothcalc/. ../../xvanom00_xkuzni04_xkrato61_xsvobo1x/install/
+	cp -a ../slothcalc.deb ../../xvanom00_xkuzni04_xkrato61_xsvobo1x/install/
+	cp -a ../dokumentace.pdf ../../xvanom00_xkuzni04_xkrato61_xsvobo1x/install/
 
 clean:
 	rm -rf ../slothcalc/usr/bin/
