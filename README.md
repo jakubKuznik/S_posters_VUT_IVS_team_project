@@ -6,13 +6,13 @@
     </p>
 </div>
 
-## IVS Projekt 2 S_posters
+## IVS Projekt 2 S_posters [![forthebadge](http://forthebadge.com/images/badges/built-with-love.svg)](http://forthebadge.com)
 
 ## About 
-Simple calculator with gui. 
-Calculator uses our own math library and has documentation and installer. 
+Simple calculator with pleasing graphical user interface.
+Calculator uses handmade mathematical library and high performace expression parser to bring you the most accurate results.
 
-Autori
+Authors
 ------
 - xkuzni04 Jakub Kuzník 
 - xkrato61 Pavel Kratochvíl 
@@ -20,12 +20,12 @@ Autori
 - xsvobo1x Lucie Svobodova
 
 
-## Instalace
+## Installation
 ```
 sudo dpkg -i sloth_calc.deb
 ```
 
-## Odinstalace
+## Uninstallation
 ```
 sudo dpkg -P slothcalc
 ```
@@ -35,10 +35,10 @@ sudo dpkg -P slothcalc
 * [Python](https://www.python.org/) - The programming language used
 * [PyQt](https://wiki.python.org/moin/PyQt) - Used for the GUI
 
-Prostredie
+Supported environments
 ---------
 Ubuntu 64bit
 
-Licencia
+License
 -------
-Tento projekt je poskytovaný licencí GNU GPL v.3 License.
+This project is to be redistributed under the GNU GPL v.3 License.
