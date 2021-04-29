@@ -392,7 +392,6 @@ class App(QWidget):
             if root != "Content" and root != "Base":
                 if self.content != [] and not self.inRoot:
                     self.result = split_string_fn(self.content, self.displayed_content)
-                    print(self.result)
                     if self.result!="Syntax Error" and self.result!="Math Error":
                         if len(str(self.result))>16:
                             self.output2.setText('{:.14g}'.format(float(self.result)))
