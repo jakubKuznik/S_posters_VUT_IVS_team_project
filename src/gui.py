@@ -60,27 +60,27 @@ class App(QWidget):
     #
     def __init__(self):
         super().__init__()
-        ## visible content of the display
+        ## Inside content of the calculator
         self.content = []
-        ##
+        ## Calculator memory
         self.memory = '0'
-        ##
+        ## What is displayed on the calculator
         self.displayed_content = []
-        ##
+        ## The result currently displayed on the calculator
         self.result = 0
-        ##
+        ## Determines the current location inside of the root
         self.rootCounter = 0
-        ##
+        ## Determines whether user is typing out a root
         self.inRoot = False
-        ##
+        ## The inside base of the current root
         self.root_base = []
-        ##
+        ## Displayed base of the current root
         self.root_base_displayed = []
-        ##
+        ## The content of the current root
         self.root_content = []
-        ##
+        ## The displayed content of the current root
         self.root_content_displayed = []
-        ##
+        ## Current color mode
         self.color_mode = False
 
         ## Global font family and size declaration.
