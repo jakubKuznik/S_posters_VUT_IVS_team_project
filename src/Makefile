@@ -52,7 +52,7 @@ dist/slothcalc/slothcalc: calc.py help_form.html bulb_on.png bulb_off.png questi
 install: dist/slothcalc/slothcalc
 	mkdir ../slothcalc/usr/bin
 	cp ./dist/calc ../slothcalc/usr/bin/slothcalc
-	cd .. && dpkg-buildpackage -us -uc --build slothcalc
+	cd .. && dpkg-buildpackage -us -uc
 
 profile:
 	${PYTHON} profiling.py
