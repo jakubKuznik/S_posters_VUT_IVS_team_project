@@ -1,10 +1,10 @@
-Package: slothcalc
 Source: slothcalc
 Section: math
 Priority: optional
-Maintainer: S_POSTERS team
-Architecture: all
-Version: 1.0
-Installed-Size: 75kB
+Maintainer: S_POSTERS team <s_posters@vutbr.cz>
+Standards-Version: 0.2.0
+
+Package: slothcalc
+Architecture: amd64
 Depends: libxcb-xinerama0
 Description: Cool calculator GUI app by S_POSTERS team
