@@ -32,6 +32,7 @@ nonNumbers = ['+', '-', '*', '/', '?', '&', '$']
 ## A dictionary used for evaluating the precedence of the operators
 operators = {'(': 0, ')': 0, '+': 1, '-': 1, '*': 2, '/': 2, '?': 2, '&': 3, '$': 3, '!': 3}
 
+
 ##
 # @brief This function checks the user input for some special characters (memory and pi) and splits the input into tokens.
 #
@@ -39,7 +40,7 @@ operators = {'(': 0, ')': 0, '+': 1, '-': 1, '*': 2, '/': 2, '?': 2, '&': 3, '$'
 # @param displayed_content Content shown on the first display of the calculator
 # @return "Syntax error" if special characters violate their rules, or if any other item violates its rules. Otherwise sends the split tokenized list into the next one that changes the infix notation to postfix notation
 def split_string_fn(content, displayed_content):
-    if content==[]:
+    if content == []:
         return "Syntax Error"
     if "Math Error" in content:
         return "Math Error"
@@ -64,7 +65,7 @@ def split_string_fn(content, displayed_content):
         return "Syntax Error"
 
     for i in range(len(split_string) - 1):
-        if i == 0 and split_string[i] == '-' and (is_number(split_string[1]) or split_string[1]=='('):
+        if i == 0 and split_string[i] == '-' and (is_number(split_string[1]) or split_string[1] == '('):
             split_string[0] = '@'
         elif split_string[i] == '-' and split_string[i - 1] == '(' and is_number(split_string[i + 1]):
             split_string[i] = '@'
@@ -100,7 +101,7 @@ def infix_to_rpn(infix_array):
             for operator in stack[::-1]:
                 if operator == '(':
                     break
-                if i!='&':
+                if i != '&':
                     if operators[operator] >= operators[i]:
                         rpn_array.append(stack.pop())
                 else:
@@ -174,7 +175,6 @@ def is_number(token):
 # @param split_string A list of the input that will be validated.
 # @return False if characters violate their rules, otherwise True
 def validate(split_string):
-    # TODO: cislo nemoze koncit bodkou a nemozu byt dve cisla za sebou
     parentheses_counter = 0
     for i in split_string:
         if i == "(":
@@ -183,7 +183,7 @@ def validate(split_string):
             parentheses_counter -= 1
         if parentheses_counter < 0:
             return False
-    if parentheses_counter!=0:
+    if parentheses_counter != 0:
         return False
 
     binary_operators = ['+', '-', '*', '/', '&', '$', '?']
@@ -191,7 +191,7 @@ def validate(split_string):
         if split_string[i] == ')':
             if split_string[i - 1] == '(' or split_string[i - 1] in binary_operators:
                 return False
-            if i!=len(split_string)-1:
+            if i != len(split_string)-1:
                 if is_number(split_string[i + 1]):
                     return False
         elif split_string[i] == '(':
@@ -243,7 +243,7 @@ def validate(split_string):
         else:
             if split_string[i][0] == '.':
                 return False
-            if split_string[i][-1]=='.':
+            if split_string[i][-1] == '.':
                 return False
             if split_string[i].count(".") > 1:
                 return False

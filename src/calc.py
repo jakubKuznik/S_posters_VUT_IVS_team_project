@@ -25,13 +25,8 @@
 #  @author Svobodová Lucie
 
 from gui import *
-import traceback
-
-## This function initializes the app window.
-# @brief The main function which launches the calculator app itself.
-#
 
 calc = QApplication(sys.argv)
 app = App()
 app.show()
-sys.exit( calc.exec_())
+sys.exit(calc.exec_())

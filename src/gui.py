@@ -44,6 +44,7 @@ def get_path(path):
     else:
         return path
 
+
 ## Main window class
 # @brief Class of the entire PyQt GUI of the calculator. Connects user interaction with backend evaluation
 #
