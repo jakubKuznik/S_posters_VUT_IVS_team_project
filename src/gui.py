@@ -580,5 +580,6 @@ class Form(QWidget):
         self.textEdit.setGeometry(QtCore.QRect(0, 0, 501, 651))
         self.textEdit.setReadOnly(True)
         self.textEdit.setFont(font)
+        #os.chdir(os.path.dirname(sys.argv[0]))
         with open(get_path('help_form.html'), encoding='utf-8') as f:
             self.textEdit.setHtml(''.join(f.readlines()))
