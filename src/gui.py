@@ -394,10 +394,10 @@ class App(QWidget):
                     print(self.result)
                     if self.result!="Syntax Error" and self.result!="Math Error":
                         if len(str(self.result))>16:
-                            self.output2.setText()
+                            self.output2.setText('{:.14g}'.format(float(self.result)))
                         else:
-                            if int(self.result) == self.result:
-                                self.output2.setText(str(int(self.result)))
+                            if float(self.result).is_integer():
+                                self.output2.setText(str(int(float(self.result))))
 
                             else:
                                 self.output2.setText(str(self.result))
