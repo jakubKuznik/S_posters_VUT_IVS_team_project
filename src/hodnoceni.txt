@@ -1,4 +1,0 @@
-xkuzni04 90   (Setup komunikačných kanálov, uživateľská príručka, profiling)
-xkrato61 110  (GUI, návrh designu, inštalácia, make)
-xvanom00 110  (Matematická knižnica, parser, mockup, návrh designu)
-xsvobo1x 90   (Dokumentácia, profiling, testy)
