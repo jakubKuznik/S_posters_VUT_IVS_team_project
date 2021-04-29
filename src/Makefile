@@ -1,7 +1,6 @@
 PYTHON = python3
 DESTDIR = ../slothcalc/DEBIAN
 SHELL = /bin/bash
-INSFLAGS = -m 0755
 
 PACK_NAME = xvanom00_xkuzni04_xkrato61_xsvobo1x
 #ALL_DIRS = ./doc ./install ./repo	# directories in a pack
