@@ -2,7 +2,7 @@
 # Project name: IVS - projekt
 # File: gui.py
 # Date: 25. 03. 2021
-# Last change: 28. 04. 2021
+# Last change: 29. 04. 2021
 # Team: S_POSTERS
 # Supervisor: ...
 # Authors:  Vaňo Michal
@@ -68,10 +68,6 @@ class App(QWidget):
         self.displayed_content = []
         ##
         self.result = 0
-        ##
-        self.operators = ['+', '-', '*', '/', '**0.5', '.', '**']
-        ##
-        self.numbers = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
         ##
         self.rootCounter = 0
         ##
@@ -380,7 +376,7 @@ class App(QWidget):
             self.change_color()
         else:
             pass
-    ## This function evaluates user input.
+    ##
     # @brief Sends string input to parser for further evaluation.
     #
     # @param self
@@ -420,7 +416,7 @@ class App(QWidget):
             self.displayed_content.append('(~~)')
             self.output1.setText(''.join(self.displayed_content))
             self.inRoot = True
-
+    ##
     # @brief Moves inside of the root and evaluates the expressions inside of root brackets.
     #
     # @param self
@@ -473,7 +469,7 @@ class App(QWidget):
             self.root_content_displayed.append(displayed_term)
             self.displayed_content[-1] = '(' + ''.join(self.root_content_displayed) + ')'
             self.output1.setText(''.join(self.displayed_content))
-
+    ##
     # @brief Shows the help window.
     #
     # @param self
@@ -481,6 +477,7 @@ class App(QWidget):
     def help_click(self):
         self.form.show()
 
+    ##
     # @brief Prints the pressed or clicked token if it is possible.
     #
     # @param term Allows different behavior based on whether the user pressed a binary or a unary operation.
