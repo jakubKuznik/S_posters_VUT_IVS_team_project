@@ -1,1 +1,29 @@
-tento soubor bude obsahovat rozdil mezi planem projektu a skutecnosti
+Porovnání plánu a skutečnosti
+
+Stanovené termíny
+-----------------
+Většina předem stanovených termínů nebyla přesně dodržena a zpozdila se o několik dní. 
+Bylo to způsobeno především tím, že jsme stanovené termíny nebrali úplně jako klíčové, 
+ale pracovali jsme na více částech projektu současně a průběžně hlídali, zda vše stíháme 
+včas dokončit.
+
+Přidělení úloh
+---------------
+Práci jsme si v týmu rozdělovali postupně podle toho, co bylo třeba zrovna udělat a koho 
+jaká část projektu více zajímala. Na každém úkolu jsme pracovali minimálně ve dvojicích, 
+aby byla zajištěna kontrola práce, abychom si mohli pomáhat a abychom produkovali lepší 
+výsledky.
+
+Zvolené kanály pro komunikaci
+------------------------------
+Zvolenou formu komunikace (tedy vlastní Discord server) jsme naprosto dodrželi a pravidla 
+jsme se snažili neporušovat. Nedařilo se nám vždy psát například odvedenou práci do roomky
+"pracovní výkaz", naopak room todo jsme používali celkem často. Když jsme se dohodli, 
+uspořádali jsme online team meeting a snažili se rozdělit si další práci nebo si pomoct 
+s různými problémy. Během řešení projektu jsme také založili "motivační room", aby se nám 
+lépe pracovalo a abychom se vzájemně podpořili.
+
+Zvolený systém pro správu verzí a hostingu
+-------------------------------------------
+Na Github jsme se snažili commitovat často, samozřejmostí byla kontrola nově přidaných 
+funkcionalit ostatními členy týmu a testování funkčnosti produktu.
