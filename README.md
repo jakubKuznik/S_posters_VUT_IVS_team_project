@@ -20,6 +20,8 @@ Authors
 - xvanom00 Michal Vaňo
 - xsvobo1x Lucie Svobodova
 
+## Instalator file
+https://drive.google.com/drive/folders/1zPLuCmEtoTRg2jUPrLewxghvk1LnZUfz?usp=sharing
 
 ## Installation
 ```
