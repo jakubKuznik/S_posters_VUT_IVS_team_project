@@ -123,6 +123,8 @@ def rpn_eval(rpn_array):
     stack = []
     temp = [0, 0]
     for i in rpn_array:
+        if "Math Error" in stack:
+            return "Math Error"
         if is_number(i):
             stack.append(i)
         else:
