@@ -25,7 +25,7 @@ https://drive.google.com/drive/folders/1zPLuCmEtoTRg2jUPrLewxghvk1LnZUfz?usp=sha
 
 ## Installation
 ```
-sudo dpkg -i sloth_calc.deb
+sudo dpkg -i slothcalc.deb
 ```
 
 ## Uninstallation
